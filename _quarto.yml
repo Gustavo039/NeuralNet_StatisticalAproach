@@ -1,0 +1,24 @@
+project:
+  type: book
+
+book:
+  title: "Redes Neurais Artificiais: um bom lugar para um estatístico se deitar"
+  author: "Gustavo Almeida Silva - Tiago Maia Magalhães"
+  date: "07/09/2024"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - GD.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+

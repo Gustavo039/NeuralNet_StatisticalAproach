@@ -1,0 +1,122 @@
+---
+title: "Gradiente Descendente"
+---
+
+# Motivação
+
+Dentre o contexto de regressão linear, um conjunto de variáveis pode ser utilizada para predizer o valor de uma outra variável. O processo de escolha de um conjunto de variáveis explicativas que melhor predizem a variável resposta é chamado de modelagem.
+
+A diferença entre o valor predito e o valor verdadeiro da variável de estudo é chamado de resíduo. 
+
+Uma das formas de estimação de um modelo linear é minimizando o o erro total do modelo, ou seja, encontrando o modelo que minimza o valor do resíduo.
+
+De maneira detalhada, deseja-se estimar o modelo que minimiza a soma dos resíduos ao quadrado
+
+
+
+
+$$SRQ = \sum^n_{i=0} (y_i - \hat y_i)^2$$
+
+A SRQ pode ser chamada de uma função de custo. 
+
+A minimização entra na área de otimização matematica em otimização.
+
+
+Existem diversos métodos
+
+* Mínimos Quadrados
+
+* Função de Verossimilhança
+
+* Gradiente Descendente
+
+
+
+
+
+
+# Função de custo
+
+
+
+# Cálculos
+
+O gradiente em relação em relação aos pesos é dado por:
+
+
+$$D_m = \frac{\delta(Funcao de Custo)}{\delta m } = \frac{\delta}{\delta m}(\frac{1}{n}\sum^n_{i=0}(y_i - \hat y)^2)$$
+
+$$D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\delta}{\delta m}(y_i-\hat y_i))$$
+
+$$D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\delta}{\delta m}(y_i - (mx_i + c)))$$
+
+$$D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times(-x_i))$$
+
+$$D_m = -\frac{2}{n}(\sum x_i(y_i- \hat y_i))$$
+
+
+Assim os gradientes sáo dados por
+
+$$D_M = -\frac{1}{n}(\sum x_i (y - \hat y_i))$$ e
+
+$$D_C = -\frac{1}{n}(\sum(y_i - \hat y_i))$$
+
+# Variações
+
+
+::: {.content-visible when-format="html"}
+
+::: {#fig-tesseract}
+
+```{=html}
+<div align="center">
+<iframe width="700" height="700" src="./images/gif_GD_tipos.gif"></iframe>
+</div>
+```
+
+Animation of a tesseract, a cube changing over time.
+:::
+
+
+
+# Mínimos Quadrados x Gradiente Descendente
+
+Uma pergunta comum no contexto de regressão linear é: **Por que utilizar um método iterativo quando já conhecemos uma fórmula direta para calcular os coeficientes?**
+
+A resposta principal está na formulação em forma fechada da solução, dada por:
+
+$$\beta = (X^TX)^{-1}X^TY$$
+
+onde 
+
+* $X$ é a matriz de planejamento, contendo os valores das variáveis explicativas (ou preditoras);
+
+
+* $Y$ é o vetor coluna que representa os valores da variável resposta (ou dependente).
+
+
+1. **Inversão de Matriz**
+
+A primeira parte da fórmula envolve a inversão da matriz $(X^TX)$. Embora a inversão de uma matriz seja possível em teoria, em termos computacionais ela pode ser extremamente custosa. O processo de inversão tem um custo computacional que aumenta exponencialmente com o tamanho da matriz, especialmente à medida que o número de variáveis explicativas (ou colunas de X) aumenta.
+
+**O custo de inverter uma matriz $n \times n$ é aproximadamente $O(N^3)$ o que significa que, para dados com muitas variáveis, o tempo de execução cresce de maneira cúbica.**
+
+**Além disso, se a matriz $X^TX$ for mal-condicionada (ou seja, quando algumas variáveis são altamente correlacionadas entre si), o processo de inversão pode se tornar instável, resultando em erros numéricos.**
+
+
+2.  **Eficiência Computacional e Métodos Iterativos**
+
+Devido ao elevado custo de calcular diretamente a inversa dE $X^TX$ métodos iterativos, como os baseados em gradiente, são frequentemente preferidos em cenários com grandes conjuntos de dados ou alta dimensionalidade. Esses métodos não exigem a inversão direta da matriz e podem fornecer aproximações suficientemente boas para os coeficientes $\beta$ com um custo computacional muito menor.
+
+# Funções de custo baseados na Verossimilhança
+
+# GD - Caso Logístico
+
+
+A regressão logística é utilizada quando o desejamos classficar alguma classe. É um método pertencente a classse dos MLGs e possui certes diferenças para a aplaicação do me´todo de Gradiente Descendente
+
+
+A regressão logística é dada pela seguinte função
+
+$$
+

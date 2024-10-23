@@ -1,0 +1,16 @@
+# Preface {.unnumbered}
+
+Redes Neurais Artificiais: um bom lugar para um estatístico se deitar
+
+Nos últimos anos houve uma explosão no volume de dados disponíveis. Toda essa disponibilidade,
+motivou pesquisadores das áreas de Ciências de Dados, Estatística e Inteligencia Articial a buscarem
+modelos exíveis para que possam captar especicidades desses tipos de dados, por exemplo, podendo
+
+ter mais variáveis do que observações, mas que ainda possam serem considerados simples. Uma meto-
+dologia que ganhou popularidade foi a das redes neurais articiais, um conceito antigo em inteligência
+
+articial.
+
+```{r}
+1 + 1
+```
