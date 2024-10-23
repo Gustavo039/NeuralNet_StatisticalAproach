@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Redes Neurais Artificiais: um bom lugar para um estatístico se deitar - 2&nbsp; Gradiente Descendente</title>
+<title>Redes Neurais Artificiais: um bom lugar para um estatístico se deitar - 1&nbsp; Regressão Linear e Gradiente Descendente</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./summary.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradiente Descendente</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -96,22 +96,17 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefácio</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./GD.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./GD.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradiente Descendente</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -128,7 +123,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação"><span class="toc-section-number">3</span>  Motivação</a></li>
+  <li><a href="#regressão-linear" id="toc-regressão-linear" class="nav-link active" data-scroll-target="#regressão-linear"><span class="toc-section-number">2</span>  Regressão Linear</a></li>
+  <li><a href="#motivação" id="toc-motivação" class="nav-link" data-scroll-target="#motivação"><span class="toc-section-number">3</span>  Motivação</a></li>
   <li><a href="#função-de-custo" id="toc-função-de-custo" class="nav-link" data-scroll-target="#função-de-custo"><span class="toc-section-number">4</span>  Função de custo</a></li>
   <li><a href="#cálculos" id="toc-cálculos" class="nav-link" data-scroll-target="#cálculos"><span class="toc-section-number">5</span>  Cálculos</a></li>
   <li><a href="#variações" id="toc-variações" class="nav-link" data-scroll-target="#variações"><span class="toc-section-number">6</span>  Variações</a></li>
@@ -143,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradiente Descendente</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></h1>
 </div>
 
 
@@ -158,6 +154,21 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="regressão-linear" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Regressão Linear</h1>
+<p>A regressão linear simples é um método estatístico utilizado para modelar a relação entre duas variáveis: uma variável dependente (ou resposta), que desejamos prever, e uma variável independente (ou explicativa), que usamos para fazer essa previsão. O objetivo da regressão linear é encontrar uma função linear que melhor descreva essa relação.</p>
+<p>Por exemplo: podemos utilizar o número de banheiros e quartos de uma casa para predizer seu valor, o número de gols de um atacante utilizando seu histórico dos últimos anos e sua idade ou ainda em um cenário atual, muitas startups que desenvolvem tecnologias de inteligência artificial estão usando regressão linear para prever receitas futuras com base em métricas como usuários ativos, engajamento em plataformas digitais e número de clientes corporativos.</p>
+<p>Dentro de uma visão matemática e estatística, um modelo de regressão linear possui uma das estruturas mais simples, dado por:</p>
+<p><span class="math display">\[Y = \beta_0 +\beta_1x_1 + \epsilon\]</span></p>
+<p>onde</p>
+<ul>
+<li><p><span class="math inline">\(Y\)</span> é a variável resposta</p></li>
+<li><p><span class="math inline">\(\beta_0\)</span> é o intercepto</p></li>
+<li><p><span class="math inline">\(\beta_1\)</span> é o coeficiente que pondera a variável explicativa <span class="math inline">\(x_1\)</span></p></li>
+<li><p><span class="math inline">\(epsilon\)</span> é o erro aleatório associado ao modelo. Veremos mais pra frente suas pressuposições e como ele se torna um dos elementos principais para a construção de um modelo lienar</p></li>
+</ul>
+<p>A essência da regressão linear simples está na tentativa de ajustar uma linha reta aos dados que minimiza a diferença entre os valores observados de <span class="math inline">\(Y\)</span> e os valores preditos pela linha, utilizando para isso as variáveis explicativas</p>
+</section>
 <section id="motivação" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Motivação</h1>
 <p>Dentre o contexto de regressão linear, um conjunto de variáveis pode ser utilizada para predizer o valor de uma outra variável. O processo de escolha de um conjunto de variáveis explicativas que melhor predizem a variável resposta é chamado de modelagem.</p>
@@ -370,13 +381,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefácio</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./summary.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

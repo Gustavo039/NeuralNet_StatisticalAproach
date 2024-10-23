@@ -1,6 +1,31 @@
 ---
-title: "Gradiente Descendente"
+title: "Regressão Linear e Gradiente Descendente"
 ---
+
+# Regressão Linear
+
+A regressão linear simples é um método estatístico utilizado para modelar a relação entre duas variáveis: uma variável dependente (ou resposta), que desejamos prever, e uma variável independente (ou explicativa), que usamos para fazer essa previsão. O objetivo da regressão linear é encontrar uma função linear que melhor descreva essa relação.
+
+Por exemplo: podemos utilizar o número de banheiros e quartos de uma casa para predizer seu valor, o número de gols de um atacante utilizando seu histórico dos últimos anos e sua idade ou ainda em um cenário atual, muitas startups que desenvolvem tecnologias de inteligência artificial estão usando regressão linear para prever receitas futuras com base em métricas como usuários ativos, engajamento em plataformas digitais e número de clientes corporativos.
+
+Dentro de uma visão matemática e estatística, um modelo de regressão linear possui uma das estruturas mais simples, dado por:
+
+$$Y = \beta_0 +\beta_1x_1 + \epsilon$$
+
+onde 
+
+* $Y$ é a variável resposta
+
+* $\beta_0$ é o intercepto
+
+* $\beta_1$ é o coeficiente que pondera a variável explicativa $x_1$
+
+* $epsilon$ é o erro aleatório associado ao modelo. Veremos mais pra frente suas pressuposições e como ele se torna um dos elementos principais para a construção de um modelo lienar
+
+
+A essência da regressão linear simples está na tentativa de ajustar uma linha reta aos dados que minimiza a diferença entre os valores observados de $Y$ e os valores preditos pela linha, utilizando para isso as variáveis explicativas
+
+
 
 # Motivação
 

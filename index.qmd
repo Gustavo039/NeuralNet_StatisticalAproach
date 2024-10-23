@@ -1,16 +1,11 @@
-# Preface {.unnumbered}
+# Prefácio {.unnumbered}
 
 Redes Neurais Artificiais: um bom lugar para um estatístico se deitar
 
-Nos últimos anos houve uma explosão no volume de dados disponíveis. Toda essa disponibilidade,
-motivou pesquisadores das áreas de Ciências de Dados, Estatística e Inteligencia Articial a buscarem
-modelos exíveis par que possam captar especicidades desses tipos de dados, por exemplo, podendo
+Nos últimos anos, a explosão no volume e na variedade de dados disponíveis tem transformado a forma como enfrentamos desafios analíticos. Este cenário dinâmico tem impulsionado avanços significativos em áreas como a Ciência de Dados, Estatística e Inteligência Artificial, com o desenvolvimento de modelos mais flexíveis e robustos, capazes de lidar com a complexidade crescente dos dados modernos. Modelos que possam lidar com cenários onde o número de variáveis supera o de observações, sem sacrificar a simplicidade e interpretabilidade, tornaram-se cada vez mais essenciais.
 
-ter mais variáveis do que observações, mas que ainda possam serem considerados simples. Uma meto-
-dologia que ganhou popularidade foi a das redes neurais articiais, um conceito antigo em inteligência
+Dentro desse contexto, as redes neurais artificiais emergem como uma poderosa metodologia. Apesar de ser um conceito introduzido há décadas no campo da Inteligência Artificial, somente nos últimos anos as redes neurais ganharam uma popularidade generalizada, devido ao seu sucesso em diversas aplicações práticas. Contudo, mesmo com sua ampla aplicabilidade, as redes neurais ainda não são amplamente exploradas em cursos de graduação em Estatística. A terminologia frequentemente associada ao aprendizado de máquinas e a complexidade algorítmica envolvida podem representar barreiras significativas para estatísticos em formação.
 
-articial.
+Este livro surge como uma resposta a essa lacuna, oferecendo uma introdução acessível e orientada à modelagem de redes neurais sob uma ótica estatística. Com foco em apresentar os conceitos fundamentais de forma clara e direta, este material busca facilitar o aprendizado para aqueles que já possuem uma base sólida em Estatística, mas que encontram dificuldades ao transitar para áreas como o Aprendizado de Máquinas. Além disso, o livro se complementa com rotinas implementadas em R, permitindo uma aplicação prática e concreta dos modelos discutidos.
 
-```{r}
-1 + 1
-```
+Estudos de simulação também serão explorados para avaliar a performance dos estimadores sob diferentes configurações, tais como funções de ativação, número de camadas ocultas (hidden layers), tamanho da amostra e função de perda — um componente crítico no processo de otimização e estimação via backpropagation. A combinação dessas abordagens permitirá uma compreensão mais profunda e adaptada ao público estatístico, trazendo luz às potencialidades e limitações das redes neurais artificiais em cenários reais.
