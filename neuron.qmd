@@ -1,0 +1,46 @@
+---
+title: "Redes 1: Neuronio"
+---
+
+Dado as definições iniciais das regressões linear e logistica, assim como do metodo de gradiente descendente, podemos passar para a definiçãop de uma Rede Neural.
+Para um bom entendimento de como funciona uma rede, destricharemos em 3 etapas:
+
+  * Arquitetura 
+  * Tipos
+  * Aplicação
+
+Um neurônio em uma rede neural artificial é uma unidade computacional inspirada no funcionamento de um neurônio biológico. Ele recebe múltiplas entradas (inputs), realiza uma operação matemática para processar esses valores e gera uma saída (output). Essa operação geralmente envolve uma soma ponderada das entradas seguida por uma função de ativação, que transforma o valor resultante antes de enviá-lo à próxima camada da rede.
+
+O neurônio humano é uma célula especializada no sistema nervoso, composta por dendritos, corpo celular (soma), axônio e terminais do axônio (sinapses). Os dendritos recebem sinais químicos e elétricos de outros neurônios, que se acumulam no corpo celular, onde esses sinais são integrados. Se a soma desses sinais ultrapassar um certo limiar, o neurônio gera um impulso elétrico, conhecido como potencial de ação. Esse impulso viaja pelo axônio até os terminais, onde é convertido novamente em sinal químico. Nessa etapa, neurotransmissores são liberados para se comunicar com outros neurônios através das sinapses, formando uma complexa rede de comunicação e processamento. Cada neurônio humano possui milhares de conexões (sinapses) com outros neurônios, o que permite um processamento de informações altamente paralelo e dinâmico, com adaptações complexas que envolvem neuroplasticidade ao longo do tempo.
+
+Já um neurônio computacional, usado em redes neurais artificiais, é uma representação simplificada do neurônio humano. Ele possui uma estrutura mais básica, composta por entradas, uma soma ponderada e uma função de ativação. Cada entrada do neurônio computacional tem um peso associado, que representa a importância dessa entrada para o resultado final. O neurônio computacional calcula a soma ponderada das entradas, aplica uma função de ativação para transformar o resultado e então gera uma saída. Diferente do neurônio biológico, que pode transmitir informações de maneira complexa e em várias direções, o neurônio computacional apenas encaminha sua saída para os neurônios da próxima camada da rede.
+
+Basicamento, podemos representar uma neuronio humano e computacional da seguinte forma
+
+![](images/neuron.png)
+
+Um conjunto de neurônios humanos interconectados é conhecido como rede de neurônios ou **rede neural**. No cérebro humano, essas redes formam complexas interconexões chamadas de circuitos neurais, que são responsáveis pelo processamento de informações e pela comunicação entre diferentes partes do sistema nervoso.
+
+No contexto computacional um conjunto de neurônios também é chamado de uma rede neural. 
+
+# Estrutura Básica
+
+Um neurónio é a estrura mais básica de uma rede neural. Ele recebe um valor, processa ele, e retorna outro valor que é passado para o neuronio seguinte.
+
+Em uma linguagem matemática, seja um neurônio $K$ $x_1,x_2, ....,x_m$ variáveis, $m+1$ entradas (*inputs*) e um vetor de pesos $w_1,w_2, ..., w_m$. 
+
+  1. Bias Input
+  - O input $x_0$ é definido como o valor constante $+1$. Isso o torna o chamado **Bias Input**, que é utilizado para ajustar o valor de saida do neurônio independente dos damais valores de entrada. Esse termo permite que o neurônio retorne valores diferentes de 0 mesmo quando todos os valores de entrada são iguais a 0. 
+  
+  2. Actual Inputs
+  - Os valores de entradas remanescente, vindo das variáveis $x_1,x_2, ...x_m$ são chamadas de entradas verdadeiras (**Actual Inputs**), tendo seu próprio vetor de peso associado $w_{k1}, w_{k2},..., w_{km}$
+  
+  3. Soma Ponderada
+  - A soma dos valores de entrada ponderadas pelos pesos é realizada, dada por:
+  
+$$z_k = \phi(\sum^m_{j=0}w_{kj}x_j)$$
+
+
+
+
+

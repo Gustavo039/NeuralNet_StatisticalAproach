@@ -1,5 +1,6 @@
 project:
   type: book
+  output-dir: docs
 
 book:
   title: "Redes Neurais Artificiais: um bom lugar para um estatístico se deitar"
@@ -9,6 +10,7 @@ book:
   chapters:
     - index.qmd
     - GD.qmd
+    - neuron.qmd
     - summary.qmd
     - references.qmd
 

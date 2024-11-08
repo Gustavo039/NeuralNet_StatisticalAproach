@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./neuron.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -106,7 +106,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./neuron.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Redes 1: Neuronio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -124,12 +129,15 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#regressão-linear" id="toc-regressão-linear" class="nav-link active" data-scroll-target="#regressão-linear"><span class="toc-section-number">2</span>  Regressão Linear</a></li>
-  <li><a href="#motivação" id="toc-motivação" class="nav-link" data-scroll-target="#motivação"><span class="toc-section-number">3</span>  Motivação</a></li>
-  <li><a href="#função-de-custo" id="toc-função-de-custo" class="nav-link" data-scroll-target="#função-de-custo"><span class="toc-section-number">4</span>  Função de custo</a></li>
-  <li><a href="#cálculos" id="toc-cálculos" class="nav-link" data-scroll-target="#cálculos"><span class="toc-section-number">5</span>  Cálculos</a></li>
-  <li><a href="#variações" id="toc-variações" class="nav-link" data-scroll-target="#variações"><span class="toc-section-number">6</span>  Variações</a></li>
-  <li><a href="#mínimos-quadrados-x-gradiente-descendente" id="toc-mínimos-quadrados-x-gradiente-descendente" class="nav-link" data-scroll-target="#mínimos-quadrados-x-gradiente-descendente"><span class="toc-section-number">7</span>  Mínimos Quadrados x Gradiente Descendente</a></li>
-  <li><a href="#funções-de-custo-baseados-na-verossimilhança" id="toc-funções-de-custo-baseados-na-verossimilhança" class="nav-link" data-scroll-target="#funções-de-custo-baseados-na-verossimilhança"><span class="toc-section-number">8</span>  Funções de custo baseados na Verossimilhança</a></li>
+  <li><a href="#estimação-dos-parâmetros" id="toc-estimação-dos-parâmetros" class="nav-link" data-scroll-target="#estimação-dos-parâmetros"><span class="toc-section-number">3</span>  Estimação dos Parâmetros</a></li>
+  <li><a href="#gradiente-descendente" id="toc-gradiente-descendente" class="nav-link" data-scroll-target="#gradiente-descendente"><span class="toc-section-number">4</span>  Gradiente Descendente</a>
+  <ul class="collapse">
+  <li><a href="#o-gradiente-descendente-como-alternativa-à-ols" id="toc-o-gradiente-descendente-como-alternativa-à-ols" class="nav-link" data-scroll-target="#o-gradiente-descendente-como-alternativa-à-ols"><span class="toc-section-number">4.1</span>  O Gradiente Descendente como Alternativa à OLS</a></li>
+  </ul></li>
+  <li><a href="#motivação" id="toc-motivação" class="nav-link" data-scroll-target="#motivação"><span class="toc-section-number">5</span>  Motivação</a></li>
+  <li><a href="#função-de-custo" id="toc-função-de-custo" class="nav-link" data-scroll-target="#função-de-custo"><span class="toc-section-number">6</span>  Função de custo</a></li>
+  <li><a href="#cálculos" id="toc-cálculos" class="nav-link" data-scroll-target="#cálculos"><span class="toc-section-number">7</span>  Cálculos</a></li>
+  <li><a href="#variações" id="toc-variações" class="nav-link" data-scroll-target="#variações"><span class="toc-section-number">8</span>  Variações</a></li>
   <li><a href="#gd---caso-logístico" id="toc-gd---caso-logístico" class="nav-link" data-scroll-target="#gd---caso-logístico"><span class="toc-section-number">9</span>  GD - Caso Logístico</a></li>
   </ul>
 </nav>
@@ -165,56 +173,23 @@ ul.task-list li input[type="checkbox"] {
 <li><p><span class="math inline">\(Y\)</span> é a variável resposta</p></li>
 <li><p><span class="math inline">\(\beta_0\)</span> é o intercepto</p></li>
 <li><p><span class="math inline">\(\beta_1\)</span> é o coeficiente que pondera a variável explicativa <span class="math inline">\(x_1\)</span></p></li>
-<li><p><span class="math inline">\(epsilon\)</span> é o erro aleatório associado ao modelo. Veremos mais pra frente suas pressuposições e como ele se torna um dos elementos principais para a construção de um modelo lienar</p></li>
+<li><p><span class="math inline">\(\epsilon\)</span> é o erro aleatório associado ao modelo. Veremos mais pra frente suas pressuposições e como ele se torna um dos elementos principais para a construção de um modelo lienar</p></li>
 </ul>
 <p>A essência da regressão linear simples está na tentativa de ajustar uma linha reta aos dados que minimiza a diferença entre os valores observados de <span class="math inline">\(Y\)</span> e os valores preditos pela linha, utilizando para isso as variáveis explicativas</p>
+<p>O que torno um modelo em um modelo estatístico são</p>
+<p>O cáculo desses coeficientes possui forma fechada, dada por: <span class="math display">\[(X^TX)^{-1}X^TY\]</span></p>
+<p>Pela seguinte demonstração</p>
+<p>Seja <span class="math inline">\(X\)</span> a matriz de planejamento. Para um conjunto de dados com <span class="math inline">\(p\)</span> variáveis explicativas e <span class="math inline">\(n\)</span> observações, temos um matriz de planejamento de dimensão <span class="math inline">\(n \ \times \ p\)</span></p>
 </section>
-<section id="motivação" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Motivação</h1>
-<p>Dentre o contexto de regressão linear, um conjunto de variáveis pode ser utilizada para predizer o valor de uma outra variável. O processo de escolha de um conjunto de variáveis explicativas que melhor predizem a variável resposta é chamado de modelagem.</p>
-<p>A diferença entre o valor predito e o valor verdadeiro da variável de estudo é chamado de resíduo.</p>
-<p>Uma das formas de estimação de um modelo linear é minimizando o o erro total do modelo, ou seja, encontrando o modelo que minimza o valor do resíduo.</p>
-<p>De maneira detalhada, deseja-se estimar o modelo que minimiza a soma dos resíduos ao quadrado</p>
-<p><span class="math display">\[SRQ = \sum^n_{i=0} (y_i - \hat y_i)^2\]</span></p>
-<p>A SRQ pode ser chamada de uma função de custo.</p>
-<p>A minimização entra na área de otimização matematica em otimização.</p>
-<p>Existem diversos métodos</p>
-<ul>
-<li><p>Mínimos Quadrados</p></li>
-<li><p>Função de Verossimilhança</p></li>
-<li><p>Gradiente Descendente</p></li>
-</ul>
-</section>
-<section id="função-de-custo" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Função de custo</h1>
-</section>
-<section id="cálculos" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Cálculos</h1>
-<p>O gradiente em relação em relação aos pesos é dado por:</p>
-<p><span class="math display">\[D_m = \frac{\delta(Funcao de Custo)}{\delta m } = \frac{\delta}{\delta m}(\frac{1}{n}\sum^n_{i=0}(y_i - \hat y)^2)\]</span></p>
-<p><span class="math display">\[D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\delta}{\delta m}(y_i-\hat y_i))\]</span></p>
-<p><span class="math display">\[D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\delta}{\delta m}(y_i - (mx_i + c)))\]</span></p>
-<p><span class="math display">\[D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times(-x_i))\]</span></p>
-<p><span class="math display">\[D_m = -\frac{2}{n}(\sum x_i(y_i- \hat y_i))\]</span></p>
-<p>Assim os gradientes sáo dados por</p>
-<p><span class="math display">\[D_M = -\frac{1}{n}(\sum x_i (y - \hat y_i))\]</span> e</p>
-<p><span class="math display">\[D_C = -\frac{1}{n}(\sum(y_i - \hat y_i))\]</span></p>
-</section>
-<section id="variações" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Variações</h1>
-<p>::: {.content-visible when-format=“html”}</p>
-<div id="fig-tesseract" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<div align="center">
-<iframe width="700" height="700" src="./images/gif_GD_tipos.gif"></iframe>
-</div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;6.1: Animation of a tesseract, a cube changing over time.</figcaption><p></p>
-</figure>
-</div>
-</section>
-<section id="mínimos-quadrados-x-gradiente-descendente" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Mínimos Quadrados x Gradiente Descendente</h1>
-<p>Uma pergunta comum no contexto de regressão linear é: <strong>Por que utilizar um método iterativo quando já conhecemos uma fórmula direta para calcular os coeficientes?</strong></p>
+<section id="estimação-dos-parâmetros" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Estimação dos Parâmetros</h1>
+<p>Para se estimar os parametros de uma regressão linear o pensamento mais ismples é: <em>qual o valor dos paramaetros que me retorna o menor erro?</em></p>
+<p>Ou seja, para quais valores dos coeficientes <span class="math inline">\(\beta_0,\beta_1, ..., \beta_p\)</span> temos o menor erro.</p>
+<p>O “menor erro” pode ser estruturada em forma matematica:</p>
+<p><span class="math display">\[Erro = E_i= Y_i-\hat Y_i\]</span> <span class="math display">\[Soma Erro Abs = \sum E_i^2\]</span></p>
+<p>Por sua vez, essa função pode ser chamada de função de custo. Dentro no universo de estatística, aprednizado de máquina e redes neurais diversas função de custos são definidas e utilizadas, satisfzanedo um nicho e onjetivo especifio</p>
+<p>A soma quadratica dos erros é uma das funções mais simples e mais utilizada no contexto de regressão linear</p>
+<p>Para sua minização, temos a seguinte estrutura</p>
 <p>A resposta principal está na formulação em forma fechada da solução, dada por:</p>
 <p><span class="math display">\[\beta = (X^TX)^{-1}X^TY\]</span></p>
 <p>onde</p>
@@ -226,21 +201,97 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Inversão de Matriz</strong></li>
 </ol>
 <p>A primeira parte da fórmula envolve a inversão da matriz <span class="math inline">\((X^TX)\)</span>. Embora a inversão de uma matriz seja possível em teoria, em termos computacionais ela pode ser extremamente custosa. O processo de inversão tem um custo computacional que aumenta exponencialmente com o tamanho da matriz, especialmente à medida que o número de variáveis explicativas (ou colunas de X) aumenta.</p>
-<p><strong>O custo de inverter uma matriz <span class="math inline">\(n \times n\)</span> é aproximadamente <span class="math inline">\(O(N^3)\)</span> o que significa que, para dados com muitas variáveis, o tempo de execução cresce de maneira cúbica.</strong></p>
-<p><strong>Além disso, se a matriz <span class="math inline">\(X^TX\)</span> for mal-condicionada (ou seja, quando algumas variáveis são altamente correlacionadas entre si), o processo de inversão pode se tornar instável, resultando em erros numéricos.</strong></p>
+<p>O custo de inverter uma matriz <span class="math inline">\(n \times n\)</span> é aproximadamente <span class="math inline">\(O(N^3)\)</span> o que significa que, para dados com muitas variáveis, o tempo de execução cresce de maneira cúbica.</p>
+<p>Além disso, se a matriz <span class="math inline">\(X^TX\)</span> for mal-condicionada (ou seja, quando algumas variáveis são altamente correlacionadas entre si), o processo de inversão pode se tornar instável, resultando em erros numéricos.</p>
 <ol start="2" type="1">
 <li><strong>Eficiência Computacional e Métodos Iterativos</strong></li>
 </ol>
 <p>Devido ao elevado custo de calcular diretamente a inversa dE <span class="math inline">\(X^TX\)</span> métodos iterativos, como os baseados em gradiente, são frequentemente preferidos em cenários com grandes conjuntos de dados ou alta dimensionalidade. Esses métodos não exigem a inversão direta da matriz e podem fornecer aproximações suficientemente boas para os coeficientes <span class="math inline">\(\beta\)</span> com um custo computacional muito menor.</p>
 </section>
-<section id="funções-de-custo-baseados-na-verossimilhança" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Funções de custo baseados na Verossimilhança</h1>
+<section id="gradiente-descendente" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Gradiente Descendente</h1>
+<p>O gradiente é um conceito central em otimização. Ele representa a direção e a intensidade de variação de uma função com respeito a cada um de seus parâmetros. Em termos mais intuitivos, o gradiente aponta “em que direção” e “o quão rapidamente” o valor da função de custo aumenta ou diminui em relação aos parâmetros.</p>
+<p>Para uma função de custo <span class="math inline">\(J(\theta)\)</span> onde <span class="math inline">\(\theta\)</span> representa o vetor de parâmetros, o gradinete de <span class="math inline">\(\nabla J(\theta)\)</span> é o vetor de derivadas parciais:</p>
+<p><span class="math inline">\(\nabla J(\theta) = (\frac{\partial J}{\partial\theta_1},\frac{\partial J}{\partial\theta_2},...,\frac{\partial J}{\partial\theta_n})\)</span></p>
+<p>Cada componente desse vetor indica como uma pequena alteração em um parâmetro específico impacta <span class="math inline">\(\theta_i\)</span> o valor da função de custo. No contexto de minimização, o gradiente fornece a direção em que a função de custo aumenta mais rapidamente. Portanto, para minimizar <span class="math inline">\(J(\theta)\)</span> ajustamos os parâmetros no sentido oposto ao gradiente — daí o nome “gradiente descendente”.</p>
+<section id="o-gradiente-descendente-como-alternativa-à-ols" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="o-gradiente-descendente-como-alternativa-à-ols"><span class="header-section-number">4.1</span> O Gradiente Descendente como Alternativa à OLS</h2>
+<p>O gradiente descendente é uma técnica iterativa de otimização que ajusta os parâmetros na direção oposta ao gradiente, com o objetivo de encontrar o ponto de mínimo da função de custo. A atualização dos parâmetros em cada iteração é feita com a seguinte fórmula:</p>
+<p><span class="math display">\[\theta^{(t+1)} = \theta(t) -\eta\nabla J(\theta^{(t)}) \]</span> Onde:</p>
+<ul>
+<li><p><span class="math inline">\(\theta^{(t+1)}\)</span> é o vetor de parâmetros atualizado.</p></li>
+<li><p><span class="math inline">\(\theta^{(t)}\)</span> é o vetor de parâmetros na iteração atual.</p></li>
+<li><p><span class="math inline">\(\nabla\)</span> é a taxa de aprendizado (learning rate), um hiperparâmetro que controla o tamanho dos passos de atualização.</p></li>
+<li><p><span class="math inline">\(\nabla J(\theta(t))\)</span> é o gradiente da função de custo calculado com base nos parâmetros da iteração atual.</p></li>
+</ul>
+</section>
+</section>
+<section id="motivação" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Motivação</h1>
+<p>Dentre o contexto de regressão linear, um conjunto de variáveis pode ser utilizada para predizer o valor de uma outra variável. O processo de escolha de um conjunto de variáveis explicativas que melhor predizem a variável resposta é chamado de modelagem.</p>
+<p>A diferença entre o valor predito e o valor verdadeiro da variável de estudo é chamado de resíduo.</p>
+<p>Uma das formas de estimação de um modelo linear é minimizando o o erro total do modelo, ou seja, encontrando o modelo que minimza o valor do resíduo.</p>
+<p>De maneira detalhada, deseja-se estimar o modelo que minimiza a soma dos resíduos ao quadrado</p>
+<p><span class="math display">\[SRQ = \sum^n_{i=0} (y_i - \hat y_i)^2\]</span></p>
+<p>A SRQ pode ser chamada de uma função de custo.</p>
+<p>A minimização entra na área de otimização matematica em otimização.</p>
+<p>Existem diferentes métodos</p>
+<ul>
+<li><p>Métodos Mínimos Quadrados</p></li>
+<li><p>Método via Verossimilhança</p></li>
+<li><p>Gradiente Descendente</p></li>
+</ul>
+</section>
+<section id="função-de-custo" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Função de custo</h1>
+</section>
+<section id="cálculos" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Cálculos</h1>
+<p>O gradiente em relação em relação aos pesos é dado por:</p>
+<p><span class="math display">\[D_m = \frac{\partial(Funcao de Custo)}{\partial m } = \frac{\partial}{\partial m}(\frac{1}{n}\sum^n_{i=0}(y_i - \hat y)^2)\]</span></p>
+<p><span class="math display">\[D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\partial}{\partial m}(y_i-\hat y_i))\]</span></p>
+<p><span class="math display">\[D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\partial}{\partial m}(y_i - (mx_i + c)))\]</span></p>
+<p><span class="math display">\[D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times(-x_i))\]</span></p>
+<p><span class="math display">\[D_m = -\frac{2}{n}(\sum x_i(y_i- \hat y_i))\]</span></p>
+<p>Assim os gradientes sáo dados por</p>
+<p><span class="math display">\[D_M = -\frac{1}{n}(\sum x_i (y - \hat y_i))\]</span> e</p>
+<p><span class="math display">\[D_C = -\frac{1}{n}(\sum(y_i - \hat y_i))\]</span></p>
+</section>
+<section id="variações" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Variações</h1>
+<p>::: {.content-visible when-format=“html”}</p>
+<div id="fig-tesseract" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div align="center">
+<iframe width="700" height="700" src="./images/gif_GD_tipos.gif"></iframe>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.1: Animation of a tesseract, a cube changing over time.</figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="gd---caso-logístico" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> GD - Caso Logístico</h1>
 <p>A regressão logística é utilizada quando o desejamos classficar alguma classe. É um método pertencente a classse dos MLGs e possui certes diferenças para a aplaicação do me´todo de Gradiente Descendente</p>
 <p>A regressão logística é dada pela seguinte função</p>
 <p>$$</p>
+<p>$$</p>
+<p>A principal difernça está na definição da função de custo. Enquanto que na regressão linear a principais funções de custo são a soma dos resíduos ao quadrado ou o erro quadratico médio, para o caso logistico utiliza-se o logaritimo da função que representa a regressão logistica, chamada de Binary Cross-Entropy Loss (Log Loss).</p>
+<p>A Binary Cross-Entropy Loss se deriva do custo de erro, dado por:</p>
+<p><span class="math display">\[\text{custo}(h_\theta(x),y)  = \begin{cases}
+      -\log(h_{\theta}(x)) , &amp; \text{if } y = 1 \\
+      -\log(1 - h_{\theta}(x)) , &amp; \text{if } y = 0
+   \end{cases}\]</span></p>
+<p>Ou de maneira unificada</p>
+<p><span class="math display">\[\text{custo}(h_{\theta}(x), y) = -y^{(i)} \times \log(h_{\theta}(x^{(i)})) - (1 - y^{(i)}) \times \log(h_{\theta}(x^{(i)}))\]</span></p>
+<p>Para <span class="math inline">\(m\)</span> observações, a métrica pode ser simplificada como a média:</p>
+<p><span class="math display">\[J(\theta) = -\frac{1}{m}\sum_{i=1}^m y^{(i)} \times \log(h_{\theta}(x^{(i)})) - (1 - y^{(i)}) \times \log(h_{\theta}(x^{(i)}))\]</span></p>
+<p>Assim como no caso da regressão linear, o objetivo é minimizar a função <span class="math inline">\(J(\theta)\)</span></p>
+<p>Dado um total de <span class="math inline">\(n\)</span> variáveis, assumimos um total de <span class="math inline">\(n\)</span> parâmetros para o vetor <span class="math inline">\(\theta\)</span>. Para minimzar <span class="math inline">\(J(\theta)\)</span>, temos que realizar um Gradiente Descendente em cada parametro de <span class="math inline">\(\theta\)</span>, denominado <span class="math inline">\(\theta_j\)</span>. Onde a cada iteração, a seguinte atualização é realizada</p>
+<p><span class="math display">\[\theta_j \leftarrow \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta) \]</span> Na etapa final do algoritmo, precisamos rodar a o gradiente descendente simultaneamente em cada parametro, ou seja, atualizar <span class="math inline">\(\theta_0, \theta_1, ..., \theta_n\)</span> contidos no vetor <span class="math inline">\(\mathbf{\theta}\)</span></p>
+<p>A atualização em <span class="math inline">\(\theta_j\)</span> é computada a partir de sua derivada</p>
+<p><span class="math display">\[\frac{\partial}{\partial\theta_j}J(\theta) = \frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j\]</span></p>
+<p>E portanto, substituindo na formula da atualização, temos a seguinte regra:</p>
+<p><span class="math display">\[\theta_j \leftarrow \theta_j - \alpha \frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j\]</span></p>
 
 
 </section>
@@ -386,8 +437,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./neuron.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Redes 1: Neuronio</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

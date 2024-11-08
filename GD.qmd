@@ -20,12 +20,86 @@ onde
 
 * $\beta_1$ é o coeficiente que pondera a variável explicativa $x_1$
 
-* $epsilon$ é o erro aleatório associado ao modelo. Veremos mais pra frente suas pressuposições e como ele se torna um dos elementos principais para a construção de um modelo lienar
+* $\epsilon$ é o erro aleatório associado ao modelo. Veremos mais pra frente suas pressuposições e como ele se torna um dos elementos principais para a construção de um modelo lienar
 
 
 A essência da regressão linear simples está na tentativa de ajustar uma linha reta aos dados que minimiza a diferença entre os valores observados de $Y$ e os valores preditos pela linha, utilizando para isso as variáveis explicativas
 
+O que torno um modelo em um modelo estatístico são 
 
+
+O cáculo desses coeficientes possui forma fechada, dada por: $$(X^TX)^{-1}X^TY$$
+
+Pela seguinte demonstração 
+
+Seja $X$ a matriz de planejamento. Para um conjunto de dados com $p$ variáveis explicativas e $n$ observações, temos um matriz de planejamento de dimensão $n \ \times \ p$
+
+# Estimação dos Parâmetros
+
+Para se estimar os parametros de uma regressão linear o pensamento mais ismples é: *qual o valor dos paramaetros que me retorna o menor erro?*
+
+Ou seja, para quais valores dos coeficientes $\beta_0,\beta_1, ..., \beta_p$ temos o menor erro. 
+
+O "menor erro" pode ser estruturada em forma matematica:
+
+$$Erro = E_i= Y_i-\hat Y_i$$
+$$Soma Erro Abs = \sum E_i^2$$
+
+Por sua vez, essa função pode ser chamada de função de custo. Dentro no universo de estatística, aprednizado de máquina e redes neurais diversas função de custos são definidas e utilizadas, satisfzanedo um nicho e onjetivo especifio
+
+A soma quadratica dos erros é uma das funções mais simples e mais utilizada no contexto de regressão linear
+
+Para sua minização, temos a seguinte estrutura
+
+A resposta principal está na formulação em forma fechada da solução, dada por:
+
+$$\beta = (X^TX)^{-1}X^TY$$
+
+onde 
+
+* $X$ é a matriz de planejamento, contendo os valores das variáveis explicativas (ou preditoras);
+
+
+* $Y$ é o vetor coluna que representa os valores da variável resposta (ou dependente).
+
+
+1. **Inversão de Matriz**
+
+A primeira parte da fórmula envolve a inversão da matriz $(X^TX)$. Embora a inversão de uma matriz seja possível em teoria, em termos computacionais ela pode ser extremamente custosa. O processo de inversão tem um custo computacional que aumenta exponencialmente com o tamanho da matriz, especialmente à medida que o número de variáveis explicativas (ou colunas de X) aumenta.
+
+O custo de inverter uma matriz $n \times n$ é aproximadamente $O(N^3)$ o que significa que, para dados com muitas variáveis, o tempo de execução cresce de maneira cúbica.
+
+Além disso, se a matriz $X^TX$ for mal-condicionada (ou seja, quando algumas variáveis são altamente correlacionadas entre si), o processo de inversão pode se tornar instável, resultando em erros numéricos.
+
+
+2.  **Eficiência Computacional e Métodos Iterativos**
+
+Devido ao elevado custo de calcular diretamente a inversa dE $X^TX$ métodos iterativos, como os baseados em gradiente, são frequentemente preferidos em cenários com grandes conjuntos de dados ou alta dimensionalidade. Esses métodos não exigem a inversão direta da matriz e podem fornecer aproximações suficientemente boas para os coeficientes $\beta$ com um custo computacional muito menor.
+
+# Gradiente Descendente
+
+O gradiente é um conceito central em otimização. Ele representa a direção e a intensidade de variação de uma função com respeito a cada um de seus parâmetros. Em termos mais intuitivos, o gradiente aponta "em que direção" e "o quão rapidamente" o valor da função de custo aumenta ou diminui em relação aos parâmetros.
+
+Para uma função de custo $J(\theta)$ onde $\theta$ representa o vetor de parâmetros, o gradinete de $\nabla J(\theta)$ é o vetor de derivadas parciais:
+
+$\nabla J(\theta) = (\frac{\partial J}{\partial\theta_1},\frac{\partial J}{\partial\theta_2},...,\frac{\partial J}{\partial\theta_n})$
+
+Cada componente desse vetor indica como uma pequena alteração em um parâmetro específico impacta $\theta_i$ o valor da função de custo. No contexto de minimização, o gradiente fornece a direção em que a função de custo aumenta mais rapidamente. Portanto, para minimizar $J(\theta)$ ajustamos os parâmetros no sentido oposto ao gradiente — daí o nome "gradiente descendente".
+
+## O Gradiente Descendente como Alternativa à OLS
+
+O gradiente descendente é uma técnica iterativa de otimização que ajusta os parâmetros na direção oposta ao gradiente, com o objetivo de encontrar o ponto de mínimo da função de custo. A atualização dos parâmetros em cada iteração é feita com a seguinte fórmula:
+
+$$\theta^{(t+1)} = \theta(t) -\eta\nabla J(\theta^{(t)}) $$
+Onde:
+
+* $\theta^{(t+1)}$ é o vetor de parâmetros atualizado.
+
+* $\theta^{(t)}$ é o vetor de parâmetros na iteração atual.
+
+* $\nabla$ é a taxa de aprendizado (learning rate), um hiperparâmetro que controla o tamanho dos passos de atualização.
+
+* $\nabla J(\theta(t))$ é o gradiente da função de custo calculado com base nos parâmetros da iteração atual.
 
 # Motivação
 
@@ -47,11 +121,11 @@ A SRQ pode ser chamada de uma função de custo.
 A minimização entra na área de otimização matematica em otimização.
 
 
-Existem diversos métodos
+Existem diferentes métodos
 
-* Mínimos Quadrados
+* Métodos Mínimos Quadrados
 
-* Função de Verossimilhança
+* Método via Verossimilhança
 
 * Gradiente Descendente
 
@@ -64,16 +138,18 @@ Existem diversos métodos
 
 
 
+
+
 # Cálculos
 
 O gradiente em relação em relação aos pesos é dado por:
 
 
-$$D_m = \frac{\delta(Funcao de Custo)}{\delta m } = \frac{\delta}{\delta m}(\frac{1}{n}\sum^n_{i=0}(y_i - \hat y)^2)$$
+$$D_m = \frac{\partial(Funcao de Custo)}{\partial m } = \frac{\partial}{\partial m}(\frac{1}{n}\sum^n_{i=0}(y_i - \hat y)^2)$$
 
-$$D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\delta}{\delta m}(y_i-\hat y_i))$$
+$$D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\partial}{\partial m}(y_i-\hat y_i))$$
 
-$$D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\delta}{\delta m}(y_i - (mx_i + c)))$$
+$$D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\partial}{\partial m}(y_i - (mx_i + c)))$$
 
 $$D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times(-x_i))$$
 
@@ -104,37 +180,6 @@ Animation of a tesseract, a cube changing over time.
 
 
 
-# Mínimos Quadrados x Gradiente Descendente
-
-Uma pergunta comum no contexto de regressão linear é: **Por que utilizar um método iterativo quando já conhecemos uma fórmula direta para calcular os coeficientes?**
-
-A resposta principal está na formulação em forma fechada da solução, dada por:
-
-$$\beta = (X^TX)^{-1}X^TY$$
-
-onde 
-
-* $X$ é a matriz de planejamento, contendo os valores das variáveis explicativas (ou preditoras);
-
-
-* $Y$ é o vetor coluna que representa os valores da variável resposta (ou dependente).
-
-
-1. **Inversão de Matriz**
-
-A primeira parte da fórmula envolve a inversão da matriz $(X^TX)$. Embora a inversão de uma matriz seja possível em teoria, em termos computacionais ela pode ser extremamente custosa. O processo de inversão tem um custo computacional que aumenta exponencialmente com o tamanho da matriz, especialmente à medida que o número de variáveis explicativas (ou colunas de X) aumenta.
-
-**O custo de inverter uma matriz $n \times n$ é aproximadamente $O(N^3)$ o que significa que, para dados com muitas variáveis, o tempo de execução cresce de maneira cúbica.**
-
-**Além disso, se a matriz $X^TX$ for mal-condicionada (ou seja, quando algumas variáveis são altamente correlacionadas entre si), o processo de inversão pode se tornar instável, resultando em erros numéricos.**
-
-
-2.  **Eficiência Computacional e Métodos Iterativos**
-
-Devido ao elevado custo de calcular diretamente a inversa dE $X^TX$ métodos iterativos, como os baseados em gradiente, são frequentemente preferidos em cenários com grandes conjuntos de dados ou alta dimensionalidade. Esses métodos não exigem a inversão direta da matriz e podem fornecer aproximações suficientemente boas para os coeficientes $\beta$ com um custo computacional muito menor.
-
-# Funções de custo baseados na Verossimilhança
-
 # GD - Caso Logístico
 
 
@@ -145,3 +190,38 @@ A regressão logística é dada pela seguinte função
 
 $$
 
+$$
+
+A principal difernça está na definição da função de custo. Enquanto que na regressão linear a principais funções de custo são a soma dos resíduos ao quadrado ou o erro quadratico médio, para o caso logistico utiliza-se o logaritimo da função que representa a regressão logistica, chamada de  Binary Cross-Entropy Loss (Log Loss). 
+
+A Binary Cross-Entropy Loss se deriva do custo de erro, dado por:
+
+$$\text{custo}(h_\theta(x),y)  = \begin{cases} 
+      -\log(h_{\theta}(x)) , & \text{if } y = 1 \\ 
+      -\log(1 - h_{\theta}(x)) , & \text{if } y = 0 
+   \end{cases}$$
+
+Ou de maneira unificada
+
+$$\text{custo}(h_{\theta}(x), y) = -y^{(i)} \times \log(h_{\theta}(x^{(i)})) - (1 - y^{(i)}) \times \log(h_{\theta}(x^{(i)}))$$
+
+Para $m$ observações, a métrica pode ser simplificada como a média:
+
+
+$$J(\theta) = -\frac{1}{m}\sum_{i=1}^m y^{(i)} \times \log(h_{\theta}(x^{(i)})) - (1 - y^{(i)}) \times \log(h_{\theta}(x^{(i)}))$$
+
+Assim como no caso da regressão linear, o objetivo é minimizar a função $J(\theta)$
+
+Dado um total de $n$ variáveis, assumimos um total de $n$ parâmetros para o vetor $\theta$. Para minimzar $J(\theta)$, temos que realizar um Gradiente Descendente em cada parametro de $\theta$, denominado $\theta_j$. Onde a cada iteração, a seguinte atualização é realizada
+
+$$\theta_j \leftarrow \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta) $$
+Na etapa final do algoritmo, precisamos rodar a o gradiente descendente simultaneamente em cada parametro, ou seja, atualizar $\theta_0, \theta_1, ..., \theta_n$ contidos no vetor $\mathbf{\theta}$
+
+A atualização em $\theta_j$ é computada a partir de sua derivada
+
+$$\frac{\partial}{\partial\theta_j}J(\theta) = \frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j$$
+
+
+E portanto, substituindo na formula da atualização, temos a seguinte regra:
+
+$$\theta_j \leftarrow \theta_j - \alpha \frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j$$
