@@ -139,6 +139,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#cálculos" id="toc-cálculos" class="nav-link" data-scroll-target="#cálculos"><span class="toc-section-number">7</span>  Cálculos</a></li>
   <li><a href="#variações" id="toc-variações" class="nav-link" data-scroll-target="#variações"><span class="toc-section-number">8</span>  Variações</a></li>
   <li><a href="#gd---caso-logístico" id="toc-gd---caso-logístico" class="nav-link" data-scroll-target="#gd---caso-logístico"><span class="toc-section-number">9</span>  GD - Caso Logístico</a></li>
+  <li><a href="#lista-das-principais-funções-de-custo" id="toc-lista-das-principais-funções-de-custo" class="nav-link" data-scroll-target="#lista-das-principais-funções-de-custo"><span class="toc-section-number">10</span>  Lista das Principais Funções de Custo</a>
+  <ul class="collapse">
+  <li><a href="#função-de-custo-exponencial" id="toc-função-de-custo-exponencial" class="nav-link" data-scroll-target="#função-de-custo-exponencial"><span class="toc-section-number">10.1</span>  Função de Custo Exponencial</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -292,8 +296,17 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">\[\frac{\partial}{\partial\theta_j}J(\theta) = \frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j\]</span></p>
 <p>E portanto, substituindo na formula da atualização, temos a seguinte regra:</p>
 <p><span class="math display">\[\theta_j \leftarrow \theta_j - \alpha \frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j\]</span></p>
+</section>
+<section id="lista-das-principais-funções-de-custo" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Lista das Principais Funções de Custo</h1>
+<p>Alem das funções de custo ja listadas, outras são definidas para determinados nichos e obejtivos. O seguinte tópico buscou listar as principais.</p>
+<section id="função-de-custo-exponencial" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="função-de-custo-exponencial"><span class="header-section-number">10.1</span> Função de Custo Exponencial</h2>
+<p>Utilizada para o algoritmo AdaBoost de classsificação, onde sua forma de convexidade e crescimento exponencial para valroes negativos a torna sensivel para valores outliers. Dada por</p>
+<p><span class="math display">\[f(x) = \frac{1}{2}log(\frac{p(1|x)}{1-p(1|x)})\]</span></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

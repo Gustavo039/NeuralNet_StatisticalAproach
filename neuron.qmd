@@ -1,5 +1,5 @@
 ---
-title: "Redes 1: Neuronio"
+title: "Neuronios e Camadas"
 ---
 
 Dado as definições iniciais das regressões linear e logistica, assim como do metodo de gradiente descendente, podemos passar para a definiçãop de uma Rede Neural.
@@ -41,6 +41,80 @@ Em uma linguagem matemática, seja um neurônio $K$ $x_1,x_2, ....,x_m$ variáve
 $$z_k = \phi(\sum^m_{j=0}w_{kj}x_j)$$
 
 
+# Camadas
+
+Em rede neural, o fluxo dos dados percorre os neuronios atraves de determinados caminhos, chamados de **Camadas**.
+
+Uma camada (layer) pode ser caracterizada como um conjunto de neuronios, onde neuronios de diferentes camadas possuem comunicação, porem neuronios de uma mesma camadas não possuem nenhuma ligação
+
+-> Adicionar imagem de uma rede com camadas, mas sem definir os tipos de camadas
+
+Uma rede possui 3 camadas distintas: Entrada (Input), Oculta (Hidden) e Saida (Output)
+
+* Camada de Entrada
+  - Se caracteriza como a primeira camada de uma rede e é responsável em receber os dados do conjunto de dados utilizado. No caso de um conjunto de dados estruturado, possuindo uma organização padrão de variáveis em colunas e observações em linhas, cada variável seria atribuido a um neuronio distinto, ou seja, se um conjunto de dados possui 10 diferentes variaveis, serão necessários 10 diferentes neuronios na camada de entrada. No caso de conjunto de dados não estruturados como imagens e sons, cada neuronio pode receber um pixel ou um determinado intervalo do som. Vale destacar que uma rede sempre vai possuir uma e somente uma camada de entrada
+  
+
+* Camadas Ocultas
+  - Se caracteriza como as camadas que estão entre a camada de entrada e a camadas de saída, e não possui um número fixo. Redes mais simples possuem entre 1 a 3 camadas ocultas. Para problemas mais complexos esse número aumenta. A definição do número de camadas  ocultas pode se basear em 2 abordagems: Fixar ou Otimizar.
+  - Fixar o número de camadas ocultas significa definir um valor fixo antes de iniciar o treinamento do modelo. Essa abordagem é baseada em escolhas prévias, geralmente fundamentadas no conhecimento do problema ou em heurísticas. Redes simples, que resolvem problemas com poucos dados ou baixa complexidade, muitas vezes utilizam entre 1 e 3 camadas ocultas. Esse método é vantajoso em cenários onde se busca simplicidade no design do modelo, menor custo computacional e rapidez no desenvolvimento.
+  - Otimizar o número de camadas ocultas é uma abordagem que leva a observamos esse número como hiperparâmetro, e assim aplicar tecnicas de tuning para encontrar um número ótimo. Essa opção é utilizada quando não temos nenhum conhecimento a priori do preblema e redes que ja foram utilizadas em problemas semelhantes. 
+  
+* Camada de Saida
+  - É a última camada de uma rede e é responsável em passar os valores finais preditos. Toda rede vai possuir uma e somente uma camada de saída, onde o número de neurônios dessa camada vai depender do contexto do problema. Em um problema de classificação, devemos ter um neuronio para cada classe. Já ára um problema de regressão, devemos definir um neurinio para cada dimensão, ou seja para uma regressão com a predição de apenas um valor (univariada) devemos ter apenas 1 neurônio, ja para regressão com $m$ valores preditos (multivariada), devemos definir $m$ neurônios nessa camada
+
+# Backpropagation
+
+O objetivo do Backpropagation é calcular as derivadas parciais $\frac{\partial C}{\partial w}$ e $\frac{\partial C}{\partial b}$, onde $C$ é função de custo, $w$ é o peso (weight) e $b$ é o viés (bias).
+Para o método funcionar, precisamos definir duas suposições
+
+1. Generalização pela media
+  - A função de custo $C$ pode ser reescrita como $C = \frac{1}{n}\sum_xC_x$. Isso deve ser assumido por conta da forma que o método calcula as derivadas parciais $\frac{\partial C}{\partial w}$ e $\frac{\partial C}{\partial b}$, onde dado $x$ o conjunto de dados de treinamento da iteração, temos na verdade as derivadas $\frac{\partial C_x}{\partial w}$ e $\frac{\partial C_x}{\partial b}$.
+  
+2. Função de custo pode ser reescrita como uma função da saída (output) da rede
+  - Dado os neuronios da camada de saida $k^L_1, k^L_2, ..., k^L_j$, e seus outputs $a^L_1, a^L_2, ..., a^L_j$, a função de custo $C$ pode ser reescrita como $C = C(a^l)$
 
 
+## Equações 
 
+O método se baseia em 4 equações fundamentais
+
+### Equação para o erro na camada de saída
+
+$$\delta^L_j = \frac{\partial C}{\partial a^L_j}\sigma´(z^L_j)$$
+
+O primeiro termo a direta, $\frac{\partial C}{\partial a^L_j}$ mensura o quão rápido a função de custo está se adaptando em relação ao j-ésimo neurônio de saída. Por exemplo, se a função custo não depender muito de um neuronio j em particular, portanto $\delta^L_j$ será um valor pequeno
+
+Já o segundo termo a direita, $\sigma´(z^L_j)$, mensura o quão rápido a função de ativação $\sigma$ esta mudando em relação a $z^L_j$
+
+
+Na forma matricial a BP1 possui a seguinte forma
+
+$$\sigma^L = \Delta_aC \odot \sigma´ (z^L)$$
+Onde, $\Delta_aC$ é definido como o vetor que sias componentes são as derivadas parciais $\frac{\partial C}{\partial a^L_j}$, para facilitar o entedimento, podemos expressar $\Delta_aC$ como a taxa de variação de $C$ em relação ao ativações de saída
+
+### Equação para o erro
+
+A equação para o erro $\delta^l$ em relação ao erro uam camada a frente, $\delta^{l+1}$ é dado por
+
+$$\delta^l = ((w^{l+1})^T\delta^{l+1})\odot\sigma´(z^l)$$
+
+Onde $(w^{l+1})^T$ é a matriz transposta da matriz de pesos $w^{l+1}$ para a $l+1$-ésima camada
+
+### Equação para a taxa de variação do custo em relação aos vieses
+
+$$
+\frac{\partial C}{\partial b^l_j} = \delta^l_j
+$$ {#eq-bp1}
+
+Temos que o erro $\delta^l_j$ é exatamente igual a taxa de variação $\frac{\partial C}{\partial b^l_j}$. Isso se mostra como um ponto positivo, dado que já sabemos como calcular $\delta^l_j$ como visto nas equações BP1 e BP2.
+Assim podemos escrever a BP3 como
+
+$$\frac{\partial C}{\partial b} = \delta$$
+
+Onde $\delta$ está sendo calculado no mesmo neuronio do viés $b$
+
+### Equação para a taxa de variação do custo em relação aos pesos
+
+
+$$\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k\delta^l_j$$

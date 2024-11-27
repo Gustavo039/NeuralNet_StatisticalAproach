@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Redes Neurais Artificiais: um bom lugar para um estatístico se deitar - 2&nbsp; Redes 1: Neuronio</title>
+<title>Redes Neurais Artificiais: um bom lugar para um estatístico se deitar - 2&nbsp; Neuronios e Camadas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Redes 1: Neuronio</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Neuronios e Camadas</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -106,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./neuron.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Redes 1: Neuronio</span></a>
+  <a href="./neuron.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Neuronios e Camadas</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -129,6 +129,17 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#estrutura-básica" id="toc-estrutura-básica" class="nav-link active" data-scroll-target="#estrutura-básica"><span class="toc-section-number">3</span>  Estrutura Básica</a></li>
+  <li><a href="#camadas" id="toc-camadas" class="nav-link" data-scroll-target="#camadas"><span class="toc-section-number">4</span>  Camadas</a></li>
+  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation"><span class="toc-section-number">5</span>  Backpropagation</a>
+  <ul class="collapse">
+  <li><a href="#equações" id="toc-equações" class="nav-link" data-scroll-target="#equações"><span class="toc-section-number">5.1</span>  Equações</a>
+  <ul class="collapse">
+  <li><a href="#equação-para-o-erro-na-camada-de-saída" id="toc-equação-para-o-erro-na-camada-de-saída" class="nav-link" data-scroll-target="#equação-para-o-erro-na-camada-de-saída"><span class="toc-section-number">5.1.1</span>  Equação para o erro na camada de saída</a></li>
+  <li><a href="#equação-para-o-erro" id="toc-equação-para-o-erro" class="nav-link" data-scroll-target="#equação-para-o-erro"><span class="toc-section-number">5.1.2</span>  Equação para o erro</a></li>
+  <li><a href="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses" id="toc-equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses" class="nav-link" data-scroll-target="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses"><span class="toc-section-number">5.1.3</span>  Equação para a taxa de variação do custo em relação aos vieses</a></li>
+  <li><a href="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos" id="toc-equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos" class="nav-link" data-scroll-target="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos"><span class="toc-section-number">5.1.4</span>  Equação para a taxa de variação do custo em relação aos pesos</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -137,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Redes 1: Neuronio</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Neuronios e Camadas</span></h1>
 </div>
 
 
@@ -188,8 +199,78 @@ ul.task-list li input[type="checkbox"] {
 <li>A soma dos valores de entrada ponderadas pelos pesos é realizada, dada por:</li>
 </ul>
 <p><span class="math display">\[z_k = \phi(\sum^m_{j=0}w_{kj}x_j)\]</span></p>
+</section>
+<section id="camadas" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Camadas</h1>
+<p>Em rede neural, o fluxo dos dados percorre os neuronios atraves de determinados caminhos, chamados de <strong>Camadas</strong>.</p>
+<p>Uma camada (layer) pode ser caracterizada como um conjunto de neuronios, onde neuronios de diferentes camadas possuem comunicação, porem neuronios de uma mesma camadas não possuem nenhuma ligação</p>
+<p>-&gt; Adicionar imagem de uma rede com camadas, mas sem definir os tipos de camadas</p>
+<p>Uma rede possui 3 camadas distintas: Entrada (Input), Oculta (Hidden) e Saida (Output)</p>
+<ul>
+<li>Camada de Entrada
+<ul>
+<li>Se caracteriza como a primeira camada de uma rede e é responsável em receber os dados do conjunto de dados utilizado. No caso de um conjunto de dados estruturado, possuindo uma organização padrão de variáveis em colunas e observações em linhas, cada variável seria atribuido a um neuronio distinto, ou seja, se um conjunto de dados possui 10 diferentes variaveis, serão necessários 10 diferentes neuronios na camada de entrada. No caso de conjunto de dados não estruturados como imagens e sons, cada neuronio pode receber um pixel ou um determinado intervalo do som. Vale destacar que uma rede sempre vai possuir uma e somente uma camada de entrada</li>
+</ul></li>
+<li>Camadas Ocultas
+<ul>
+<li>Se caracteriza como as camadas que estão entre a camada de entrada e a camadas de saída, e não possui um número fixo. Redes mais simples possuem entre 1 a 3 camadas ocultas. Para problemas mais complexos esse número aumenta. A definição do número de camadas ocultas pode se basear em 2 abordagems: Fixar ou Otimizar.</li>
+<li>Fixar o número de camadas ocultas significa definir um valor fixo antes de iniciar o treinamento do modelo. Essa abordagem é baseada em escolhas prévias, geralmente fundamentadas no conhecimento do problema ou em heurísticas. Redes simples, que resolvem problemas com poucos dados ou baixa complexidade, muitas vezes utilizam entre 1 e 3 camadas ocultas. Esse método é vantajoso em cenários onde se busca simplicidade no design do modelo, menor custo computacional e rapidez no desenvolvimento.</li>
+<li>Otimizar o número de camadas ocultas é uma abordagem que leva a observamos esse número como hiperparâmetro, e assim aplicar tecnicas de tuning para encontrar um número ótimo. Essa opção é utilizada quando não temos nenhum conhecimento a priori do preblema e redes que ja foram utilizadas em problemas semelhantes.</li>
+</ul></li>
+<li>Camada de Saida
+<ul>
+<li>É a última camada de uma rede e é responsável em passar os valores finais preditos. Toda rede vai possuir uma e somente uma camada de saída, onde o número de neurônios dessa camada vai depender do contexto do problema. Em um problema de classificação, devemos ter um neuronio para cada classe. Já ára um problema de regressão, devemos definir um neurinio para cada dimensão, ou seja para uma regressão com a predição de apenas um valor (univariada) devemos ter apenas 1 neurônio, ja para regressão com <span class="math inline">\(m\)</span> valores preditos (multivariada), devemos definir <span class="math inline">\(m\)</span> neurônios nessa camada</li>
+</ul></li>
+</ul>
+</section>
+<section id="backpropagation" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Backpropagation</h1>
+<p>O objetivo do Backpropagation é calcular as derivadas parciais <span class="math inline">\(\frac{\partial C}{\partial w}\)</span> e <span class="math inline">\(\frac{\partial C}{\partial b}\)</span>, onde <span class="math inline">\(C\)</span> é função de custo, <span class="math inline">\(w\)</span> é o peso (weight) e <span class="math inline">\(b\)</span> é o viés (bias). Para o método funcionar, precisamos definir duas suposições</p>
+<ol type="1">
+<li>Generalização pela media</li>
+</ol>
+<ul>
+<li>A função de custo <span class="math inline">\(C\)</span> pode ser reescrita como <span class="math inline">\(C = \frac{1}{n}\sum_xC_x\)</span>. Isso deve ser assumido por conta da forma que o método calcula as derivadas parciais <span class="math inline">\(\frac{\partial C}{\partial w}\)</span> e <span class="math inline">\(\frac{\partial C}{\partial b}\)</span>, onde dado <span class="math inline">\(x\)</span> o conjunto de dados de treinamento da iteração, temos na verdade as derivadas <span class="math inline">\(\frac{\partial C_x}{\partial w}\)</span> e <span class="math inline">\(\frac{\partial C_x}{\partial b}\)</span>.</li>
+</ul>
+<ol start="2" type="1">
+<li>Função de custo pode ser reescrita como uma função da saída (output) da rede</li>
+</ol>
+<ul>
+<li>Dado os neuronios da camada de saida <span class="math inline">\(k^L_1, k^L_2, ..., k^L_j\)</span>, e seus outputs <span class="math inline">\(a^L_1, a^L_2, ..., a^L_j\)</span>, a função de custo <span class="math inline">\(C\)</span> pode ser reescrita como <span class="math inline">\(C = C(a^l)\)</span></li>
+</ul>
+<section id="equações" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="equações"><span class="header-section-number">5.1</span> Equações</h2>
+<p>O método se baseia em 4 equações fundamentais</p>
+<section id="equação-para-o-erro-na-camada-de-saída" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="equação-para-o-erro-na-camada-de-saída"><span class="header-section-number">5.1.1</span> Equação para o erro na camada de saída</h3>
+<p><span class="math display">\[\delta^L_j = \frac{\partial C}{\partial a^L_j}\sigma´(z^L_j)\]</span></p>
+<p>O primeiro termo a direta, <span class="math inline">\(\frac{\partial C}{\partial a^L_j}\)</span> mensura o quão rápido a função de custo está se adaptando em relação ao j-ésimo neurônio de saída. Por exemplo, se a função custo não depender muito de um neuronio j em particular, portanto <span class="math inline">\(\delta^L_j\)</span> será um valor pequeno</p>
+<p>Já o segundo termo a direita, <span class="math inline">\(\sigma´(z^L_j)\)</span>, mensura o quão rápido a função de ativação <span class="math inline">\(\sigma\)</span> esta mudando em relação a <span class="math inline">\(z^L_j\)</span></p>
+<p>Na forma matricial a BP1 possui a seguinte forma</p>
+<p><span class="math display">\[\sigma^L = \Delta_aC \odot \sigma´ (z^L)\]</span> Onde, <span class="math inline">\(\Delta_aC\)</span> é definido como o vetor que sias componentes são as derivadas parciais <span class="math inline">\(\frac{\partial C}{\partial a^L_j}\)</span>, para facilitar o entedimento, podemos expressar <span class="math inline">\(\Delta_aC\)</span> como a taxa de variação de <span class="math inline">\(C\)</span> em relação ao ativações de saída</p>
+</section>
+<section id="equação-para-o-erro" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="equação-para-o-erro"><span class="header-section-number">5.1.2</span> Equação para o erro</h3>
+<p>A equação para o erro <span class="math inline">\(\delta^l\)</span> em relação ao erro uam camada a frente, <span class="math inline">\(\delta^{l+1}\)</span> é dado por</p>
+<p><span class="math display">\[\delta^l = ((w^{l+1})^T\delta^{l+1})\odot\sigma´(z^l)\]</span></p>
+<p>Onde <span class="math inline">\((w^{l+1})^T\)</span> é a matriz transposta da matriz de pesos <span class="math inline">\(w^{l+1}\)</span> para a <span class="math inline">\(l+1\)</span>-ésima camada</p>
+</section>
+<section id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses"><span class="header-section-number">5.1.3</span> Equação para a taxa de variação do custo em relação aos vieses</h3>
+<p><span id="eq-bp1"><span class="math display">\[
+\frac{\partial C}{\partial b^l_j} = \delta^l_j
+\tag{5.1}\]</span></span></p>
+<p>Temos que o erro <span class="math inline">\(\delta^l_j\)</span> é exatamente igual a taxa de variação <span class="math inline">\(\frac{\partial C}{\partial b^l_j}\)</span>. Isso se mostra como um ponto positivo, dado que já sabemos como calcular <span class="math inline">\(\delta^l_j\)</span> como visto nas equações BP1 e BP2. Assim podemos escrever a BP3 como</p>
+<p><span class="math display">\[\frac{\partial C}{\partial b} = \delta\]</span></p>
+<p>Onde <span class="math inline">\(\delta\)</span> está sendo calculado no mesmo neuronio do viés <span class="math inline">\(b\)</span></p>
+</section>
+<section id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos"><span class="header-section-number">5.1.4</span> Equação para a taxa de variação do custo em relação aos pesos</h3>
+<p><span class="math display">\[\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k\delta^l_j\]</span></p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
