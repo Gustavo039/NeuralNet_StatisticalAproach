@@ -74,6 +74,25 @@ Para o método funcionar, precisamos definir duas suposições
 2. Função de custo pode ser reescrita como uma função da saída (output) da rede
   - Dado os neuronios da camada de saida $k^L_1, k^L_2, ..., k^L_j$, e seus outputs $a^L_1, a^L_2, ..., a^L_j$, a função de custo $C$ pode ser reescrita como $C = C(a^l)$
 
+## Pesos e Vieses
+
+Antes de entrar de fato nas equações e formas do método, devemos fazer definições importantes sobre a nomenclatura de certos parâmetros e suas caracteristicas
+
+Quando falamos de pesos e vieses, há muita confusão sobre a função e aplicação de cada um, onde muitas pessoas utilizam esses termos como sinônimos, o que fortemente não é verdade.
+
+A confusão entre pesos e vieses surge frequentemente porque ambos são parâmetros de uma rede neural que são ajustados durante o treinamento e determinam coletivamente o comportamento do modelo. No entanto, eles servem a propósitos e funções distintas. 
+
+Os pesos (weights) são fatores de **multiplicação** aplicados aos valores em cada neuronio e determinam a força e direção da relação entre os valores de entrada e de saída de um neurônio. 
+
+Já os vieses (bias) são fatores de **soma** e permitem o deslocamento da função de ativação, auxiliando que o modelo se ajuste melhor aos dados
+
+Dado uma rede com uma função de ativação $At$, temos o seguinte valor de saida de um determinado neurônio
+
+$$z = At(w_i* x_i) + b$$
+Vemos que o peso $w_i$ multiplica o valor de entrada $x_i$, controlando a influência de $x_i$ no neuronio atual. Já o vies $b$ é somado ao valor retornado pela função de ativação, auxiliando o neuronio a melhor se ajustar aos dados
+
+As principais diferenças podem resumidas em uma tabela
+
 
 ## Equações 
 
@@ -118,3 +137,38 @@ Onde $\delta$ está sendo calculado no mesmo neuronio do viés $b$
 
 
 $$\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k\delta^l_j$$
+
+
+## Algoritmo
+
+As funções definidas na seção passada provem uma forma de se calcular o gradiente da função de custo. Essas funções são utilizadas no algortimo do método que possui 5 passos fundamentais
+
+1. Input x
+  - O conjunto dados é introduzido a rede. No pensamento algebrico, o vetor $X$ é introduzido a rede e atribuido como a ativação da camada de entrada
+  
+2. Feedforward
+  - Para cada camada $l = 2,3, ..., L$ calcula-se os valores retornado pelos neurônios $z^l = w^la^{l-1}+b^l$, onde $w^l$ é a matriz de peso para a camada $l$, $a^{l-1}$ é o valor de ativação da camada anterior, $b^l$ é o vetor de vieses para a camada $l$
+  - Além disso, devemos reforçar que $a^l = \sigma(z^l)$, onde $\sigma$ é uma função de ativação
+  
+3. Erro de Saída
+  - O erro na camada de saída é calculado, dado por 
+   $$\delta^L=\Delta_aC\odot\sigma´(z^L)$$
+  - $\Delta_aC$ é o gradiente da função de custo C em relação ao valor de ativação $a^L$
+  - $\sigma´(z^L)$ é a derivada da função de ligação no valor de ativação $z^l$
+  - Isso quantifica o quanto a saída da rede (ativações) se desvia da saída desejada.
+  
+4. Propagação do Erro
+  - Para cada camada $l = L-1,L-2, ...,2$, o erro para a camada é calculado, dado por
+  $$\delta^l = ((w^{l+1})^T\delta^{l+1})\odot\sigma´(z^l)$$
+  - $(w^{l+1})^T\delta^{l+1}$ propaga o erro para trás na rede
+  - $\sigma´(z^l)$ ajusta o erro baseado na função de ativação
+  -  Nessa etapa o erro é propagado para trás, dando origem ao nome do método **Backpropagation**
+  
+5. Calculo dos Gradientes
+  - No último passo do algoritmo, os gradientes em relação aos pesos e vieses são calculados
+  - Para o peso (weight) temos
+  $$\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k\delta^l_j$$
+  - Já para os vieses (bias)
+  $$\frac{\partial C}{\partial b^l_{j}} = \delta^l_j$$
+  - Os valores calculados para cada gradiente são utilizados no momento da otimização via gradiente descendente, minimizando a função de custo
+
