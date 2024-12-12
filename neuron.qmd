@@ -38,7 +38,7 @@ Em uma linguagem matemática, seja um neurônio $K$ $x_1,x_2, ....,x_m$ variáve
   3. Soma Ponderada
   - A soma dos valores de entrada ponderadas pelos pesos é realizada, dada por:
   
-$$z_k = \phi(\sum^m_{j=0}w_{kj}x_j)$$
+$$z_k = \phi(\sum^m_{j=0}w_{kj}x_j) + b$$
 
 
 # Camadas
@@ -47,7 +47,7 @@ Em rede neural, o fluxo dos dados percorre os neuronios atraves de determinados 
 
 Uma camada (layer) pode ser caracterizada como um conjunto de neuronios, onde neuronios de diferentes camadas possuem comunicação, porem neuronios de uma mesma camadas não possuem nenhuma ligação
 
--> Adicionar imagem de uma rede com camadas, mas sem definir os tipos de camadas
+![](images/simple_nnet.png)
 
 Uma rede possui 3 camadas distintas: Entrada (Input), Oculta (Hidden) e Saida (Output)
 
@@ -62,6 +62,43 @@ Uma rede possui 3 camadas distintas: Entrada (Input), Oculta (Hidden) e Saida (O
   
 * Camada de Saida
   - É a última camada de uma rede e é responsável em passar os valores finais preditos. Toda rede vai possuir uma e somente uma camada de saída, onde o número de neurônios dessa camada vai depender do contexto do problema. Em um problema de classificação, devemos ter um neuronio para cada classe. Já ára um problema de regressão, devemos definir um neurinio para cada dimensão, ou seja para uma regressão com a predição de apenas um valor (univariada) devemos ter apenas 1 neurônio, ja para regressão com $m$ valores preditos (multivariada), devemos definir $m$ neurônios nessa camada
+  
+# Função de Ativação
+
+Como definimos na seção "Estrutura Básica", um neurônio é definido algebricamente como $$z_k = \phi(\sum^m_{j=0}w_{kj}x_j) + b$$, onde $phi$ é uma função chamada de função de ativação. Ela é responsável por transformar o valor bruto calculado por um neurônio (o somatório ponderado das entradas mais o viés) em uma saída que será transmitida para os neurônios da próxima camada. O principal objetivo dessa transformação é introduzir não-linearidade no modelo, permitindo que ele aprenda padrões complexos nos dados.
+
+Sem uma função de ativação, a rede neural seria equivalente a uma combinação linear das entradas, independentemente de quantas camadas fossem adicionadas. Isso significa que ela só poderia resolver problemas simples e lineares. A introdução de não-linearidade torna possível a resolução de problemas mais desafiadores, como a classificação de dados que não podem ser separados por uma linha ou plano.
+
+Atualmente, existem diversas funções de ativação já definidas, onde cada uma possui uma nicho específico de utilização. Listamos as mais conhecidas
+
+* Sigmoide
+  - $f(x) = \frac{1}{1+e^{-x}}$
+  - Transforma a saída para o entre intervalo 0 e 1, sendo ideal para tarefas de classificação binária.
+  - Extremamente popular em redes mais antigas, porém tem limitações como a saturação e o problema do "vanishing gradient", fenômeno esse que se caracteriza quando a função de ativação gera gradientes tão pequenos, que diminuem ainda mais à medida que são propagados para camadas anteriores
+  -> Colocar foto da função, sua equação
+
+* Tanh (Tangente Hiperbólica)
+  - $f(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$
+  - Transforma a saída para o entre intervalo -1 e 1
+  -> Colocar foto da função, sua equação
+
+* ReLU (Rectified Linear Unit)
+  - $f(x) = \max(0,x)$
+
+* Leaky ReLu (ReLU Contaminada)
+
+  - $f(x) =
+\begin{cases} 
+x, & \text{se } x>0 \\ 
+\alpha x, & \text{se } x\leq 0
+\end{cases}$
+
+  - $\alpha$ é uma constante que irar ponderar os valores de x menores ou iguais a 0, podendo ser fixada antes do treinamento do modelo, ou classificada como um parâmetro, passando pela etapa de otimização 
+  
+* Softmax
+  - $\sigma(z_i) = \frac{e^{z_i}}{\sum^L_{j=i}e^{zj}}$
+
+Vale destacar que **uma função de ativação e função de custo são coisas DISTINTAS**. Enquanto uma função de ativação é aplicada localmente em cada neurônio, uma função de custo é aplicada apenas na sáida final da rede, ou seja, no momento da predição de valores, tendo o objetivo de calcular o erro global da rede. Essa função é utilizada para a otimização dos pesos e vieses durante o treinamento. Resumidamente, a função de ativação transforma os sinais dentro da rede para capturar padrões, enquanto a função de custo avalia o erro final das previsões para guiar o aprendizado do modelo.
 
 # Backpropagation
 
@@ -171,4 +208,78 @@ As funções definidas na seção passada provem uma forma de se calcular o grad
   - Já para os vieses (bias)
   $$\frac{\partial C}{\partial b^l_{j}} = \delta^l_j$$
   - Os valores calculados para cada gradiente são utilizados no momento da otimização via gradiente descendente, minimizando a função de custo
+
+
+# GD e BCK em Conjunto
+
+O GD e BCK fazem um trabalho de turma
+
+Relembrando, Gradient Descent é um algoritmo usado para minimizar uma função, neste caso, a função de custo $C(\theta)$, onde $\theta$ representa a matriz de parâmetros: pesos e vieses
+
+
+* O algoritmo atualiza os parâmetros iterativamente na direção do gradiente negativo da perda em relação aos parâmetros: 
+  $$\theta^{(t+1)} = \theta(t) -\eta\nabla J(\theta^{(t)})$$
+  
+O desafio mora no calculo do gradiente $\nabla_{\theta}L(\theta)$, que é aí que se utiliza o Backpropagation
+
+Backpropagation é um algoritmo para calcular os gradientes da função de custo em relação aos pesos e vieses da rede de forma eficiente usando a regra da cadeia. Funciona camada por camada, começando pela camada de saída (final da rede) e retrocedendo em direção à entrada.
+
+Em conjunto eles, temos a seguinte sequencia
+
+1. No primeiro passo, os dados são introduzidos pela primeira vez na rede, onde os pesos e vieses são inicializaods de maneira aleatória. Ao final da primeira iteração, as predições iniciais são retornadas, possibilitando a utilização da função de custo
+
+2. O backpropagation calcula o quanto uma variação nos pesos e vieses afetará a função de custo
+
+3. O Gradiente Descendente atualiza os valores de pesos e vieses baseado nesses gradientes, buscando o valor que minimiza a função de perda
+
+4. Se repete o ciclo por múltiplas iterações, chamadas de epochs até que a função de custo convirja para o mínimo global
+
+
+## Exemplo
+
+O seguinte exemplo foi construido, simulando o treinamento de uma rede via gradiente descendente e backpropagation
+
+Com os seguintes 
+
+Net - Total de entrada de um neuronio
+
+Out - Total de sáida de um neuronio
+
+w_i_k - peso relacionado a saída e entrada k
+
+
+
+
+
+Dado uma rede com 3 inputs,  1 camada oculta possuindo 2 neuronios e 1 neuronio na camada de saída, com função de ativação sigmoide e uma função de custo EQM
+
+
+![](images/example_ft1.png)
+É importante ressaltar a nomenclatura utilizada, $i$ refere-se a os inputs, $h$ aos neurônios na camada oculta e $o$ ao neurônio na camada de saída. Para os pesos, de forma generalizada um $w_{xyz}$ representa um peso atrelado x-ésimo neuronio de uma camada anterior, ao y-ésimo neurônio z-ésima camada
+
+## Definindo os Valores
+
+![](images/example_ft2.png)
+
+![](images/example_ft3.png)
+
+### Forward Pass
+
+
+Para começar, precisamos da predição inicial da rede dado os pesos e vieses aleatórios de inicialização
+
+
+
+
+### Calculando o Erro Total
+
+
+### Backward Pass
+
+!. Camada de Saída
+
+2. Camada Oculta
+
+
+
 

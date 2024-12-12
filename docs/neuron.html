@@ -130,17 +130,28 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#estrutura-básica" id="toc-estrutura-básica" class="nav-link active" data-scroll-target="#estrutura-básica"><span class="toc-section-number">3</span>  Estrutura Básica</a></li>
   <li><a href="#camadas" id="toc-camadas" class="nav-link" data-scroll-target="#camadas"><span class="toc-section-number">4</span>  Camadas</a></li>
-  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation"><span class="toc-section-number">5</span>  Backpropagation</a>
+  <li><a href="#função-de-ativação" id="toc-função-de-ativação" class="nav-link" data-scroll-target="#função-de-ativação"><span class="toc-section-number">5</span>  Função de Ativação</a></li>
+  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation"><span class="toc-section-number">6</span>  Backpropagation</a>
   <ul class="collapse">
-  <li><a href="#pesos-e-vieses" id="toc-pesos-e-vieses" class="nav-link" data-scroll-target="#pesos-e-vieses"><span class="toc-section-number">5.1</span>  Pesos e Vieses</a></li>
-  <li><a href="#equações" id="toc-equações" class="nav-link" data-scroll-target="#equações"><span class="toc-section-number">5.2</span>  Equações</a>
+  <li><a href="#pesos-e-vieses" id="toc-pesos-e-vieses" class="nav-link" data-scroll-target="#pesos-e-vieses"><span class="toc-section-number">6.1</span>  Pesos e Vieses</a></li>
+  <li><a href="#equações" id="toc-equações" class="nav-link" data-scroll-target="#equações"><span class="toc-section-number">6.2</span>  Equações</a>
   <ul class="collapse">
-  <li><a href="#equação-para-o-erro-na-camada-de-saída" id="toc-equação-para-o-erro-na-camada-de-saída" class="nav-link" data-scroll-target="#equação-para-o-erro-na-camada-de-saída"><span class="toc-section-number">5.2.1</span>  Equação para o erro na camada de saída</a></li>
-  <li><a href="#equação-para-o-erro" id="toc-equação-para-o-erro" class="nav-link" data-scroll-target="#equação-para-o-erro"><span class="toc-section-number">5.2.2</span>  Equação para o erro</a></li>
-  <li><a href="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses" id="toc-equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses" class="nav-link" data-scroll-target="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses"><span class="toc-section-number">5.2.3</span>  Equação para a taxa de variação do custo em relação aos vieses</a></li>
-  <li><a href="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos" id="toc-equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos" class="nav-link" data-scroll-target="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos"><span class="toc-section-number">5.2.4</span>  Equação para a taxa de variação do custo em relação aos pesos</a></li>
+  <li><a href="#equação-para-o-erro-na-camada-de-saída" id="toc-equação-para-o-erro-na-camada-de-saída" class="nav-link" data-scroll-target="#equação-para-o-erro-na-camada-de-saída"><span class="toc-section-number">6.2.1</span>  Equação para o erro na camada de saída</a></li>
+  <li><a href="#equação-para-o-erro" id="toc-equação-para-o-erro" class="nav-link" data-scroll-target="#equação-para-o-erro"><span class="toc-section-number">6.2.2</span>  Equação para o erro</a></li>
+  <li><a href="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses" id="toc-equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses" class="nav-link" data-scroll-target="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses"><span class="toc-section-number">6.2.3</span>  Equação para a taxa de variação do custo em relação aos vieses</a></li>
+  <li><a href="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos" id="toc-equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos" class="nav-link" data-scroll-target="#equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos"><span class="toc-section-number">6.2.4</span>  Equação para a taxa de variação do custo em relação aos pesos</a></li>
   </ul></li>
-  <li><a href="#algoritmo" id="toc-algoritmo" class="nav-link" data-scroll-target="#algoritmo"><span class="toc-section-number">5.3</span>  Algoritmo</a></li>
+  <li><a href="#algoritmo" id="toc-algoritmo" class="nav-link" data-scroll-target="#algoritmo"><span class="toc-section-number">6.3</span>  Algoritmo</a></li>
+  </ul></li>
+  <li><a href="#gd-e-bck-em-conjunto" id="toc-gd-e-bck-em-conjunto" class="nav-link" data-scroll-target="#gd-e-bck-em-conjunto"><span class="toc-section-number">7</span>  GD e BCK em Conjunto</a>
+  <ul class="collapse">
+  <li><a href="#exemplo" id="toc-exemplo" class="nav-link" data-scroll-target="#exemplo"><span class="toc-section-number">7.1</span>  Exemplo</a></li>
+  <li><a href="#definindo-os-valores" id="toc-definindo-os-valores" class="nav-link" data-scroll-target="#definindo-os-valores"><span class="toc-section-number">7.2</span>  Definindo os Valores</a>
+  <ul class="collapse">
+  <li><a href="#forward-pass" id="toc-forward-pass" class="nav-link" data-scroll-target="#forward-pass"><span class="toc-section-number">7.2.1</span>  Forward Pass</a></li>
+  <li><a href="#calculando-o-erro-total" id="toc-calculando-o-erro-total" class="nav-link" data-scroll-target="#calculando-o-erro-total"><span class="toc-section-number">7.2.2</span>  Calculando o Erro Total</a></li>
+  <li><a href="#backward-pass" id="toc-backward-pass" class="nav-link" data-scroll-target="#backward-pass"><span class="toc-section-number">7.2.3</span>  Backward Pass</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -200,13 +211,13 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>A soma dos valores de entrada ponderadas pelos pesos é realizada, dada por:</li>
 </ul>
-<p><span class="math display">\[z_k = \phi(\sum^m_{j=0}w_{kj}x_j)\]</span></p>
+<p><span class="math display">\[z_k = \phi(\sum^m_{j=0}w_{kj}x_j) + b\]</span></p>
 </section>
 <section id="camadas" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Camadas</h1>
 <p>Em rede neural, o fluxo dos dados percorre os neuronios atraves de determinados caminhos, chamados de <strong>Camadas</strong>.</p>
 <p>Uma camada (layer) pode ser caracterizada como um conjunto de neuronios, onde neuronios de diferentes camadas possuem comunicação, porem neuronios de uma mesma camadas não possuem nenhuma ligação</p>
-<p>-&gt; Adicionar imagem de uma rede com camadas, mas sem definir os tipos de camadas</p>
+<p><img src="images/simple_nnet.png" class="img-fluid"></p>
 <p>Uma rede possui 3 camadas distintas: Entrada (Input), Oculta (Hidden) e Saida (Output)</p>
 <ul>
 <li>Camada de Entrada
@@ -225,8 +236,41 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="backpropagation" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Backpropagation</h1>
+<section id="função-de-ativação" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Função de Ativação</h1>
+<p>Como definimos na seção “Estrutura Básica”, um neurônio é definido algebricamente como <span class="math display">\[z_k = \phi(\sum^m_{j=0}w_{kj}x_j) + b\]</span>, onde <span class="math inline">\(phi\)</span> é uma função chamada de função de ativação. Ela é responsável por transformar o valor bruto calculado por um neurônio (o somatório ponderado das entradas mais o viés) em uma saída que será transmitida para os neurônios da próxima camada. O principal objetivo dessa transformação é introduzir não-linearidade no modelo, permitindo que ele aprenda padrões complexos nos dados.</p>
+<p>Sem uma função de ativação, a rede neural seria equivalente a uma combinação linear das entradas, independentemente de quantas camadas fossem adicionadas. Isso significa que ela só poderia resolver problemas simples e lineares. A introdução de não-linearidade torna possível a resolução de problemas mais desafiadores, como a classificação de dados que não podem ser separados por uma linha ou plano.</p>
+<p>Atualmente, existem diversas funções de ativação já definidas, onde cada uma possui uma nicho específico de utilização. Listamos as mais conhecidas</p>
+<ul>
+<li><p>Sigmoide</p>
+<ul>
+<li><span class="math inline">\(f(x) = \frac{1}{1+e^{-x}}\)</span></li>
+<li>Transforma a saída para o entre intervalo 0 e 1, sendo ideal para tarefas de classificação binária.</li>
+<li>Extremamente popular em redes mais antigas, porém tem limitações como a saturação e o problema do “vanishing gradient”, fenômeno esse que se caracteriza quando a função de ativação gera gradientes tão pequenos, que diminuem ainda mais à medida que são propagados para camadas anteriores -&gt; Colocar foto da função, sua equação</li>
+</ul></li>
+<li><p>Tanh (Tangente Hiperbólica)</p>
+<ul>
+<li><span class="math inline">\(f(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}\)</span></li>
+<li>Transforma a saída para o entre intervalo -1 e 1 -&gt; Colocar foto da função, sua equação</li>
+</ul></li>
+<li><p>ReLU (Rectified Linear Unit)</p>
+<ul>
+<li><span class="math inline">\(f(x) = \max(0,x)\)</span></li>
+</ul></li>
+<li><p>Leaky ReLu (ReLU Contaminada)</p>
+<ul>
+<li><p><span class="math inline">\(f(x) = \begin{cases} x, &amp; \text{se } x&gt;0 \\ \alpha x, &amp; \text{se } x\leq 0 \end{cases}\)</span></p></li>
+<li><p><span class="math inline">\(\alpha\)</span> é uma constante que irar ponderar os valores de x menores ou iguais a 0, podendo ser fixada antes do treinamento do modelo, ou classificada como um parâmetro, passando pela etapa de otimização</p></li>
+</ul></li>
+<li><p>Softmax</p>
+<ul>
+<li><span class="math inline">\(\sigma(z_i) = \frac{e^{z_i}}{\sum^L_{j=i}e^{zj}}\)</span></li>
+</ul></li>
+</ul>
+<p>Vale destacar que <strong>uma função de ativação e função de custo são coisas DISTINTAS</strong>. Enquanto uma função de ativação é aplicada localmente em cada neurônio, uma função de custo é aplicada apenas na sáida final da rede, ou seja, no momento da predição de valores, tendo o objetivo de calcular o erro global da rede. Essa função é utilizada para a otimização dos pesos e vieses durante o treinamento. Resumidamente, a função de ativação transforma os sinais dentro da rede para capturar padrões, enquanto a função de custo avalia o erro final das previsões para guiar o aprendizado do modelo.</p>
+</section>
+<section id="backpropagation" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Backpropagation</h1>
 <p>O objetivo do Backpropagation é calcular as derivadas parciais <span class="math inline">\(\frac{\partial C}{\partial w}\)</span> e <span class="math inline">\(\frac{\partial C}{\partial b}\)</span>, onde <span class="math inline">\(C\)</span> é função de custo, <span class="math inline">\(w\)</span> é o peso (weight) e <span class="math inline">\(b\)</span> é o viés (bias). Para o método funcionar, precisamos definir duas suposições</p>
 <ol type="1">
 <li>Generalização pela media</li>
@@ -240,8 +284,8 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Dado os neuronios da camada de saida <span class="math inline">\(k^L_1, k^L_2, ..., k^L_j\)</span>, e seus outputs <span class="math inline">\(a^L_1, a^L_2, ..., a^L_j\)</span>, a função de custo <span class="math inline">\(C\)</span> pode ser reescrita como <span class="math inline">\(C = C(a^l)\)</span></li>
 </ul>
-<section id="pesos-e-vieses" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="pesos-e-vieses"><span class="header-section-number">5.1</span> Pesos e Vieses</h2>
+<section id="pesos-e-vieses" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="pesos-e-vieses"><span class="header-section-number">6.1</span> Pesos e Vieses</h2>
 <p>Antes de entrar de fato nas equações e formas do método, devemos fazer definições importantes sobre a nomenclatura de certos parâmetros e suas caracteristicas</p>
 <p>Quando falamos de pesos e vieses, há muita confusão sobre a função e aplicação de cada um, onde muitas pessoas utilizam esses termos como sinônimos, o que fortemente não é verdade.</p>
 <p>A confusão entre pesos e vieses surge frequentemente porque ambos são parâmetros de uma rede neural que são ajustados durante o treinamento e determinam coletivamente o comportamento do modelo. No entanto, eles servem a propósitos e funções distintas.</p>
@@ -251,39 +295,39 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">\[z = At(w_i* x_i) + b\]</span> Vemos que o peso <span class="math inline">\(w_i\)</span> multiplica o valor de entrada <span class="math inline">\(x_i\)</span>, controlando a influência de <span class="math inline">\(x_i\)</span> no neuronio atual. Já o vies <span class="math inline">\(b\)</span> é somado ao valor retornado pela função de ativação, auxiliando o neuronio a melhor se ajustar aos dados</p>
 <p>As principais diferenças podem resumidas em uma tabela</p>
 </section>
-<section id="equações" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="equações"><span class="header-section-number">5.2</span> Equações</h2>
+<section id="equações" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="equações"><span class="header-section-number">6.2</span> Equações</h2>
 <p>O método se baseia em 4 equações fundamentais</p>
-<section id="equação-para-o-erro-na-camada-de-saída" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="equação-para-o-erro-na-camada-de-saída"><span class="header-section-number">5.2.1</span> Equação para o erro na camada de saída</h3>
+<section id="equação-para-o-erro-na-camada-de-saída" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="equação-para-o-erro-na-camada-de-saída"><span class="header-section-number">6.2.1</span> Equação para o erro na camada de saída</h3>
 <p><span class="math display">\[\delta^L_j = \frac{\partial C}{\partial a^L_j}\sigma´(z^L_j)\]</span></p>
 <p>O primeiro termo a direta, <span class="math inline">\(\frac{\partial C}{\partial a^L_j}\)</span> mensura o quão rápido a função de custo está se adaptando em relação ao j-ésimo neurônio de saída. Por exemplo, se a função custo não depender muito de um neuronio j em particular, portanto <span class="math inline">\(\delta^L_j\)</span> será um valor pequeno</p>
 <p>Já o segundo termo a direita, <span class="math inline">\(\sigma´(z^L_j)\)</span>, mensura o quão rápido a função de ativação <span class="math inline">\(\sigma\)</span> esta mudando em relação a <span class="math inline">\(z^L_j\)</span></p>
 <p>Na forma matricial a BP1 possui a seguinte forma</p>
 <p><span class="math display">\[\sigma^L = \Delta_aC \odot \sigma´ (z^L)\]</span> Onde, <span class="math inline">\(\Delta_aC\)</span> é definido como o vetor que sias componentes são as derivadas parciais <span class="math inline">\(\frac{\partial C}{\partial a^L_j}\)</span>, para facilitar o entedimento, podemos expressar <span class="math inline">\(\Delta_aC\)</span> como a taxa de variação de <span class="math inline">\(C\)</span> em relação ao ativações de saída</p>
 </section>
-<section id="equação-para-o-erro" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="equação-para-o-erro"><span class="header-section-number">5.2.2</span> Equação para o erro</h3>
+<section id="equação-para-o-erro" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="equação-para-o-erro"><span class="header-section-number">6.2.2</span> Equação para o erro</h3>
 <p>A equação para o erro <span class="math inline">\(\delta^l\)</span> em relação ao erro uam camada a frente, <span class="math inline">\(\delta^{l+1}\)</span> é dado por</p>
 <p><span class="math display">\[\delta^l = ((w^{l+1})^T\delta^{l+1})\odot\sigma´(z^l)\]</span></p>
 <p>Onde <span class="math inline">\((w^{l+1})^T\)</span> é a matriz transposta da matriz de pesos <span class="math inline">\(w^{l+1}\)</span> para a <span class="math inline">\(l+1\)</span>-ésima camada</p>
 </section>
-<section id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses"><span class="header-section-number">5.2.3</span> Equação para a taxa de variação do custo em relação aos vieses</h3>
+<section id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-vieses"><span class="header-section-number">6.2.3</span> Equação para a taxa de variação do custo em relação aos vieses</h3>
 <p><span id="eq-bp1"><span class="math display">\[
 \frac{\partial C}{\partial b^l_j} = \delta^l_j
-\tag{5.1}\]</span></span></p>
+\tag{6.1}\]</span></span></p>
 <p>Temos que o erro <span class="math inline">\(\delta^l_j\)</span> é exatamente igual a taxa de variação <span class="math inline">\(\frac{\partial C}{\partial b^l_j}\)</span>. Isso se mostra como um ponto positivo, dado que já sabemos como calcular <span class="math inline">\(\delta^l_j\)</span> como visto nas equações BP1 e BP2. Assim podemos escrever a BP3 como</p>
 <p><span class="math display">\[\frac{\partial C}{\partial b} = \delta\]</span></p>
 <p>Onde <span class="math inline">\(\delta\)</span> está sendo calculado no mesmo neuronio do viés <span class="math inline">\(b\)</span></p>
 </section>
-<section id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos"><span class="header-section-number">5.2.4</span> Equação para a taxa de variação do custo em relação aos pesos</h3>
+<section id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="equação-para-a-taxa-de-variação-do-custo-em-relação-aos-pesos"><span class="header-section-number">6.2.4</span> Equação para a taxa de variação do custo em relação aos pesos</h3>
 <p><span class="math display">\[\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k\delta^l_j\]</span></p>
 </section>
 </section>
-<section id="algoritmo" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="algoritmo"><span class="header-section-number">5.3</span> Algoritmo</h2>
+<section id="algoritmo" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="algoritmo"><span class="header-section-number">6.3</span> Algoritmo</h2>
 <p>As funções definidas na seção passada provem uma forma de se calcular o gradiente da função de custo. Essas funções são utilizadas no algortimo do método que possui 5 passos fundamentais</p>
 <ol type="1">
 <li>Input x</li>
@@ -325,8 +369,54 @@ ul.task-list li input[type="checkbox"] {
 <li>Já para os vieses (bias) <span class="math display">\[\frac{\partial C}{\partial b^l_{j}} = \delta^l_j\]</span></li>
 <li>Os valores calculados para cada gradiente são utilizados no momento da otimização via gradiente descendente, minimizando a função de custo</li>
 </ul>
+</section>
+</section>
+<section id="gd-e-bck-em-conjunto" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> GD e BCK em Conjunto</h1>
+<p>O GD e BCK fazem um trabalho de turma</p>
+<p>Relembrando, Gradient Descent é um algoritmo usado para minimizar uma função, neste caso, a função de custo <span class="math inline">\(C(\theta)\)</span>, onde <span class="math inline">\(\theta\)</span> representa a matriz de parâmetros: pesos e vieses</p>
+<ul>
+<li>O algoritmo atualiza os parâmetros iterativamente na direção do gradiente negativo da perda em relação aos parâmetros: <span class="math display">\[\theta^{(t+1)} = \theta(t) -\eta\nabla J(\theta^{(t)})\]</span></li>
+</ul>
+<p>O desafio mora no calculo do gradiente <span class="math inline">\(\nabla_{\theta}L(\theta)\)</span>, que é aí que se utiliza o Backpropagation</p>
+<p>Backpropagation é um algoritmo para calcular os gradientes da função de custo em relação aos pesos e vieses da rede de forma eficiente usando a regra da cadeia. Funciona camada por camada, começando pela camada de saída (final da rede) e retrocedendo em direção à entrada.</p>
+<p>Em conjunto eles, temos a seguinte sequencia</p>
+<ol type="1">
+<li><p>No primeiro passo, os dados são introduzidos pela primeira vez na rede, onde os pesos e vieses são inicializaods de maneira aleatória. Ao final da primeira iteração, as predições iniciais são retornadas, possibilitando a utilização da função de custo</p></li>
+<li><p>O backpropagation calcula o quanto uma variação nos pesos e vieses afetará a função de custo</p></li>
+<li><p>O Gradiente Descendente atualiza os valores de pesos e vieses baseado nesses gradientes, buscando o valor que minimiza a função de perda</p></li>
+<li><p>Se repete o ciclo por múltiplas iterações, chamadas de epochs até que a função de custo convirja para o mínimo global</p></li>
+</ol>
+<section id="exemplo" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="exemplo"><span class="header-section-number">7.1</span> Exemplo</h2>
+<p>O seguinte exemplo foi construido, simulando o treinamento de uma rede via gradiente descendente e backpropagation</p>
+<p>Com os seguintes</p>
+<p>Net - Total de entrada de um neuronio</p>
+<p>Out - Total de sáida de um neuronio</p>
+<p>w_i_k - peso relacionado a saída e entrada k</p>
+<p>Dado uma rede com 3 inputs, 1 camada oculta possuindo 2 neuronios e 1 neuronio na camada de saída, com função de ativação sigmoide e uma função de custo EQM</p>
+<p><img src="images/example_ft1.png" class="img-fluid"> É importante ressaltar a nomenclatura utilizada, <span class="math inline">\(i\)</span> refere-se a os inputs, <span class="math inline">\(h\)</span> aos neurônios na camada oculta e <span class="math inline">\(o\)</span> ao neurônio na camada de saída. Para os pesos, de forma generalizada um <span class="math inline">\(w_{xyz}\)</span> representa um peso atrelado x-ésimo neuronio de uma camada anterior, ao y-ésimo neurônio z-ésima camada</p>
+</section>
+<section id="definindo-os-valores" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="definindo-os-valores"><span class="header-section-number">7.2</span> Definindo os Valores</h2>
+<p><img src="images/example_ft2.png" class="img-fluid"></p>
+<p><img src="images/example_ft3.png" class="img-fluid"></p>
+<section id="forward-pass" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="forward-pass"><span class="header-section-number">7.2.1</span> Forward Pass</h3>
+<p>Para começar, precisamos da predição inicial da rede dado os pesos e vieses aleatórios de inicialização</p>
+</section>
+<section id="calculando-o-erro-total" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="calculando-o-erro-total"><span class="header-section-number">7.2.2</span> Calculando o Erro Total</h3>
+</section>
+<section id="backward-pass" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="backward-pass"><span class="header-section-number">7.2.3</span> Backward Pass</h3>
+<p>!. Camada de Saída</p>
+<ol start="2" type="1">
+<li>Camada Oculta</li>
+</ol>
 
 
+</section>
 </section>
 </section>
 
