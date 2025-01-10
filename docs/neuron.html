@@ -146,12 +146,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#gd-e-bck-em-conjunto" id="toc-gd-e-bck-em-conjunto" class="nav-link" data-scroll-target="#gd-e-bck-em-conjunto"><span class="toc-section-number">7</span>  GD e BCK em Conjunto</a>
   <ul class="collapse">
   <li><a href="#exemplo" id="toc-exemplo" class="nav-link" data-scroll-target="#exemplo"><span class="toc-section-number">7.1</span>  Exemplo</a></li>
-  <li><a href="#definindo-os-valores" id="toc-definindo-os-valores" class="nav-link" data-scroll-target="#definindo-os-valores"><span class="toc-section-number">7.2</span>  Definindo os Valores</a>
-  <ul class="collapse">
-  <li><a href="#forward-pass" id="toc-forward-pass" class="nav-link" data-scroll-target="#forward-pass"><span class="toc-section-number">7.2.1</span>  Forward Pass</a></li>
-  <li><a href="#calculando-o-erro-total" id="toc-calculando-o-erro-total" class="nav-link" data-scroll-target="#calculando-o-erro-total"><span class="toc-section-number">7.2.2</span>  Calculando o Erro Total</a></li>
-  <li><a href="#backward-pass" id="toc-backward-pass" class="nav-link" data-scroll-target="#backward-pass"><span class="toc-section-number">7.2.3</span>  Backward Pass</a></li>
-  </ul></li>
+  <li><a href="#definindo-os-valores" id="toc-definindo-os-valores" class="nav-link" data-scroll-target="#definindo-os-valores"><span class="toc-section-number">7.2</span>  Definindo os Valores</a></li>
+  <li><a href="#forward-pass" id="toc-forward-pass" class="nav-link" data-scroll-target="#forward-pass"><span class="toc-section-number">7.3</span>  Forward Pass</a></li>
+  <li><a href="#calculando-o-erro-total" id="toc-calculando-o-erro-total" class="nav-link" data-scroll-target="#calculando-o-erro-total"><span class="toc-section-number">7.4</span>  Calculando o Erro Total</a></li>
+  <li><a href="#the-backwards-pass" id="toc-the-backwards-pass" class="nav-link" data-scroll-target="#the-backwards-pass"><span class="toc-section-number">7.5</span>  The Backwards Pass</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -389,34 +387,105 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <section id="exemplo" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="exemplo"><span class="header-section-number">7.1</span> Exemplo</h2>
-<p>O seguinte exemplo foi construido, simulando o treinamento de uma rede via gradiente descendente e backpropagation</p>
-<p>Com os seguintes</p>
-<p>Net - Total de entrada de um neuronio</p>
-<p>Out - Total de sáida de um neuronio</p>
-<p>w_i_k - peso relacionado a saída e entrada k</p>
-<p>Dado uma rede com 3 inputs, 1 camada oculta possuindo 2 neuronios e 1 neuronio na camada de saída, com função de ativação sigmoide e uma função de custo EQM</p>
-<p><img src="images/example_ft1.png" class="img-fluid"> É importante ressaltar a nomenclatura utilizada, <span class="math inline">\(i\)</span> refere-se a os inputs, <span class="math inline">\(h\)</span> aos neurônios na camada oculta e <span class="math inline">\(o\)</span> ao neurônio na camada de saída. Para os pesos, de forma generalizada um <span class="math inline">\(w_{xyz}\)</span> representa um peso atrelado x-ésimo neuronio de uma camada anterior, ao y-ésimo neurônio z-ésima camada</p>
+<p>O exemplo a seguir foi desenvolvido para ilustrar o treinamento de uma rede neural utilizando os algoritmos de Gradiente Descendente e Backpropagation.</p>
+<p>O problema abordado é do tipo regressão, com o objetivo de prever um valor numérico. A estrutura da rede foi definida da seguinte maneira: a camada de entrada possui 3 features, a camada oculta contém 2 neurônios, e a camada de saída é composta por 1 neurônio, responsável por gerar a predição final.</p>
+<p>A função de ativação utilizada é a <strong>ReLU</strong> com a função de custo <strong>Erro Quadrático Médio</strong></p>
+<p>Para facilitar os calculos, utilizaremos a seguinte nomenclatura para um neuronio</p>
+<p><img src="images/example_ft4.png" class="img-fluid"></p>
+<p>O funcionamento de um neurônio pode ser dividido em duas etapas principais. A primeira etapa corresponde à <strong>soma ponderada dos valores de entrada</strong>, calculada como <span class="math inline">\(Net = \sum_{i=1}^Ix_iw_i\)</span>, onde <span class="math inline">\(x_i\)</span> são os valores da entrada e <span class="math inline">\(w_i\)</span> os respectivos pesos, e <strong>Net</strong> representa o resultado dessa operação</p>
+<p>A segunda etapa consiste na <strong>aplicação da função de ativação</strong> ao valor retornado por Net, gerando a saída do neurônio. Esse processo é expresso como <span class="math inline">\(Out = Fa(Net) + Bias\)</span>, onde <span class="math inline">\(Fa\)</span> é a função de ativação escolhida e o termo Bias ajusta o resultado final</p>
+<p>Essa separação entre as etapas de cálculo da soma ponderada (Net) e a aplicação da função de ativação (Out) é crucial para a aplicação da regra da cadeia durante o cálculo dos gradientes na etapa de backpropagation.</p>
+<p>Conceitualmente, a rede possui a seguinte arquitetura</p>
+<p><img src="images/example_ft1.png" class="img-fluid"> É importante ressaltar a nomenclatura utilizada, <span class="math inline">\(i\)</span> refere-se a os inputs, <span class="math inline">\(h\)</span> aos neurônios na camada oculta e <span class="math inline">\(o\)</span> ao neurônio na camada de saída. Para os pesos, de forma generalizada um <span class="math inline">\(w_{xyz}\)</span> representa um peso atrelado x-ésimo neuronio de uma camada anterior, ao y-ésimo neurônio z-ésima camada, onde a rede possui um número de camadas indo de 0 (camada de entrada) a L (camada oculta). Por exemplo, um peso <span class="math inline">\(w_212\)</span> representa um peso que liga o segundo neuronio da camada 1 ao primeiro neuronio da camada 2.</p>
 </section>
 <section id="definindo-os-valores" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="definindo-os-valores"><span class="header-section-number">7.2</span> Definindo os Valores</h2>
+<p>Para o exemplo,</p>
 <p><img src="images/example_ft2.png" class="img-fluid"></p>
+<p>O valor verdadeiro é <strong>11</strong></p>
 <p><img src="images/example_ft3.png" class="img-fluid"></p>
-<section id="forward-pass" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="forward-pass"><span class="header-section-number">7.2.1</span> Forward Pass</h3>
-<p>Para começar, precisamos da predição inicial da rede dado os pesos e vieses aleatórios de inicialização</p>
 </section>
-<section id="calculando-o-erro-total" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="calculando-o-erro-total"><span class="header-section-number">7.2.2</span> Calculando o Erro Total</h3>
-</section>
-<section id="backward-pass" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="backward-pass"><span class="header-section-number">7.2.3</span> Backward Pass</h3>
-<p>!. Camada de Saída</p>
-<ol start="2" type="1">
+<section id="forward-pass" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="forward-pass"><span class="header-section-number">7.3</span> Forward Pass</h2>
+<p>Para começar, precisamos da predição inicial da rede dado os pesos e vieses aleatórios de inicialização.</p>
+<ol type="1">
 <li>Camada Oculta</li>
 </ol>
-
-
+<p>O primeiro passo é calcular os valores passados para a camada oculta, calculando os valores de Net e Out</p>
+<p>Para <span class="math inline">\(h_1\)</span> temos</p>
+<p><span class="math display">\[Net_{h_1} = i_1w_{111} + i_2w_{211} + i_3w_{311}\]</span> <span class="math display">\[Net_{h_1} = 3*0.5 + 9*0.6 + 21*0.4 = 15.5\]</span> <span class="math display">\[Out_{h_1} = Fa(Net_{h_1}) + Bias_1\]</span> <span class="math display">\[Out_{h_1} = max(0;15.5) + 0.5 = 16\]</span></p>
+<p>Repetindo os mesmos passos para <span class="math inline">\(h_2\)</span></p>
+<p><span class="math display">\[Net_{h_2} = i_1w_{121} + i_2w_{221} + i_3w_{321}\]</span> <span class="math display">\[Net_{h_2} = 3*0.7 + 9*0.5 + 21*0.6 = 19.2\]</span> <span class="math display">\[Out_{h_2} = Fa(Net_{h_2}) + Bias_1\]</span> <span class="math display">\[Out_{h_2} = max(0;19.2) + 0.5 = 19.7\]</span></p>
+<p>Com valores de <span class="math inline">\(h_1\)</span> e <span class="math inline">\(h_2\)</span> calculados, podemos calcular o valor de <span class="math inline">\(o_1\)</span></p>
+<p><span class="math display">\[Net_{o_1} = h_1w_{112} + h_2w_{212}\]</span> <span class="math display">\[Net_{o_1} = 16 * 0.4 + 19.7 * 0.9 = 24.1\]</span> <span class="math display">\[Out_{o_1} = Fa(Net_{o_1}) + Bias_2\]</span> <span class="math display">\[Out_{o_1} = max(0;24.1) + 0.3 = 24.4\]</span></p>
 </section>
+<section id="calculando-o-erro-total" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="calculando-o-erro-total"><span class="header-section-number">7.4</span> Calculando o Erro Total</h2>
+<p>Com o valor predito pelo modelo, podemos calcular o Erro, lembrando que o valor verdadeiro é <strong>11</strong>. Para o erro, a função de custo utilizada é o <strong>Erro Quadrático Médio</strong>, dado por</p>
+<p><span class="math display">\[E_{total} = \sum\frac{1}{2}(y-\hat y)^2\]</span></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O <span class="math inline">\(\frac{1}{2}\)</span> é incluido para que o expoente seja cancelado durante o calculado da derivada.</p>
+</div>
+</div>
+<p>Assim, temos o seguinte erro</p>
+<p><span class="math display">\[E_{total} = \frac{1}{2}(11-24.4)^2 = 89.8\]</span></p>
+</section>
+<section id="the-backwards-pass" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="the-backwards-pass"><span class="header-section-number">7.5</span> The Backwards Pass</h2>
+<p>O objetivo do backpropagation é utilizar o erro calculado na saída da rede para ajustar os valores dos pesos e vieses de maneira eficiente. Esse ajuste é feito iterativamente, com o intuito de minimizar o erro ao longo do processo de treinamento, levando a uma melhoria contínua no desempenho da rede. Em essência, o backpropagation aplica a regra da cadeia para propagar o erro da camada de saída até as camadas iniciais, identificando como cada peso e viés contribui para o erro, e, em seguida, atualizando esses parâmetros para reduzir gradativamente o valor do erro.</p>
+<p>Para a atualização dos valores dos pesos e vieses, utilizamos o seguinte método:</p>
+<p>Para atualizar o valor de um certo peso, devemos calcular sua constribuição para o erro do total da rede. Por exemplo, se estamos trabalhando com o peso <span class="math inline">\(w_{112}\)</span>, sua contribuição é dado pela seguinte derivada</p>
+<p><span class="math display">\[\frac{\partial E_{total}}{\partial w_{112}}\]</span></p>
+<p>O cálculo dessa derivada é realizada através da regra da cadeia</p>
+<p><span class="math display">\[\frac{\partial E_{total}}{\partial w_{112}} =
+\frac{\partial E_{total}}{\partial out_{o_{1}}}
+\times
+\frac{\partial out_{o_{1}}}{\partial net_{o_{1}}}
+\times
+\frac{\partial net_{o_{1}}}{\partial w_{112}}\]</span></p>
+<p>Para o cálculo dessas derivadas, devemos antes definir claramente cada função.</p>
+<ul>
+<li><span class="math inline">\(E_{total}\)</span>
+<ul>
+<li>É a função de custo definida para cada rede. No exemplo estudado, a função de custo definida foi o <strong>EQM</strong>, dada por <span class="math inline">\(E_{total} = \sum\frac{1}{2}(y-\hat y)^2 = \sum\frac{1}{2}(y-out_{o_1})^2\)</span></li>
+</ul></li>
+<li><span class="math inline">\(Out_{o}\)</span>
+<ul>
+<li>A função <strong>Out</strong> de um determinado neurônio são os valores retornado por <strong>Net</strong> aplicado na função de ativação, dado por <span class="math inline">\(Out_{} = Fa(Net) + Bias\)</span></li>
+<li>Para o exemplo, <span class="math inline">\(Out_{o_1} = ReLU(Net_{o_1}) + Bias_2\)</span></li>
+</ul></li>
+<li><span class="math inline">\(Net_{o}\)</span>
+<ul>
+<li>A função <strong>Net</strong> é etapa da soma ponderada, onde os valores</li>
+<li>Para o exemplo, <span class="math inline">\(Net_{o_1} = Out_{h_1}w_{112} + Out_{h_2}w_{212}\)</span></li>
+</ul></li>
+</ul>
+<p>Com cada função devidamente definida, podemos calcular as derivadas parciais</p>
+<p><span class="math display">\[\frac{\partial E_{total}}{\partial out_{o_{1}}}= -(y-out_{o_1})\]</span></p>
+<p><span class="math display">\[\frac{\partial out_{o_{1}}}{\partial net_{o_{1}}} = \begin{cases}
+0 &amp; \text{se } net_{o_1} &lt; 0, \\
+1 &amp; \text{se } net_{o_1} &gt; 0.
+\end{cases}\]</span></p>
+<p><span class="math display">\[\frac{\partial net_{o_{1}}}{\partial w_{112}} = Out_{h_1}\]</span></p>
+<p>Assim</p>
+<p><span class="math display">\[\frac{\partial E_{total}}{\partial w_{112}} = -(y-out_{o_1}) \times \begin{cases}
+0 &amp; \text{se } net_{o_1} &lt; 0, \\
+1 &amp; \text{se } net_{o_1} &gt; 0
+\end{cases} \times Out_{h_1}  = -(11 - 24.4) \times 1 \times 16 = 214.4\]</span></p>
+<p>Com o valor calculado, podemos finalmente atualizar o valor de <span class="math inline">\(w_{112}\)</span>. A atualização é dada por</p>
+<p><span class="math display">\[w_{112}^+ = w_{112} - \frac{\partial E_{total}}{\partial w_{112}} = 0.4 - 214.4 = -214\]</span></p>
+<p>Veremos mais pra frente o conceito de tunagem de hiperparametros, onde um deles é a taxa de aprendizado (<em>learning rate</em>), esse parametro é utilizado para ajustar a magnitude do valor atualizado por iteração. Utilizando ele, a atualização é dada por <span class="math display">\[w_{112}^+ = w_{112} - \alpha \frac{\partial E_{total}}{\partial w_{112}}\]</span> onde <span class="math inline">\(\alpha\)</span> é um valor que deve ser tunado (processo semelhante a otimização)</p>
+
+
 </section>
 </section>
 
