@@ -2,3 +2,6 @@
 
 ::: {#refs}
 :::
+
+\bibliographystyle{plain}
+\bibliography{references}

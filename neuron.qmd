@@ -2,12 +2,11 @@
 title: "Neuronios e Camadas"
 ---
 
-Dado as definições iniciais das regressões linear e logistica, assim como do metodo de gradiente descendente, podemos passar para a definiçãop de uma Rede Neural.
-Para um bom entendimento de como funciona uma rede, destricharemos em 3 etapas:
+Dado as definições iniciais das regressões linear e logistica, assim como do metodo de gradiente descendente, podemos passar para a definiçãop de uma Rede Neural. Para um bom entendimento de como funciona uma rede, destricharemos em 3 etapas:
 
-  * Arquitetura 
-  * Tipos
-  * Aplicação
+-   Arquitetura
+-   Tipos
+-   Aplicação
 
 Um neurônio em uma rede neural artificial é uma unidade computacional inspirada no funcionamento de um neurônio biológico. Ele recebe múltiplas entradas (inputs), realiza uma operação matemática para processar esses valores e gera uma saída (output). Essa operação geralmente envolve uma soma ponderada das entradas seguida por uma função de ativação, que transforma o valor resultante antes de enviá-lo à próxima camada da rede.
 
@@ -21,25 +20,27 @@ Basicamento, podemos representar uma neuronio humano e computacional da seguinte
 
 Um conjunto de neurônios humanos interconectados é conhecido como rede de neurônios ou **rede neural**. No cérebro humano, essas redes formam complexas interconexões chamadas de circuitos neurais, que são responsáveis pelo processamento de informações e pela comunicação entre diferentes partes do sistema nervoso.
 
-No contexto computacional um conjunto de neurônios também é chamado de uma rede neural. 
+No contexto computacional um conjunto de neurônios também é chamado de uma rede neural.
 
 # Estrutura Básica
 
 Um neurónio é a estrura mais básica de uma rede neural. Ele recebe um valor, processa ele, e retorna outro valor que é passado para o neuronio seguinte.
 
-Em uma linguagem matemática, seja um neurônio $K$ $x_1,x_2, ....,x_m$ variáveis, $m+1$ entradas (*inputs*) e um vetor de pesos $w_1,w_2, ..., w_m$. 
+Em uma linguagem matemática, seja um neurônio $K$ $x_1,x_2, ....,x_m$ variáveis, $m+1$ entradas (*inputs*) e um vetor de pesos $w_1,w_2, ..., w_m$.
 
-  1. Bias Input
-  - O input $x_0$ é definido como o valor constante $+1$. Isso o torna o chamado **Bias Input**, que é utilizado para ajustar o valor de saida do neurônio independente dos damais valores de entrada. Esse termo permite que o neurônio retorne valores diferentes de 0 mesmo quando todos os valores de entrada são iguais a 0. 
-  
-  2. Actual Inputs
-  - Os valores de entradas remanescente, vindo das variáveis $x_1,x_2, ...x_m$ são chamadas de entradas verdadeiras (**Actual Inputs**), tendo seu próprio vetor de peso associado $w_{k1}, w_{k2},..., w_{km}$
-  
-  3. Soma Ponderada
-  - A soma dos valores de entrada ponderadas pelos pesos é realizada, dada por:
-  
+1.  Bias Input
+
+-   O input $x_0$ é definido como o valor constante $+1$. Isso o torna o chamado **Bias Input**, que é utilizado para ajustar o valor de saida do neurônio independente dos damais valores de entrada. Esse termo permite que o neurônio retorne valores diferentes de 0 mesmo quando todos os valores de entrada são iguais a 0.
+
+2.  Actual Inputs
+
+-   Os valores de entradas remanescente, vindo das variáveis $x_1,x_2, ...x_m$ são chamadas de entradas verdadeiras (**Actual Inputs**), tendo seu próprio vetor de peso associado $w_{k1}, w_{k2},..., w_{km}$
+
+3.  Soma Ponderada
+
+-   A soma dos valores de entrada ponderadas pelos pesos é realizada, dada por:
+
 $$z_k = \phi(\sum^m_{j=0}w_{kj}x_j) + b$$
-
 
 # Camadas
 
@@ -51,18 +52,15 @@ Uma camada (layer) pode ser caracterizada como um conjunto de neuronios, onde ne
 
 Uma rede possui 3 camadas distintas: Entrada (Input), Oculta (Hidden) e Saida (Output)
 
-* Camada de Entrada
-  - Se caracteriza como a primeira camada de uma rede e é responsável em receber os dados do conjunto de dados utilizado. No caso de um conjunto de dados estruturado, possuindo uma organização padrão de variáveis em colunas e observações em linhas, cada variável seria atribuido a um neuronio distinto, ou seja, se um conjunto de dados possui 10 diferentes variaveis, serão necessários 10 diferentes neuronios na camada de entrada. No caso de conjunto de dados não estruturados como imagens e sons, cada neuronio pode receber um pixel ou um determinado intervalo do som. Vale destacar que uma rede sempre vai possuir uma e somente uma camada de entrada
-  
+-   Camada de Entrada
+    -   Se caracteriza como a primeira camada de uma rede e é responsável em receber os dados do conjunto de dados utilizado. No caso de um conjunto de dados estruturado, possuindo uma organização padrão de variáveis em colunas e observações em linhas, cada variável seria atribuido a um neuronio distinto, ou seja, se um conjunto de dados possui 10 diferentes variaveis, serão necessários 10 diferentes neuronios na camada de entrada. No caso de conjunto de dados não estruturados como imagens e sons, cada neuronio pode receber um pixel ou um determinado intervalo do som. Vale destacar que uma rede sempre vai possuir uma e somente uma camada de entrada
+-   Camadas Ocultas
+    -   Se caracteriza como as camadas que estão entre a camada de entrada e a camadas de saída, e não possui um número fixo. Redes mais simples possuem entre 1 a 3 camadas ocultas. Para problemas mais complexos esse número aumenta. A definição do número de camadas ocultas pode se basear em 2 abordagems: Fixar ou Otimizar.
+    -   Fixar o número de camadas ocultas significa definir um valor fixo antes de iniciar o treinamento do modelo. Essa abordagem é baseada em escolhas prévias, geralmente fundamentadas no conhecimento do problema ou em heurísticas. Redes simples, que resolvem problemas com poucos dados ou baixa complexidade, muitas vezes utilizam entre 1 e 3 camadas ocultas. Esse método é vantajoso em cenários onde se busca simplicidade no design do modelo, menor custo computacional e rapidez no desenvolvimento.
+    -   Otimizar o número de camadas ocultas é uma abordagem que leva a observamos esse número como hiperparâmetro, e assim aplicar tecnicas de tuning para encontrar um número ótimo. Essa opção é utilizada quando não temos nenhum conhecimento a priori do preblema e redes que ja foram utilizadas em problemas semelhantes.
+-   Camada de Saida
+    -   É a última camada de uma rede e é responsável em passar os valores finais preditos. Toda rede vai possuir uma e somente uma camada de saída, onde o número de neurônios dessa camada vai depender do contexto do problema. Em um problema de classificação, devemos ter um neuronio para cada classe. Já ára um problema de regressão, devemos definir um neurinio para cada dimensão, ou seja para uma regressão com a predição de apenas um valor (univariada) devemos ter apenas 1 neurônio, ja para regressão com $m$ valores preditos (multivariada), devemos definir $m$ neurônios nessa camada
 
-* Camadas Ocultas
-  - Se caracteriza como as camadas que estão entre a camada de entrada e a camadas de saída, e não possui um número fixo. Redes mais simples possuem entre 1 a 3 camadas ocultas. Para problemas mais complexos esse número aumenta. A definição do número de camadas  ocultas pode se basear em 2 abordagems: Fixar ou Otimizar.
-  - Fixar o número de camadas ocultas significa definir um valor fixo antes de iniciar o treinamento do modelo. Essa abordagem é baseada em escolhas prévias, geralmente fundamentadas no conhecimento do problema ou em heurísticas. Redes simples, que resolvem problemas com poucos dados ou baixa complexidade, muitas vezes utilizam entre 1 e 3 camadas ocultas. Esse método é vantajoso em cenários onde se busca simplicidade no design do modelo, menor custo computacional e rapidez no desenvolvimento.
-  - Otimizar o número de camadas ocultas é uma abordagem que leva a observamos esse número como hiperparâmetro, e assim aplicar tecnicas de tuning para encontrar um número ótimo. Essa opção é utilizada quando não temos nenhum conhecimento a priori do preblema e redes que ja foram utilizadas em problemas semelhantes. 
-  
-* Camada de Saida
-  - É a última camada de uma rede e é responsável em passar os valores finais preditos. Toda rede vai possuir uma e somente uma camada de saída, onde o número de neurônios dessa camada vai depender do contexto do problema. Em um problema de classificação, devemos ter um neuronio para cada classe. Já ára um problema de regressão, devemos definir um neurinio para cada dimensão, ou seja para uma regressão com a predição de apenas um valor (univariada) devemos ter apenas 1 neurônio, ja para regressão com $m$ valores preditos (multivariada), devemos definir $m$ neurônios nessa camada
-  
 # Função de Ativação
 
 Como definimos na seção "Estrutura Básica", um neurônio é definido algebricamente como $$z_k = \phi(\sum^m_{j=0}w_{kj}x_j) + b$$, onde $phi$ é uma função chamada de função de ativação. Ela é responsável por transformar o valor bruto calculado por um neurônio (o somatório ponderado das entradas mais o viés) em uma saída que será transmitida para os neurônios da próxima camada. O principal objetivo dessa transformação é introduzir não-linearidade no modelo, permitindo que ele aprenda padrões complexos nos dados.
@@ -71,45 +69,44 @@ Sem uma função de ativação, a rede neural seria equivalente a uma combinaç�
 
 Atualmente, existem diversas funções de ativação já definidas, onde cada uma possui uma nicho específico de utilização. Listamos as mais conhecidas
 
-* Sigmoide
-  - $f(x) = \frac{1}{1+e^{-x}}$
-  - Transforma a saída para o entre intervalo 0 e 1, sendo ideal para tarefas de classificação binária.
-  - Extremamente popular em redes mais antigas, porém tem limitações como a saturação e o problema do "vanishing gradient", fenômeno esse que se caracteriza quando a função de ativação gera gradientes tão pequenos, que diminuem ainda mais à medida que são propagados para camadas anteriores
-  -> Colocar foto da função, sua equação
+-   Sigmoide
 
-* Tanh (Tangente Hiperbólica)
-  - $f(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$
-  - Transforma a saída para o entre intervalo -1 e 1
-  -> Colocar foto da função, sua equação
+    -   $f(x) = \frac{1}{1+e^{-x}}$
+    -   Transforma a saída para o entre intervalo 0 e 1, sendo ideal para tarefas de classificação binária.
+    -   Extremamente popular em redes mais antigas, porém tem limitações como a saturação e o problema do "vanishing gradient", fenômeno esse que se caracteriza quando a função de ativação gera gradientes tão pequenos, que diminuem ainda mais à medida que são propagados para camadas anteriores -\> Colocar foto da função, sua equação
 
-* ReLU (Rectified Linear Unit)
-  - $f(x) = \max(0,x)$
+-   Tanh (Tangente Hiperbólica)
 
-* Leaky ReLu (ReLU Contaminada)
+    -   $f(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$
+    -   Transforma a saída para o entre intervalo -1 e 1 -\> Colocar foto da função, sua equação
 
-  - $f(x) =
-\begin{cases} 
-x, & \text{se } x>0 \\ 
-\alpha x, & \text{se } x\leq 0
-\end{cases}$
+-   ReLU (Rectified Linear Unit)
 
-  - $\alpha$ é uma constante que irar ponderar os valores de x menores ou iguais a 0, podendo ser fixada antes do treinamento do modelo, ou classificada como um parâmetro, passando pela etapa de otimização 
-  
-* Softmax
-  - $\sigma(z_i) = \frac{e^{z_i}}{\sum^L_{j=i}e^{zj}}$
+    -   $f(x) = \max(0,x)$
+
+-   Leaky ReLu (ReLU Contaminada)
+
+    -   $f(x) = \begin{cases} x, & \text{se } x>0 \\ \alpha x, & \text{se } x\leq 0 \end{cases}$
+
+    -   $\alpha$ é uma constante que irar ponderar os valores de x menores ou iguais a 0, podendo ser fixada antes do treinamento do modelo, ou classificada como um parâmetro, passando pela etapa de otimização
+
+-   Softmax
+
+    -   $\sigma(z_i) = \frac{e^{z_i}}{\sum^L_{j=i}e^{zj}}$
 
 Vale destacar que **uma função de ativação e função de custo são coisas DISTINTAS**. Enquanto uma função de ativação é aplicada localmente em cada neurônio, uma função de custo é aplicada apenas na sáida final da rede, ou seja, no momento da predição de valores, tendo o objetivo de calcular o erro global da rede. Essa função é utilizada para a otimização dos pesos e vieses durante o treinamento. Resumidamente, a função de ativação transforma os sinais dentro da rede para capturar padrões, enquanto a função de custo avalia o erro final das previsões para guiar o aprendizado do modelo.
 
 # Backpropagation
 
-O objetivo do Backpropagation é calcular as derivadas parciais $\frac{\partial C}{\partial w}$ e $\frac{\partial C}{\partial b}$, onde $C$ é função de custo, $w$ é o peso (weight) e $b$ é o viés (bias).
-Para o método funcionar, precisamos definir duas suposições
+O objetivo do Backpropagation é calcular as derivadas parciais $\frac{\partial C}{\partial w}$ e $\frac{\partial C}{\partial b}$, onde $C$ é função de custo, $w$ é o peso (weight) e $b$ é o viés (bias). Para o método funcionar, precisamos definir duas suposições
 
-1. Generalização pela media
-  - A função de custo $C$ pode ser reescrita como $C = \frac{1}{n}\sum_xC_x$. Isso deve ser assumido por conta da forma que o método calcula as derivadas parciais $\frac{\partial C}{\partial w}$ e $\frac{\partial C}{\partial b}$, onde dado $x$ o conjunto de dados de treinamento da iteração, temos na verdade as derivadas $\frac{\partial C_x}{\partial w}$ e $\frac{\partial C_x}{\partial b}$.
-  
-2. Função de custo pode ser reescrita como uma função da saída (output) da rede
-  - Dado os neuronios da camada de saida $k^L_1, k^L_2, ..., k^L_j$, e seus outputs $a^L_1, a^L_2, ..., a^L_j$, a função de custo $C$ pode ser reescrita como $C = C(a^l)$
+1.  Generalização pela media
+
+-   A função de custo $C$ pode ser reescrita como $C = \frac{1}{n}\sum_xC_x$. Isso deve ser assumido por conta da forma que o método calcula as derivadas parciais $\frac{\partial C}{\partial w}$ e $\frac{\partial C}{\partial b}$, onde dado $x$ o conjunto de dados de treinamento da iteração, temos na verdade as derivadas $\frac{\partial C_x}{\partial w}$ e $\frac{\partial C_x}{\partial b}$.
+
+2.  Função de custo pode ser reescrita como uma função da saída (output) da rede
+
+-   Dado os neuronios da camada de saida $k^L_1, k^L_2, ..., k^L_j$, e seus outputs $a^L_1, a^L_2, ..., a^L_j$, a função de custo $C$ pode ser reescrita como $C = C(a^l)$
 
 ## Pesos e Vieses
 
@@ -117,21 +114,19 @@ Antes de entrar de fato nas equações e formas do método, devemos fazer defini
 
 Quando falamos de pesos e vieses, há muita confusão sobre a função e aplicação de cada um, onde muitas pessoas utilizam esses termos como sinônimos, o que fortemente não é verdade.
 
-A confusão entre pesos e vieses surge frequentemente porque ambos são parâmetros de uma rede neural que são ajustados durante o treinamento e determinam coletivamente o comportamento do modelo. No entanto, eles servem a propósitos e funções distintas. 
+A confusão entre pesos e vieses surge frequentemente porque ambos são parâmetros de uma rede neural que são ajustados durante o treinamento e determinam coletivamente o comportamento do modelo. No entanto, eles servem a propósitos e funções distintas.
 
-Os pesos (weights) são fatores de **multiplicação** aplicados aos valores em cada neuronio e determinam a força e direção da relação entre os valores de entrada e de saída de um neurônio. 
+Os pesos (weights) são fatores de **multiplicação** aplicados aos valores em cada neuronio e determinam a força e direção da relação entre os valores de entrada e de saída de um neurônio.
 
 Já os vieses (bias) são fatores de **soma** e permitem o deslocamento da função de ativação, auxiliando que o modelo se ajuste melhor aos dados
 
 Dado uma rede com uma função de ativação $At$, temos o seguinte valor de saida de um determinado neurônio
 
-$$z = At(w_i* x_i) + b$$
-Vemos que o peso $w_i$ multiplica o valor de entrada $x_i$, controlando a influência de $x_i$ no neuronio atual. Já o vies $b$ é somado ao valor retornado pela função de ativação, auxiliando o neuronio a melhor se ajustar aos dados
+$$z = At(w_i* x_i) + b$$ Vemos que o peso $w_i$ multiplica o valor de entrada $x_i$, controlando a influência de $x_i$ no neuronio atual. Já o vies $b$ é somado ao valor retornado pela função de ativação, auxiliando o neuronio a melhor se ajustar aos dados
 
 As principais diferenças podem resumidas em uma tabela
 
-
-## Equações 
+## Equações
 
 O método se baseia em 4 equações fundamentais
 
@@ -143,11 +138,9 @@ O primeiro termo a direta, $\frac{\partial C}{\partial a^L_j}$ mensura o quão r
 
 Já o segundo termo a direita, $\sigma´(z^L_j)$, mensura o quão rápido a função de ativação $\sigma$ esta mudando em relação a $z^L_j$
 
-
 Na forma matricial a BP1 possui a seguinte forma
 
-$$\sigma^L = \Delta_aC \odot \sigma´ (z^L)$$
-Onde, $\Delta_aC$ é definido como o vetor que sias componentes são as derivadas parciais $\frac{\partial C}{\partial a^L_j}$, para facilitar o entedimento, podemos expressar $\Delta_aC$ como a taxa de variação de $C$ em relação ao ativações de saída
+$$\sigma^L = \Delta_aC \odot \sigma´ (z^L)$$ Onde, $\Delta_aC$ é definido como o vetor que sias componentes são as derivadas parciais $\frac{\partial C}{\partial a^L_j}$, para facilitar o entedimento, podemos expressar $\Delta_aC$ como a taxa de variação de $C$ em relação ao ativações de saída
 
 ### Equação para o erro
 
@@ -163,8 +156,7 @@ $$
 \frac{\partial C}{\partial b^l_j} = \delta^l_j
 $$ {#eq-bp1}
 
-Temos que o erro $\delta^l_j$ é exatamente igual a taxa de variação $\frac{\partial C}{\partial b^l_j}$. Isso se mostra como um ponto positivo, dado que já sabemos como calcular $\delta^l_j$ como visto nas equações BP1 e BP2.
-Assim podemos escrever a BP3 como
+Temos que o erro $\delta^l_j$ é exatamente igual a taxa de variação $\frac{\partial C}{\partial b^l_j}$. Isso se mostra como um ponto positivo, dado que já sabemos como calcular $\delta^l_j$ como visto nas equações BP1 e BP2. Assim podemos escrever a BP3 como
 
 $$\frac{\partial C}{\partial b} = \delta$$
 
@@ -172,43 +164,41 @@ Onde $\delta$ está sendo calculado no mesmo neuronio do viés $b$
 
 ### Equação para a taxa de variação do custo em relação aos pesos
 
-
 $$\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k\delta^l_j$$
-
 
 ## Algoritmo
 
 As funções definidas na seção passada provem uma forma de se calcular o gradiente da função de custo. Essas funções são utilizadas no algortimo do método que possui 5 passos fundamentais
 
-1. Input x
-  - O conjunto dados é introduzido a rede. No pensamento algebrico, o vetor $X$ é introduzido a rede e atribuido como a ativação da camada de entrada
-  
-2. Feedforward
-  - Para cada camada $l = 2,3, ..., L$ calcula-se os valores retornado pelos neurônios $z^l = w^la^{l-1}+b^l$, onde $w^l$ é a matriz de peso para a camada $l$, $a^{l-1}$ é o valor de ativação da camada anterior, $b^l$ é o vetor de vieses para a camada $l$
-  - Além disso, devemos reforçar que $a^l = \sigma(z^l)$, onde $\sigma$ é uma função de ativação
-  
-3. Erro de Saída
-  - O erro na camada de saída é calculado, dado por 
-   $$\delta^L=\Delta_aC\odot\sigma´(z^L)$$
-  - $\Delta_aC$ é o gradiente da função de custo C em relação ao valor de ativação $a^L$
-  - $\sigma´(z^L)$ é a derivada da função de ligação no valor de ativação $z^l$
-  - Isso quantifica o quanto a saída da rede (ativações) se desvia da saída desejada.
-  
-4. Propagação do Erro
-  - Para cada camada $l = L-1,L-2, ...,2$, o erro para a camada é calculado, dado por
-  $$\delta^l = ((w^{l+1})^T\delta^{l+1})\odot\sigma´(z^l)$$
-  - $(w^{l+1})^T\delta^{l+1}$ propaga o erro para trás na rede
-  - $\sigma´(z^l)$ ajusta o erro baseado na função de ativação
-  -  Nessa etapa o erro é propagado para trás, dando origem ao nome do método **Backpropagation**
-  
-5. Calculo dos Gradientes
-  - No último passo do algoritmo, os gradientes em relação aos pesos e vieses são calculados
-  - Para o peso (weight) temos
-  $$\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k\delta^l_j$$
-  - Já para os vieses (bias)
-  $$\frac{\partial C}{\partial b^l_{j}} = \delta^l_j$$
-  - Os valores calculados para cada gradiente são utilizados no momento da otimização via gradiente descendente, minimizando a função de custo
+1.  Input x
 
+-   O conjunto dados é introduzido a rede. No pensamento algebrico, o vetor $X$ é introduzido a rede e atribuido como a ativação da camada de entrada
+
+2.  Feedforward
+
+-   Para cada camada $l = 2,3, ..., L$ calcula-se os valores retornado pelos neurônios $z^l = w^la^{l-1}+b^l$, onde $w^l$ é a matriz de peso para a camada $l$, $a^{l-1}$ é o valor de ativação da camada anterior, $b^l$ é o vetor de vieses para a camada $l$
+-   Além disso, devemos reforçar que $a^l = \sigma(z^l)$, onde $\sigma$ é uma função de ativação
+
+3.  Erro de Saída
+
+-   O erro na camada de saída é calculado, dado por $$\delta^L=\Delta_aC\odot\sigma´(z^L)$$
+-   $\Delta_aC$ é o gradiente da função de custo C em relação ao valor de ativação $a^L$
+-   $\sigma´(z^L)$ é a derivada da função de ligação no valor de ativação $z^l$
+-   Isso quantifica o quanto a saída da rede (ativações) se desvia da saída desejada.
+
+4.  Propagação do Erro
+
+-   Para cada camada $l = L-1,L-2, ...,2$, o erro para a camada é calculado, dado por $$\delta^l = ((w^{l+1})^T\delta^{l+1})\odot\sigma´(z^l)$$
+-   $(w^{l+1})^T\delta^{l+1}$ propaga o erro para trás na rede
+-   $\sigma´(z^l)$ ajusta o erro baseado na função de ativação
+-   Nessa etapa o erro é propagado para trás, dando origem ao nome do método **Backpropagation**
+
+5.  Calculo dos Gradientes
+
+-   No último passo do algoritmo, os gradientes em relação aos pesos e vieses são calculados
+-   Para o peso (weight) temos $$\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k\delta^l_j$$
+-   Já para os vieses (bias) $$\frac{\partial C}{\partial b^l_{j}} = \delta^l_j$$
+-   Os valores calculados para cada gradiente são utilizados no momento da otimização via gradiente descendente, minimizando a função de custo
 
 # GD e BCK em Conjunto
 
@@ -216,24 +206,21 @@ O GD e BCK fazem um trabalho de turma
 
 Relembrando, Gradient Descent é um algoritmo usado para minimizar uma função, neste caso, a função de custo $C(\theta)$, onde $\theta$ representa a matriz de parâmetros: pesos e vieses
 
+-   O algoritmo atualiza os parâmetros iterativamente na direção do gradiente negativo da perda em relação aos parâmetros: $$\theta^{(t+1)} = \theta(t) -\eta\nabla J(\theta^{(t)})$$
 
-* O algoritmo atualiza os parâmetros iterativamente na direção do gradiente negativo da perda em relação aos parâmetros: 
-  $$\theta^{(t+1)} = \theta(t) -\eta\nabla J(\theta^{(t)})$$
-  
 O desafio mora no calculo do gradiente $\nabla_{\theta}L(\theta)$, que é aí que se utiliza o Backpropagation
 
 Backpropagation é um algoritmo para calcular os gradientes da função de custo em relação aos pesos e vieses da rede de forma eficiente usando a regra da cadeia. Funciona camada por camada, começando pela camada de saída (final da rede) e retrocedendo em direção à entrada.
 
 Em conjunto eles, temos a seguinte sequencia
 
-1. No primeiro passo, os dados são introduzidos pela primeira vez na rede, onde os pesos e vieses são inicializaods de maneira aleatória. Ao final da primeira iteração, as predições iniciais são retornadas, possibilitando a utilização da função de custo
+1.  No primeiro passo, os dados são introduzidos pela primeira vez na rede, onde os pesos e vieses são inicializaods de maneira aleatória. Ao final da primeira iteração, as predições iniciais são retornadas, possibilitando a utilização da função de custo
 
-2. O backpropagation calcula o quanto uma variação nos pesos e vieses afetará a função de custo
+2.  O backpropagation calcula o quanto uma variação nos pesos e vieses afetará a função de custo
 
-3. O Gradiente Descendente atualiza os valores de pesos e vieses baseado nesses gradientes, buscando o valor que minimiza a função de perda
+3.  O Gradiente Descendente atualiza os valores de pesos e vieses baseado nesses gradientes, buscando o valor que minimiza a função de perda
 
-4. Se repete o ciclo por múltiplas iterações, chamadas de epochs até que a função de custo convirja para o mínimo global
-
+4.  Se repete o ciclo por múltiplas iterações, chamadas de epochs até que a função de custo convirja para o mínimo global
 
 ## Exemplo
 
@@ -243,7 +230,6 @@ O problema abordado é do tipo regressão, com o objetivo de prever um valor num
 
 A função de ativação utilizada é a **ReLU** com a função de custo **Erro Quadrático Médio**
 
-
 Para facilitar os calculos, utilizaremos a seguinte nomenclatura para um neuronio
 
 ![](images/example_ft4.png)
@@ -252,54 +238,41 @@ O funcionamento de um neurônio pode ser dividido em duas etapas principais. A p
 
 A segunda etapa consiste na **aplicação da função de ativação** ao valor retornado por Net, gerando a saída do neurônio. Esse processo é expresso como $Out = Fa(Net) + Bias$, onde $Fa$ é a função de ativação escolhida e o termo Bias ajusta o resultado final
 
-
 Essa separação entre as etapas de cálculo da soma ponderada (Net) e a aplicação da função de ativação (Out) é crucial para a aplicação da regra da cadeia durante o cálculo dos gradientes na etapa de backpropagation.
 
 Conceitualmente, a rede possui a seguinte arquitetura
 
-![](images/example_ft1.png)
-É importante ressaltar a nomenclatura utilizada, $i$ refere-se a os inputs, $h$ aos neurônios na camada oculta e $o$ ao neurônio na camada de saída. Para os pesos, de forma generalizada um $w_{xyz}$ representa um peso atrelado x-ésimo neuronio de uma camada anterior, ao y-ésimo neurônio z-ésima camada, onde a rede possui um número de camadas indo de 0 (camada de entrada) a L (camada oculta). Por exemplo, um peso $w_212$ representa um peso que liga o  segundo neuronio da camada 1 ao primeiro neuronio da camada 2.
+![](images/example_ft1.png) É importante ressaltar a nomenclatura utilizada, $i$ refere-se a os inputs, $h$ aos neurônios na camada oculta e $o$ ao neurônio na camada de saída. Para os pesos, de forma generalizada um $w_{xyz}$ representa um peso atrelado x-ésimo neuronio de uma camada anterior, ao y-ésimo neurônio z-ésima camada, onde a rede possui um número de camadas indo de 0 (camada de entrada) a L (camada oculta). Por exemplo, um peso $w_212$ representa um peso que liga o segundo neuronio da camada 1 ao primeiro neuronio da camada 2.
 
 ## Definindo os Valores
 
-Para o exemplo, 
+Para o exemplo,
 
 ![](images/example_ft2.png)
 
 O valor verdadeiro é **11**
 
-
 ![](images/example_ft3.png)
 
 ## Forward Pass
 
-
 Para começar, precisamos da predição inicial da rede dado os pesos e vieses aleatórios de inicialização.
 
-1. Camada Oculta
+1.  Camada Oculta
 
 O primeiro passo é calcular os valores passados para a camada oculta, calculando os valores de Net e Out
 
 Para $h_1$ temos
 
-$$Net_{h_1} = i_1w_{111} + i_2w_{211} + i_3w_{311}$$
-$$Net_{h_1} = 3*0.5 + 9*0.6 + 21*0.4 = 15.5$$
-$$Out_{h_1} = Fa(Net_{h_1}) + Bias_1$$
-$$Out_{h_1} = max(0;15.5) + 0.5 = 16$$
+$$Net_{h_1} = i_1w_{111} + i_2w_{211} + i_3w_{311}$$ $$Net_{h_1} = 3*0.5 + 9*0.6 + 21*0.4 = 15.5$$ $$Out_{h_1} = Fa(Net_{h_1}) + Bias_1$$ $$Out_{h_1} = max(0;15.5) + 0.5 = 16$$
 
 Repetindo os mesmos passos para $h_2$
 
-$$Net_{h_2} = i_1w_{121} + i_2w_{221} + i_3w_{321}$$
-$$Net_{h_2} = 3*0.7 + 9*0.5 + 21*0.6 = 19.2$$
-$$Out_{h_2} = Fa(Net_{h_2}) + Bias_1$$
-$$Out_{h_2} = max(0;19.2) + 0.5 = 19.7$$
+$$Net_{h_2} = i_1w_{121} + i_2w_{221} + i_3w_{321}$$ $$Net_{h_2} = 3*0.7 + 9*0.5 + 21*0.6 = 19.2$$ $$Out_{h_2} = Fa(Net_{h_2}) + Bias_1$$ $$Out_{h_2} = max(0;19.2) + 0.5 = 19.7$$
 
 Com valores de $h_1$ e $h_2$ calculados, podemos calcular o valor de $o_1$
 
-$$Net_{o_1} = h_1w_{112} + h_2w_{212}$$
-$$Net_{o_1} = 16 * 0.4 + 19.7 * 0.9 = 24.1$$
-$$Out_{o_1} = Fa(Net_{o_1}) + Bias_2$$
-$$Out_{o_1} = max(0;24.1) + 0.3 = 24.4$$
+$$Net_{o_1} = h_1w_{112} + h_2w_{212}$$ $$Net_{o_1} = 16 * 0.4 + 19.7 * 0.9 = 24.1$$ $$Out_{o_1} = Fa(Net_{o_1}) + Bias_2$$ $$Out_{o_1} = max(0;24.1) + 0.3 = 24.4$$
 
 ## Calculando o Erro Total
 
@@ -307,12 +280,11 @@ Com o valor predito pelo modelo, podemos calcular o Erro, lembrando que o valor 
 
 $$E_{total} = \sum\frac{1}{2}(y-\hat y)^2$$
 
-::: {.callout-tip}
+::: callout-tip
 ## Dica
 
 O $\frac{1}{2}$ é incluido para que o expoente seja cancelado durante o calculado da derivada.
 :::
-
 
 Assim, temos o seguinte erro
 
@@ -324,13 +296,11 @@ O objetivo do backpropagation é utilizar o erro calculado na saída da rede par
 
 Para a atualização dos valores dos pesos e vieses, utilizamos o seguinte método:
 
-
 Para atualizar o valor de um certo peso, devemos calcular sua constribuição para o erro do total da rede. Por exemplo, se estamos trabalhando com o peso $w_{112}$, sua contribuição é dado pela seguinte derivada
 
 $$\frac{\partial E_{total}}{\partial w_{112}}$$
 
 O cálculo dessa derivada é realizada através da regra da cadeia
-
 
 $$\frac{\partial E_{total}}{\partial w_{112}} =
 \frac{\partial E_{total}}{\partial out_{o_{1}}}
@@ -341,19 +311,15 @@ $$\frac{\partial E_{total}}{\partial w_{112}} =
 
 Para o cálculo dessas derivadas, devemos antes definir claramente cada função.
 
-* $E_{total}$
-  - É a função de custo definida para cada rede. No exemplo estudado, a função de custo definida foi o **EQM**, dada por
-  $E_{total} = \sum\frac{1}{2}(y-\hat y)^2 = \sum\frac{1}{2}(y-out_{o_1})^2$
-  
-* $Out_{o}$
-  - A função **Out** de um determinado neurônio  são os valores retornado por **Net** aplicado na função de ativação, dado por
-$Out_{} = Fa(Net) + Bias$
-  - Para o exemplo, $Out_{o_1} = ReLU(Net_{o_1}) + Bias_2$
-  
-* $Net_{o}$
-  - A função **Net** é etapa da soma ponderada, onde os valores 
-  - Para o exemplo,  $Net_{o_1} = Out_{h_1}w_{112} + Out_{h_2}w_{212}$
-  
+-   $E_{total}$
+    -   É a função de custo definida para cada rede. No exemplo estudado, a função de custo definida foi o **EQM**, dada por $E_{total} = \sum\frac{1}{2}(y-\hat y)^2 = \sum\frac{1}{2}(y-out_{o_1})^2$
+-   $Out_{o}$
+    -   A função **Out** de um determinado neurônio são os valores retornado por **Net** aplicado na função de ativação, dado por $Out_{} = Fa(Net) + Bias$
+    -   Para o exemplo, $Out_{o_1} = ReLU(Net_{o_1}) + Bias_2$
+-   $Net_{o}$
+    -   A função **Net** é etapa da soma ponderada, onde os valores
+    -   Para o exemplo, $Net_{o_1} = Out_{h_1}w_{112} + Out_{h_2}w_{212}$
+
 Com cada função devidamente definida, podemos calcular as derivadas parciais
 
 $$\frac{\partial E_{total}}{\partial out_{o_{1}}}= -(y-out_{o_1})$$
@@ -365,7 +331,7 @@ $$\frac{\partial out_{o_{1}}}{\partial net_{o_{1}}} = \begin{cases}
 
 $$\frac{\partial net_{o_{1}}}{\partial w_{112}} = Out_{h_1}$$
 
-Assim 
+Assim
 
 $$\frac{\partial E_{total}}{\partial w_{112}} = -(y-out_{o_1}) \times \begin{cases} 
 0 & \text{se } net_{o_1} < 0, \\
@@ -376,6 +342,4 @@ Com o valor calculado, podemos finalmente atualizar o valor de $w_{112}$. A atua
 
 $$w_{112}^+ = w_{112} - \frac{\partial E_{total}}{\partial w_{112}} = 0.4 - 214.4 = -214$$
 
-Veremos mais pra frente o conceito de tunagem de hiperparametros, onde um deles é a taxa de aprendizado (*learning rate*), esse parametro é utilizado para ajustar a magnitude do valor atualizado por iteração. Utilizando ele, a atualização é dada por 
-$$w_{112}^+ = w_{112} - \alpha \frac{\partial E_{total}}{\partial w_{112}}$$
-onde $\alpha$ é um valor que deve ser tunado (processo semelhante a otimização)
+Veremos mais pra frente o conceito de tunagem de hiperparametros, onde um deles é a taxa de aprendizado (*learning rate*), esse parametro é utilizado para ajustar a magnitude do valor atualizado por iteração. Utilizando ele, a atualização é dada por $$w_{112}^+ = w_{112} - \alpha \frac{\partial E_{total}}{\partial w_{112}}$$ onde $\alpha$ é um valor que deve ser tunado (processo semelhante a otimização)

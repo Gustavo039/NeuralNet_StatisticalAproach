@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -61,6 +61,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -69,11 +70,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GD.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -81,67 +87,74 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Redes Neurais Artificiais: um bom lugar para um estatístico se deitar</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Prefácio</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./GD.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></a>
+  <a href="./GD.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./neuron.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Neuronios e Camadas</span></a>
+  <a href="./neuron.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Neuronios e Camadas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#regressão-linear" id="toc-regressão-linear" class="nav-link active" data-scroll-target="#regressão-linear"><span class="toc-section-number">2</span>  Regressão Linear</a></li>
-  <li><a href="#estimação-dos-parâmetros" id="toc-estimação-dos-parâmetros" class="nav-link" data-scroll-target="#estimação-dos-parâmetros"><span class="toc-section-number">3</span>  Estimação dos Parâmetros</a></li>
-  <li><a href="#gradiente-descendente" id="toc-gradiente-descendente" class="nav-link" data-scroll-target="#gradiente-descendente"><span class="toc-section-number">4</span>  Gradiente Descendente</a>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">2</span> Introdução</a></li>
+  <li><a href="#regressão-linear" id="toc-regressão-linear" class="nav-link" data-scroll-target="#regressão-linear"><span class="header-section-number">3</span> Regressão Linear</a></li>
+  <li><a href="#estimação-dos-parâmetros" id="toc-estimação-dos-parâmetros" class="nav-link" data-scroll-target="#estimação-dos-parâmetros"><span class="header-section-number">4</span> Estimação dos Parâmetros</a></li>
+  <li><a href="#gradiente-descendente" id="toc-gradiente-descendente" class="nav-link" data-scroll-target="#gradiente-descendente"><span class="header-section-number">5</span> Gradiente Descendente</a>
   <ul class="collapse">
-  <li><a href="#o-gradiente-descendente-como-alternativa-à-ols" id="toc-o-gradiente-descendente-como-alternativa-à-ols" class="nav-link" data-scroll-target="#o-gradiente-descendente-como-alternativa-à-ols"><span class="toc-section-number">4.1</span>  O Gradiente Descendente como Alternativa à OLS</a></li>
+  <li><a href="#o-gradiente-descendente-como-alternativa-à-ols" id="toc-o-gradiente-descendente-como-alternativa-à-ols" class="nav-link" data-scroll-target="#o-gradiente-descendente-como-alternativa-à-ols"><span class="header-section-number">5.1</span> O Gradiente Descendente como Alternativa à OLS</a></li>
   </ul></li>
-  <li><a href="#motivação" id="toc-motivação" class="nav-link" data-scroll-target="#motivação"><span class="toc-section-number">5</span>  Motivação</a></li>
-  <li><a href="#função-de-custo" id="toc-função-de-custo" class="nav-link" data-scroll-target="#função-de-custo"><span class="toc-section-number">6</span>  Função de custo</a></li>
-  <li><a href="#cálculos" id="toc-cálculos" class="nav-link" data-scroll-target="#cálculos"><span class="toc-section-number">7</span>  Cálculos</a></li>
-  <li><a href="#variações" id="toc-variações" class="nav-link" data-scroll-target="#variações"><span class="toc-section-number">8</span>  Variações</a></li>
-  <li><a href="#gd---caso-logístico" id="toc-gd---caso-logístico" class="nav-link" data-scroll-target="#gd---caso-logístico"><span class="toc-section-number">9</span>  GD - Caso Logístico</a></li>
-  <li><a href="#lista-das-principais-funções-de-custo" id="toc-lista-das-principais-funções-de-custo" class="nav-link" data-scroll-target="#lista-das-principais-funções-de-custo"><span class="toc-section-number">10</span>  Lista das Principais Funções de Custo</a>
+  <li><a href="#motivação" id="toc-motivação" class="nav-link" data-scroll-target="#motivação"><span class="header-section-number">6</span> Motivação</a></li>
+  <li><a href="#função-de-custo" id="toc-função-de-custo" class="nav-link" data-scroll-target="#função-de-custo"><span class="header-section-number">7</span> Função de custo</a></li>
+  <li><a href="#cálculos" id="toc-cálculos" class="nav-link" data-scroll-target="#cálculos"><span class="header-section-number">8</span> Cálculos</a></li>
+  <li><a href="#variações" id="toc-variações" class="nav-link" data-scroll-target="#variações"><span class="header-section-number">9</span> Variações</a></li>
+  <li><a href="#gd---caso-logístico" id="toc-gd---caso-logístico" class="nav-link" data-scroll-target="#gd---caso-logístico"><span class="header-section-number">10</span> GD - Caso Logístico</a></li>
+  <li><a href="#lista-das-principais-funções-de-custo" id="toc-lista-das-principais-funções-de-custo" class="nav-link" data-scroll-target="#lista-das-principais-funções-de-custo"><span class="header-section-number">11</span> Lista das Principais Funções de Custo</a>
   <ul class="collapse">
-  <li><a href="#função-de-custo-exponencial" id="toc-função-de-custo-exponencial" class="nav-link" data-scroll-target="#função-de-custo-exponencial"><span class="toc-section-number">10.1</span>  Função de Custo Exponencial</a></li>
+  <li><a href="#função-de-custo-exponencial" id="toc-função-de-custo-exponencial" class="nav-link" data-scroll-target="#função-de-custo-exponencial"><span class="header-section-number">11.1</span> Função de Custo Exponencial</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -151,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></h1>
 </div>
 
 
@@ -166,10 +179,17 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="regressão-linear" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Regressão Linear</h1>
+<section id="introdução" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Introdução</h1>
+<p>Modelos de regressão, cujos conceitos iniciais foram propostos por , são modelos estatísticos que tentam explicar o comportamento de uma variável de interesse (ou resposta) a partir de covariáveis (variáveis explicativas) e parâmetros desconhecidos a serem estimados a partir de dados observáveis. Segundo , esta é a técnica estatística mais utilizada. De maneira geral, uma função, denominada função de ligação, une uma característica da variável resposta, usualmente a média, a um certo preditor, constituído de parâmetros a serem estimados e variáveis explicativas.</p>
+<p>Os primeiros modelos de regressão foram construídos assumindo-se que a variável resposta em estudo segue uma distribuição normal e que o preditor é uma função linear. Caso a suposição de normalidade não seja satisfeita, uma estratégia é buscar alguma transformação na variável resposta, como a proposta por , na tentativa de garantir normalidade. Entretanto, as transformações podem dificultar a interpretação do modelo final.</p>
+<p>A classe dos modelos linerares generalizados (MLG), apresentada por , flexibiliza a suposição distribucional dos dados, pois estendem a teoria da regressão normal para o caso em que a distribuição da variável resposta pertence a uma família exponencial.</p>
+<p>Ainda assim, a suposição de linearidade do preditor com parâmetros a serem estimados nem sempre é apropriada. Nesses casos, alguns autores, como e , propõem quantificar o efeito dessa relação através de uma relação não linear, conhecida. Na prática, é comum observarmos relações entre variável resposta e variável explicativa que são não lineares e desconhecidas. Daí surgiram os modelos não paramétricos em que não há a necessidade de prefixar uma relação a priori para ser utilizada no modelo. Existem diversas técnicas de regressão não paramétrica. Entre elas, há a regressão não paramétrica através de , em que funções são construídas por meio da junção de várias funções polinomiais de uma certa ordem que foram particionadas da variável explicativa a ser controlada de forma não paramétrica.</p>
+</section>
+<section id="regressão-linear" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Regressão Linear</h1>
 <p>A regressão linear simples é um método estatístico utilizado para modelar a relação entre duas variáveis: uma variável dependente (ou resposta), que desejamos prever, e uma variável independente (ou explicativa), que usamos para fazer essa previsão. O objetivo da regressão linear é encontrar uma função linear que melhor descreva essa relação.</p>
-<p>Por exemplo: podemos utilizar o número de banheiros e quartos de uma casa para predizer seu valor, o número de gols de um atacante utilizando seu histórico dos últimos anos e sua idade ou ainda em um cenário atual, muitas startups que desenvolvem tecnologias de inteligência artificial estão usando regressão linear para prever receitas futuras com base em métricas como usuários ativos, engajamento em plataformas digitais e número de clientes corporativos.</p>
+<p>Por exemplo: podemos utilizar o número de banheiros e quartos de uma casa para predizer seu valor, o número de gols de um atacante utilizando seu histórico dos últimos anos e sua idade ou ainda em um cenário atual, muitas startups que desenvolvem tecnologias de inteligência artificial, estão usando regressão linear para prever receitas futuras com base em métricas como usuários ativos, engajamento em plataformas digitais e número de clientes corporativos.</p>
 <p>Dentro de uma visão matemática e estatística, um modelo de regressão linear possui uma das estruturas mais simples, dado por:</p>
 <p><span class="math display">\[Y = \beta_0 +\beta_1x_1 + \epsilon\]</span></p>
 <p>onde</p>
@@ -185,8 +205,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Pela seguinte demonstração</p>
 <p>Seja <span class="math inline">\(X\)</span> a matriz de planejamento. Para um conjunto de dados com <span class="math inline">\(p\)</span> variáveis explicativas e <span class="math inline">\(n\)</span> observações, temos um matriz de planejamento de dimensão <span class="math inline">\(n \ \times \ p\)</span></p>
 </section>
-<section id="estimação-dos-parâmetros" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Estimação dos Parâmetros</h1>
+<section id="estimação-dos-parâmetros" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Estimação dos Parâmetros</h1>
 <p>Para se estimar os parametros de uma regressão linear o pensamento mais ismples é: <em>qual o valor dos paramaetros que me retorna o menor erro?</em></p>
 <p>Ou seja, para quais valores dos coeficientes <span class="math inline">\(\beta_0,\beta_1, ..., \beta_p\)</span> temos o menor erro.</p>
 <p>O “menor erro” pode ser estruturada em forma matematica:</p>
@@ -212,14 +232,14 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>Devido ao elevado custo de calcular diretamente a inversa dE <span class="math inline">\(X^TX\)</span> métodos iterativos, como os baseados em gradiente, são frequentemente preferidos em cenários com grandes conjuntos de dados ou alta dimensionalidade. Esses métodos não exigem a inversão direta da matriz e podem fornecer aproximações suficientemente boas para os coeficientes <span class="math inline">\(\beta\)</span> com um custo computacional muito menor.</p>
 </section>
-<section id="gradiente-descendente" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Gradiente Descendente</h1>
+<section id="gradiente-descendente" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Gradiente Descendente</h1>
 <p>O gradiente é um conceito central em otimização. Ele representa a direção e a intensidade de variação de uma função com respeito a cada um de seus parâmetros. Em termos mais intuitivos, o gradiente aponta “em que direção” e “o quão rapidamente” o valor da função de custo aumenta ou diminui em relação aos parâmetros.</p>
 <p>Para uma função de custo <span class="math inline">\(J(\theta)\)</span> onde <span class="math inline">\(\theta\)</span> representa o vetor de parâmetros, o gradinete de <span class="math inline">\(\nabla J(\theta)\)</span> é o vetor de derivadas parciais:</p>
 <p><span class="math inline">\(\nabla J(\theta) = (\frac{\partial J}{\partial\theta_1},\frac{\partial J}{\partial\theta_2},...,\frac{\partial J}{\partial\theta_n})\)</span></p>
 <p>Cada componente desse vetor indica como uma pequena alteração em um parâmetro específico impacta <span class="math inline">\(\theta_i\)</span> o valor da função de custo. No contexto de minimização, o gradiente fornece a direção em que a função de custo aumenta mais rapidamente. Portanto, para minimizar <span class="math inline">\(J(\theta)\)</span> ajustamos os parâmetros no sentido oposto ao gradiente — daí o nome “gradiente descendente”.</p>
-<section id="o-gradiente-descendente-como-alternativa-à-ols" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="o-gradiente-descendente-como-alternativa-à-ols"><span class="header-section-number">4.1</span> O Gradiente Descendente como Alternativa à OLS</h2>
+<section id="o-gradiente-descendente-como-alternativa-à-ols" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="o-gradiente-descendente-como-alternativa-à-ols"><span class="header-section-number">5.1</span> O Gradiente Descendente como Alternativa à OLS</h2>
 <p>O gradiente descendente é uma técnica iterativa de otimização que ajusta os parâmetros na direção oposta ao gradiente, com o objetivo de encontrar o ponto de mínimo da função de custo. A atualização dos parâmetros em cada iteração é feita com a seguinte fórmula:</p>
 <p><span class="math display">\[\theta^{(t+1)} = \theta(t) -\eta\nabla J(\theta^{(t)}) \]</span> Onde:</p>
 <ul>
@@ -230,8 +250,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="motivação" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Motivação</h1>
+<section id="motivação" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Motivação</h1>
 <p>Dentre o contexto de regressão linear, um conjunto de variáveis pode ser utilizada para predizer o valor de uma outra variável. O processo de escolha de um conjunto de variáveis explicativas que melhor predizem a variável resposta é chamado de modelagem.</p>
 <p>A diferença entre o valor predito e o valor verdadeiro da variável de estudo é chamado de resíduo.</p>
 <p>Uma das formas de estimação de um modelo linear é minimizando o o erro total do modelo, ou seja, encontrando o modelo que minimza o valor do resíduo.</p>
@@ -246,11 +266,11 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Gradiente Descendente</p></li>
 </ul>
 </section>
-<section id="função-de-custo" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Função de custo</h1>
+<section id="função-de-custo" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Função de custo</h1>
 </section>
-<section id="cálculos" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Cálculos</h1>
+<section id="cálculos" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Cálculos</h1>
 <p>O gradiente em relação em relação aos pesos é dado por:</p>
 <p><span class="math display">\[D_m = \frac{\partial(Funcao de Custo)}{\partial m } = \frac{\partial}{\partial m}(\frac{1}{n}\sum^n_{i=0}(y_i - \hat y)^2)\]</span></p>
 <p><span class="math display">\[D_m = \frac{2}{n}(\sum (y_i- \hat y_i) \times \frac{\partial}{\partial m}(y_i-\hat y_i))\]</span></p>
@@ -261,20 +281,20 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">\[D_M = -\frac{1}{n}(\sum x_i (y - \hat y_i))\]</span> e</p>
 <p><span class="math display">\[D_C = -\frac{1}{n}(\sum(y_i - \hat y_i))\]</span></p>
 </section>
-<section id="variações" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Variações</h1>
+<section id="variações" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Variações</h1>
 <p>::: {.content-visible when-format=“html”}</p>
 <div id="fig-tesseract" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <div align="center">
 <iframe width="700" height="700" src="./images/gif_GD_tipos.gif"></iframe>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;8.1: Animation of a tesseract, a cube changing over time.</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;9.1: Animation of a tesseract, a cube changing over time.</figcaption>
 </figure>
 </div>
 </section>
-<section id="gd---caso-logístico" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> GD - Caso Logístico</h1>
+<section id="gd---caso-logístico" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> GD - Caso Logístico</h1>
 <p>A regressão logística é utilizada quando o desejamos classficar alguma classe. É um método pertencente a classse dos MLGs e possui certes diferenças para a aplaicação do me´todo de Gradiente Descendente</p>
 <p>A regressão logística é dada pela seguinte função</p>
 <p>$$</p>
@@ -297,11 +317,11 @@ ul.task-list li input[type="checkbox"] {
 <p>E portanto, substituindo na formula da atualização, temos a seguinte regra:</p>
 <p><span class="math display">\[\theta_j \leftarrow \theta_j - \alpha \frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j\]</span></p>
 </section>
-<section id="lista-das-principais-funções-de-custo" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Lista das Principais Funções de Custo</h1>
+<section id="lista-das-principais-funções-de-custo" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Lista das Principais Funções de Custo</h1>
 <p>Alem das funções de custo ja listadas, outras são definidas para determinados nichos e obejtivos. O seguinte tópico buscou listar as principais.</p>
-<section id="função-de-custo-exponencial" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="função-de-custo-exponencial"><span class="header-section-number">10.1</span> Função de Custo Exponencial</h2>
+<section id="função-de-custo-exponencial" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="função-de-custo-exponencial"><span class="header-section-number">11.1</span> Função de Custo Exponencial</h2>
 <p>Utilizada para o algoritmo AdaBoost de classsificação, onde sua forma de convexidade e crescimento exponencial para valroes negativos a torna sensivel para valores outliers. Dada por</p>
 <p><span class="math display">\[f(x) = \frac{1}{2}log(\frac{p(1|x)}{1-p(1|x)})\]</span></p>
 
@@ -337,9 +357,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -404,6 +438,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
