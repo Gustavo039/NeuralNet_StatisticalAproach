@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Redes Neurais Artificiais: um bom lugar para um estatístico se deitar - 1&nbsp; Regressão Linear e Gradiente Descendente</title>
+<title>Redes Neurais Artificiais: um bom lugar para um estatístico se deitar - 2&nbsp; Regressão Linear e Gradiente Descendente</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./neuron.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./introduction.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GD.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GD.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -108,20 +108,26 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./GD.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./neuron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Neuronios e Camadas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Neuronios e Camadas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -140,8 +146,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">2</span> Introdução</a></li>
-  <li><a href="#regressão-linear" id="toc-regressão-linear" class="nav-link" data-scroll-target="#regressão-linear"><span class="header-section-number">3</span> Regressão Linear</a></li>
+  <li><a href="#regressão-linear" id="toc-regressão-linear" class="nav-link active" data-scroll-target="#regressão-linear"><span class="header-section-number">3</span> Regressão Linear</a></li>
   <li><a href="#estimação-dos-parâmetros" id="toc-estimação-dos-parâmetros" class="nav-link" data-scroll-target="#estimação-dos-parâmetros"><span class="header-section-number">4</span> Estimação dos Parâmetros</a></li>
   <li><a href="#gradiente-descendente" id="toc-gradiente-descendente" class="nav-link" data-scroll-target="#gradiente-descendente"><span class="header-section-number">5</span> Gradiente Descendente</a>
   <ul class="collapse">
@@ -164,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></h1>
 </div>
 
 
@@ -179,19 +184,12 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="introdução" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Introdução</h1>
-<p>Modelos de regressão, cujos conceitos iniciais foram propostos por , são modelos estatísticos que tentam explicar o comportamento de uma variável de interesse (ou resposta) a partir de covariáveis (variáveis explicativas) e parâmetros desconhecidos a serem estimados a partir de dados observáveis. Segundo , esta é a técnica estatística mais utilizada. De maneira geral, uma função, denominada função de ligação, une uma característica da variável resposta, usualmente a média, a um certo preditor, constituído de parâmetros a serem estimados e variáveis explicativas.</p>
-<p>Os primeiros modelos de regressão foram construídos assumindo-se que a variável resposta em estudo segue uma distribuição normal e que o preditor é uma função linear. Caso a suposição de normalidade não seja satisfeita, uma estratégia é buscar alguma transformação na variável resposta, como a proposta por , na tentativa de garantir normalidade. Entretanto, as transformações podem dificultar a interpretação do modelo final.</p>
-<p>A classe dos modelos linerares generalizados (MLG), apresentada por , flexibiliza a suposição distribucional dos dados, pois estendem a teoria da regressão normal para o caso em que a distribuição da variável resposta pertence a uma família exponencial.</p>
-<p>Ainda assim, a suposição de linearidade do preditor com parâmetros a serem estimados nem sempre é apropriada. Nesses casos, alguns autores, como e , propõem quantificar o efeito dessa relação através de uma relação não linear, conhecida. Na prática, é comum observarmos relações entre variável resposta e variável explicativa que são não lineares e desconhecidas. Daí surgiram os modelos não paramétricos em que não há a necessidade de prefixar uma relação a priori para ser utilizada no modelo. Existem diversas técnicas de regressão não paramétrica. Entre elas, há a regressão não paramétrica através de , em que funções são construídas por meio da junção de várias funções polinomiais de uma certa ordem que foram particionadas da variável explicativa a ser controlada de forma não paramétrica.</p>
-</section>
 <section id="regressão-linear" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Regressão Linear</h1>
 <p>A regressão linear simples é um método estatístico utilizado para modelar a relação entre duas variáveis: uma variável dependente (ou resposta), que desejamos prever, e uma variável independente (ou explicativa), que usamos para fazer essa previsão. O objetivo da regressão linear é encontrar uma função linear que melhor descreva essa relação.</p>
 <p>Por exemplo: podemos utilizar o número de banheiros e quartos de uma casa para predizer seu valor, o número de gols de um atacante utilizando seu histórico dos últimos anos e sua idade ou ainda em um cenário atual, muitas startups que desenvolvem tecnologias de inteligência artificial, estão usando regressão linear para prever receitas futuras com base em métricas como usuários ativos, engajamento em plataformas digitais e número de clientes corporativos.</p>
 <p>Dentro de uma visão matemática e estatística, um modelo de regressão linear possui uma das estruturas mais simples, dado por:</p>
-<p><span class="math display">\[Y = \beta_0 +\beta_1x_1 + \epsilon\]</span></p>
+<p><span class="math display">\[\mathbf{Y} = \beta_0 +\beta_1x_1 + \epsilon\]</span> <span class="math display">\[\ = \beta_0 +\beta_1x_1 + \epsilon\]</span></p>
 <p>onde</p>
 <ul>
 <li><p><span class="math inline">\(Y\)</span> é a variável resposta</p></li>
@@ -565,13 +563,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefácio</span>
+      <a href="./introduction.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./neuron.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Neuronios e Camadas</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Neuronios e Camadas</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

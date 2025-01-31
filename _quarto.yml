@@ -9,6 +9,7 @@ book:
   cover-image: capa_livro.jpg
   chapters:
     - index.qmd
+    - introduction.qmd
     - GD.qmd
     - neuron.qmd
     - summary.qmd

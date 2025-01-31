@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Redes Neurais Artificiais: um bom lugar para um estatístico se deitar - References</title>
+<title>Redes Neurais Artificiais: um bom lugar para um estatístico se deitar - 1&nbsp; Introdução</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,7 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="prev">
+<link href="./GD.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -91,7 +92,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -124,8 +125,8 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></span></a>
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -148,7 +149,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -165,7 +166,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></h1>
 </div>
 
 
@@ -180,18 +181,32 @@ div.csl-indent {
 
 </header>
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<p>Modelos de regressão, cujos conceitos iniciais foram propostos por <span class="citation" data-cites="Galton:1889">Galton (<a href="references.html#ref-Galton:1889" role="doc-biblioref">1889</a>)</span>, são modelos estatísticos que tentam explicar o comportamento de uma variável de interesse (ou resposta) a partir de covariáveis (variáveis explicativas) e parâmetros desconhecidos a serem estimados a partir de dados observáveis. Segundo <span class="citation" data-cites="MontgomeryPeckVining:2021">Montgomery, Peck, and Vining (<a href="references.html#ref-MontgomeryPeckVining:2021" role="doc-biblioref">2021</a>)</span>, esta é a técnica estatística mais utilizada. De maneira geral, uma função, denominada função de ligação, une uma característica da variável resposta, usualmente a média, a um certo preditor, constituído de parâmetros a serem estimados e variáveis explicativas.</p>
+<p>Os primeiros modelos de regressão foram construídos assumindo-se que a variável resposta em estudo segue uma distribuição normal e que o preditor é uma função linear. Caso a suposição de normalidade não seja satisfeita, uma estratégia é buscar alguma transformação na variável resposta, como a proposta por <span class="citation" data-cites="BoxCox:1964">Box and Cox (<a href="references.html#ref-BoxCox:1964" role="doc-biblioref">1964</a>)</span>, na tentativa de garantir normalidade. Entretanto, as transformações podem dificultar a interpretação do modelo final.</p>
+<p>A classe dos modelos linerares generalizados (MLG), apresentada por <span class="citation" data-cites="NelderWedderburn:1972">Nelder and Wedderburn (<a href="references.html#ref-NelderWedderburn:1972" role="doc-biblioref">1972</a>)</span>, flexibiliza a suposição distribucional dos dados, pois estendem a teoria da regressão normal para o caso em que a distribuição da variável resposta pertence a uma família exponencial.</p>
+<p>Ainda assim, a suposição de linearidade do preditor com parâmetros a serem estimados nem sempre é apropriada. Nesses casos, alguns autores, como <span class="citation" data-cites="Jorgensen:1983">Jørgensen (<a href="references.html#ref-Jorgensen:1983" role="doc-biblioref">1983</a>)</span> e <span class="citation" data-cites="CordeiroPaula:1989">Cordeiro and Paula (<a href="references.html#ref-CordeiroPaula:1989" role="doc-biblioref">1989</a>)</span>, propõem quantificar o efeito dessa relação através de uma relação não linear, conhecida. Na prática, é comum observarmos relações entre variável resposta e variável explicativa que são não lineares e desconhecidas. Daí surgiram os modelos não paramétricos em que não há a necessidade de prefixar uma relação a priori para ser utilizada no modelo. Existem diversas técnicas de regressão não paramétrica. Entre elas, há a regressão não paramétrica através de <em>splines</em>, em que funções são construídas por meio da junção de várias funções polinomiais de uma certa ordem que foram particionadas da variável explicativa a ser controlada de forma não paramétrica.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-BoxCox:1964" class="csl-entry" role="listitem">
+Box, G. E. P., and D. R. Cox. 1964. <span>“An Analysis of Transformations (with Discussion).”</span> <em>Journal of the Royal Statistical Society. Series B (Methodological)</em> 26 (2): 211–52.
+</div>
+<div id="ref-CordeiroPaula:1989" class="csl-entry" role="listitem">
+Cordeiro, Gauss M., and Gilberto A. Paula. 1989. <span>“Improved Likelihood Ratio Statistics for Exponential Family Nonlinear Models.”</span> <em>Biometrika</em> 76 (1): 93–100.
+</div>
 <div id="ref-Galton:1889" class="csl-entry" role="listitem">
 Galton, Francis. 1889. <em>Natural Inheritance</em>. London: Macmillan.
 </div>
+<div id="ref-Jorgensen:1983" class="csl-entry" role="listitem">
+Jørgensen, Bent. 1983. <span>“Maximum Likelihood Estimation and Large-Sample Inference for Generalized Linear and Nonlinear Regression Models.”</span> <em>Biometrika</em> 70 (1): 19–28.
+</div>
 <div id="ref-MontgomeryPeckVining:2021" class="csl-entry" role="listitem">
-Montgomery, Douglas C., Elizabeth A. Peck, and G. Geoffrey Vining. 2021.
-<em>Introduction to Linear Regression Analysis</em>. 6th ed. New York:
-Wiley.
+Montgomery, Douglas C., Elizabeth A. Peck, and G. Geoffrey Vining. 2021. <em>Introduction to Linear Regression Analysis</em>. 6th ed. New York: Wiley.
+</div>
+<div id="ref-NelderWedderburn:1972" class="csl-entry" role="listitem">
+Nelder, John A., and Robert W. M. Wedderburn. 1972. <span>“Generalized Linear Models.”</span> <em>Journal of the Royal Statistical Society. Series A (General)</em> 135 (3): 370–84.
 </div>
 </div>
-
-
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -429,11 +444,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./summary.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span>
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefácio</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./GD.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regressão Linear e Gradiente Descendente</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

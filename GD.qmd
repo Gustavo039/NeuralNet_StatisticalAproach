@@ -1,16 +1,7 @@
 ---
 title: "Regressão Linear e Gradiente Descendente"
+bibliography: references.bib
 ---
-
-# Introdução
-
-Modelos de regressão, cujos conceitos iniciais foram propostos por \cite{Galton:1889}, são modelos estatísticos que tentam explicar o comportamento de uma variável de interesse (ou resposta) a partir de covariáveis (variáveis explicativas) e parâmetros desconhecidos a serem estimados a partir de dados observáveis. Segundo \citep{MontgomeryPeckVining:2021}, esta é a técnica estatística mais utilizada. De maneira geral, uma função, denominada função de ligação, une uma característica da variável resposta, usualmente a média, a um certo preditor, constituído de parâmetros a serem estimados e variáveis explicativas.
-
-Os primeiros modelos de regressão foram construídos assumindo-se que a variável resposta em estudo segue uma distribuição normal e que o preditor é uma função linear. Caso a suposição de normalidade não seja satisfeita, uma estratégia é buscar alguma transformação na variável resposta, como a proposta por \cite{BoxCox:1964}, na tentativa de garantir normalidade. Entretanto, as transformações podem dificultar a interpretação do modelo final.
-
-A classe dos modelos linerares generalizados (MLG), apresentada por \cite{NelderWedderburn:1972}, flexibiliza a suposição distribucional dos dados, pois estendem a teoria da regressão normal para o caso em que a distribuição da variável resposta pertence a uma família exponencial.
-
-Ainda assim, a suposição de linearidade do preditor com parâmetros a serem estimados nem sempre é apropriada. Nesses casos, alguns autores, como \cite{Jorgensen:1983} e \cite{CordeiroPaula:1989}, propõem quantificar o efeito dessa relação através de uma relação não linear, conhecida. Na prática, é comum observarmos relações entre variável resposta e variável explicativa que são não lineares e desconhecidas. Daí surgiram os modelos não paramétricos em que não há a necessidade de prefixar uma relação a priori para ser utilizada no modelo. Existem diversas técnicas de regressão não paramétrica. Entre elas, há a regressão não paramétrica através de \textit{splines}, em que funções são construídas por meio da junção de várias funções polinomiais de uma certa ordem que foram particionadas da variável explicativa a ser controlada de forma não paramétrica.
 
 # Regressão Linear
 
@@ -20,7 +11,9 @@ Por exemplo: podemos utilizar o número de banheiros e quartos de uma casa para 
 
 Dentro de uma visão matemática e estatística, um modelo de regressão linear possui uma das estruturas mais simples, dado por:
 
-$$Y = \beta_0 +\beta_1x_1 + \epsilon$$
+$$\mathbf{Y} = \beta_0 +\beta_1x_1 + \epsilon$$
+$$\ = \beta_0 +\beta_1x_1 + \epsilon$$
+
 
 onde
 

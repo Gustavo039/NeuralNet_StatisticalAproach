@@ -3,5 +3,7 @@
 ::: {#refs}
 :::
 
+```{=tex}
 \bibliographystyle{plain}
 \bibliography{references}
+```
