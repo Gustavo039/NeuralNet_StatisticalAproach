@@ -2,6 +2,20 @@
 title: "Regressão Linear e Gradiente Descendente"
 ---
 
+# Introdução
+
+Uma das primeiras aplicações da análise de regressão foi proposta por Francis Galton (1889) no campo da antropometria, ao investigar a relação entre a altura dos pais e a altura dos filhos. Nesse contexto, a altura dos pais era considerada uma variável explicativa (ou covariável), enquanto a altura dos filhos era a variável de interesse (ou variável resposta).
+
+Para ilustrar esse conceito, imagine um cenário simples: dois pais com estaturas semelhantes e, ao lado deles, um filho cuja altura se aproxima da média entre os dois. Essa observação levou Galton a perceber uma tendência estatística — embora os filhos tendam a herdar características dos pais, há também uma regressão à média, ou seja, uma suavização em direção à média populacional.
+
+Apesar de sua origem na antropologia, os conceitos de regressão são amplamente aplicáveis em diferentes áreas. Por exemplo:
+
+Uma empresa pode usar a regressão para entender quais fatores influenciam suas vendas;
+
+Na área da saúde, é possível prever a mortalidade de um paciente com base em características como idade e presença de doenças pré-existentes.
+
+A análise de regressão é uma das ferramentas estatísticas mais importantes para investigar e modelar a relação entre variáveis. De fato, é considerada por muitos autores como uma das técnicas estatísticas mais utilizadas em diversas áreas do conhecimento (Montgomery, Peck & Vining, 2021).
+
 # Regressão Linear
 
 A regressão linear simples é um método estatístico utilizado para modelar a relação entre duas variáveis: uma variável dependente (ou resposta), que desejamos prever, e uma variável independente (ou explicativa), que usamos para fazer essa previsão. O objetivo da regressão linear é encontrar uma função linear que melhor descreva essa relação.
@@ -23,20 +37,34 @@ onde
 * $\epsilon$ é o erro aleatório associado ao modelo. Veremos mais pra frente suas pressuposições e como ele se torna um dos elementos principais para a construção de um modelo lienar
 
 
-A essência da regressão linear simples está na tentativa de ajustar uma linha reta aos dados que minimiza a diferença entre os valores observados de $Y$ e os valores preditos pela linha, utilizando para isso as variáveis explicativas
+A essência da regressão linear simples está na tentativa de ajustar uma linha reta aos dados que minimiza a diferença entre os valores observados de $Y$ e os valores preditos pela linha, utilizando para isso a variável explicativa
 
-O que torno um modelo em um modelo estatístico são 
+Como já descrito anteriormente, o modelo de regressão linear simples utiliza apenas uma variável explicativa, e por isso é chamado de **simples**. 
+Para problemas que envolvem mais de uma variável explicativa, temos o chamado modelo de regressão linear múltiplo (por conta das multiplas variáveis regressoras)
 
 
-O cáculo desses coeficientes possui forma fechada, dada por: $$(X^TX)^{-1}X^TY$$
+Sua forma é dada por:
+$$Y = \beta_0 +\beta_1x_1 + \beta_2x_2+ ...+\beta_px_p+ \epsilon$$
+
+onde 
+
+* $\beta_i$ é o coeficiente que pondera a variável explicativa $x_i$
+
+* Nesse exemplo, definimos $p$ variáveis explicativas,e portanto devemos ter $p+1$ betas atreladas a elas (lembrando que $\beta_0$ é o intercepto do modelo)
+
+Ou de maneira matricial
+
+$$\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}$$
+
+O cálculo desses coeficientes possui forma fechada, dada por: $$(X^TX)^{-1}X^TY$$
 
 Pela seguinte demonstração 
 
 Seja $X$ a matriz de planejamento. Para um conjunto de dados com $p$ variáveis explicativas e $n$ observações, temos um matriz de planejamento de dimensão $n \ \times \ p$
 
-# Estimação dos Parâmetros
+## Estimação dos Parâmetros
 
-Para se estimar os parametros de uma regressão linear o pensamento mais ismples é: *qual o valor dos paramaetros que me retorna o menor erro?*
+Para se estimar os parametros de uma regressão linear o pensamento mais simples é: *qual o valor dos paramaetros que me retorna o menor erro?*
 
 Ou seja, para quais valores dos coeficientes $\beta_0,\beta_1, ..., \beta_p$ temos o menor erro. 
 
@@ -236,3 +264,470 @@ Alem das funções de custo ja listadas, outras são definidas para determinados
 Utilizada para o algoritmo AdaBoost de classsificação, onde sua forma de convexidade e crescimento exponencial para valroes negativos a torna sensivel para valores outliers. Dada por
 
 $$f(x) = \frac{1}{2}log(\frac{p(1|x)}{1-p(1|x)})$$
+
+
+
+
+# Simulação
+
+
+Nesse topico, iremos estudar a qualidade de ambos os metodos via estudo de simulação
+Para isso, foi criada uma função geração de valores uma variavel aleatória, dada por:
+
+$$y = b_0 +b_1x_1 +b_2x_2 +... +b_nx_n + \epsilon $$
+
+```{r}
+# Carregando libs
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+```
+
+
+```{r}
+
+# --- Gradient Descent Function ---
+gradient_descent_multi = function(X, y, lr = 0.001, tol = 1e-6, max_iter = 10000) {
+  n = nrow(X)  # Number of observations
+  p = ncol(X)  # Number of parameters (intercept + slopes)
+
+  beta = matrix(0, p, 1)  # Initialize beta (all zeros)
+  
+  for (i in 1:max_iter) {
+    y_pred = X %*% beta  # Predicted values
+    error = y - y_pred  # Residuals
+
+    gradient = -t(X) %*% error / n  # Compute gradient
+    beta_new = beta - lr * gradient  # Update beta
+    
+    cost = sum((y - y_pred)^2) / n
+    
+  # if (i %% 100 == 0) {
+  #     cat("Iteration:", i, " Cost:", cost, "\n")
+  #   }
+    
+    # Convergence check (small change in beta)
+    # if (sum(abs(beta_new - beta)) < tol) {
+    #   cat("Converged in", i, "iterations\n")
+    #   break
+    # }
+    
+    beta = beta_new
+  }
+  
+  return(beta)
+}
+
+
+
+```
+
+
+```{r}
+
+internal_sim_values = function(n_param, num_covar_param, betas_param) {
+  # Check if the number of covariates matches the number of betas
+  if (num_covar_param != length(betas_param)) {
+    stop("The number of covariates does not match the number of betas.")
+  }
+  
+  # Generate covariate matrix with random values
+  X = matrix(nrow = n_param, ncol = num_covar_param) # Predefine matrix for better performance
+  for (i in 1:num_covar_param) {
+    X[, i] = runif(n_param, min = 0, max = 1)
+  }
+  
+  # Generate random error term
+  error = rnorm(n_param, mean = 0, sd = 1) # Added standard deviation for flexibility
+  
+  # Calculate y values
+  y = (X %*% betas_param) + error
+  
+  # Combine y and X into a design matrix
+  data_matrix = cbind(y, X)
+  
+  # Return the result
+  colnames(data_matrix) = c("y", paste0("X", 1:num_covar_param))
+  return(data_matrix)
+}
+
+internal_run_method = function(design_matrix, lr_param){
+  X = design_matrix[,2:ncol(design_matrix)]
+  y = design_matrix[,1]
+  
+  # Run least_squares method
+  least_squares = solve(t(X) %*% X) %*% (t(X) %*% y)
+
+  
+  # Run least_squares method
+  gradient_descent = gradient_descent_multi(X, y, lr = lr_param)
+  ret_list = list(ls = least_squares, gd = gradient_descent)
+  return(ret_list)
+}
+
+
+get_all_estimates = function(n = 30, n_times = 100, num_covar = 1, betas = 1, lr = 0.01) {
+  replicate_results = lapply(1:n_times, function(x){
+    design_matrix = internal_sim_values(n_param = n, num_covar_param = num_covar, betas_param = betas)
+    estimates = internal_run_method(design_matrix, lr_param = lr)
+    
+    tibble::tibble(
+      rep = x,
+      method = "LS",
+      param = paste0("Beta", 1:length(betas)),
+      estimate = as.numeric(estimates$ls),
+      true_value = betas
+    ) |>
+    dplyr::bind_rows(
+      tibble::tibble(
+        rep = x,
+        method = "GD",
+        param = paste0("Beta", 1:length(betas)),
+        estimate = as.numeric(estimates$gd),
+        true_value = betas
+      )
+    )
+  }) |>
+    dplyr::bind_rows()
+  
+  return(replicate_results)
+}
+
+summarize_estimates = function(estimates_tbl) {
+  estimates_tbl %>%
+    group_by(method, param) %>%
+    summarise(
+      true_value = first(true_value),  # todos são iguais dentro do grupo
+      avg_estimate = mean(estimate),
+      abs_bias = mean(abs(estimate - true_value)),
+      mse = mean((estimate - true_value)^2),
+      .groups = "drop"
+    )
+}
+
+sim_data = get_all_estimates(n = 10, n_times = 2, num_covar = 2, betas = c(1,2), lr = 0.01)
+```
+
+```{r, echo = F}
+
+# internal_calculate_error = function(methods_values,  true_beta){
+#   
+#   avg_estimate = list(
+#     avg_ls = rowMeans(sapply(methods_values, function(x) x$ls)), 
+#     avg_gd = rowMeans(sapply(methods_values, function(x) x$gd))
+#     )
+#   
+#   sme_estimate = list(
+#     sme_ls = rowMeans(sapply(methods_values, function(x) (x$ls - true_beta)^2)),
+#     sme_gd = rowMeans(sapply(methods_values, function(x) (x$gd - true_beta)^2))
+#   )
+#   
+#   bias_estimate = list(
+#     bias_ls = rowMeans(sapply(methods_values, function(x) (x$ls - true_beta) |> abs())),
+#     bias_gd = rowMeans(sapply(methods_values, function(x) (x$gd - true_beta) |> abs()))
+#   )
+# 
+#   compare_tbl = 
+#     tibble::tibble(method = c(rep("LS", length(true_beta)), rep("GD", length(true_beta))),
+#                    param = rep(paste("Beta", 1:length(true_beta)),2),
+#                    param_value = rep(true_beta, 2),
+#                    avg_estimate = c(avg_estimate$avg_ls, avg_estimate$avg_gd),
+#                    sme = c(sme_estimate$sme_ls, sme_estimate$sme_gd),
+#                    abs_bias = c(bias_estimate$bias_ls, bias_estimate$bias_gd)
+#                    ) |>
+#     dplyr::mutate(abs_bias = abs(avg_estimate - param_value)) |>
+#     dplyr::relocate(abs_bias, .before = sme)
+#   return(compare_tbl)
+#                                
+# }
+
+
+
+# compare_methods = function(n = 30, n_times = 100, num_covar = 1, betas = 1, lr){
+#     estimate_tbl = lapply(1:n_times, function(x){
+#       internal_sim_values(n_param = n, num_covar_param = num_covar, betas_param = betas) |>
+#         internal_run_method(lr_param = lr)
+#       }
+#       ) |>
+#       internal_calculate_error(betas)
+#   
+#   return(estimate_tbl)
+# }
+# 
+```
+
+
+
+Para avaliar a qualidade, as seguintes combinação de numero de parametros, tamanho amostral e quantidade de iterações (número de simulações) foram utilizadas 
+
+| Cenário                       | n (amostra) | p (parâmetros) | Repetições |
+|------------------------------|-------------|----------------|------------|
+| **Clássico** (bem especificado) | 100         | 3              | 200        |
+| **Pequeno** (alta variância)    | 30          | 3              | 200        |
+| **Alta dimensão** (n>>p)        | 100         | 10             | 200        |
+| **Quasi Sobredeterminado** (p > n)| 51          | 50             | 200        |
+
+
+Esses cenários foram escolhidos para refletir situações clássicas, desafiadoras e realistas do ponto de vista estatístico.
+
+* **Clássico**: Serve como benchmark. Mínimos quadrados funciona perfeitamente, GD também deve funcionar bem.
+* **Pequeno**: Ajuda a expor diferença em viés e variância.
+* **Alta dimensão**: Aumenta custo computacional e desafia GD (principalmente se mal escalado).
+* **Quasi Sobredeterminado** (p > n): LS não funciona diretamente (matriz singular), mas GD pode rodar com regularização — ótimo para destacar versatilidade.
+
+
+As seguintes métricas foram comparadas para avaliar a qualidade de cada método
+
+* Qualidade de recuperação dos parâmetros verdadeiros
+
+* Viés e Erro Quadrático Médio (EQM)
+
+* Comparação de tempo de execução:
+
+## Qualidade de recuperação dos parâmetros verdadeiros (Vies e EQM)
+
+
+Nesta etapa, avaliamos como cada método estima os parâmetros do modelo em relação aos seus valores verdadeiros. Para isso, realizamos múltiplas simulações e analisamos a distribuição das estimativas obtidas por mínimos quadrados e gradiente descendente. O objetivo é identificar possíveis vieses e comparar a precisão dos dois métodos. As distribuições são apresentadas por meio de gráficos de violino, que destacam tanto a centralidade quanto a variabilidade das estimativas.
+
+
+### Cenário Clássico
+
+```{r, echo = F}
+classic_sim = get_all_estimates(n = 100, n_times = 200, num_covar = 3, betas = c(10,20,30), lr = 0.2)
+
+ggplot(classic_sim, aes(x = method, y = estimate, fill = method)) +
+  geom_violin(trim = FALSE, alpha = 0.6, color = "black") +
+  geom_jitter(width = 0.1, alpha = 0.3, size = 1) +
+  geom_hline(aes(yintercept = true_value), linetype = "dashed", color = "red", linewidth = 1) +
+  facet_wrap(~param, scales = "free_y") +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "Distribuição das estimativas dos parâmetros por método",
+    x = "Método",
+    y = "Estimativa",
+    fill = "Método"
+  ) +
+  scale_fill_brewer(palette = "Set2")
+
+
+
+classic_sim_tbl = summarize_estimates(classic_sim)
+```
+
+```{r, echo = F}
+plot_tbl = classic_sim_tbl |>
+  select(method, param, abs_bias, mse) |>
+  pivot_longer(cols = c(abs_bias, mse), names_to = "metric", values_to = "value")
+
+ggplot(plot_tbl, aes(x = param, y = value, fill = method)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  facet_wrap(~ metric, scales = "free_y") +
+  labs(
+    title = "Comparação de desempenho por parâmetro",
+    x = "Parâmetro",
+    y = "Valor",
+    fill = "Método"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+
+```{r}
+classic_sim_tbl |>
+  kable(caption = "Metricas", digits = 2) |>
+  kable_styling(bootstrap_options = 
+                  c("striped", "hover", "condensed"), 
+                full_width = F, 
+                position = "left")
+```
+
+
+### Cenário Pequeno
+
+```{r, echo = F}
+small_sim = get_all_estimates(n = 30, n_times = 200, num_covar = 3, betas = c(10,20,30), lr = 0.2)
+
+ggplot(small_sim, aes(x = method, y = estimate, fill = method)) +
+  geom_violin(trim = FALSE, alpha = 0.6, color = "black") +
+  geom_jitter(width = 0.1, alpha = 0.3, size = 1) +
+  geom_hline(aes(yintercept = true_value), linetype = "dashed", color = "red", linewidth = 1) +
+  facet_wrap(~param, scales = "free_y") +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "Distribuição das estimativas dos parâmetros por método",
+    x = "Método",
+    y = "Estimativa",
+    fill = "Método"
+  ) +
+  scale_fill_brewer(palette = "Set2")
+
+small_sim_tbl = summarize_estimates(small_sim)
+
+small_sim_tbl |>
+  kable(caption = "Metricas", digits = 2) |>
+  kable_styling(bootstrap_options = 
+                  c("striped", "hover", "condensed"), 
+                full_width = F, 
+                position = "left") 
+```
+
+
+### Cenário Alta Dimensionalidade
+
+```{r, echo = F, hide = T}
+high_dim_sim = get_all_estimates(n = 100, n_times = 100, num_covar = 10, betas = runif(10), lr = 0.2)
+
+ggplot(high_dim_sim, aes(x = method, y = estimate, fill = method)) +
+  geom_violin(trim = FALSE, alpha = 0.6, color = "black") +
+  geom_jitter(width = 0.1, alpha = 0.3, size = 1) +
+  geom_hline(aes(yintercept = true_value), linetype = "dashed", color = "red", linewidth = 1) +
+  facet_wrap(~param, scales = "free_y") +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "Distribuição das estimativas dos parâmetros por método",
+    x = "Método",
+    y = "Estimativa",
+    fill = "Método"
+  ) +
+  scale_fill_brewer(palette = "Set2")
+
+high_dim_sim_tbl = summarize_estimates(high_dim_sim)
+
+high_dim_sim_tbl |>
+  kable(caption = "Metricas", digits = 2) |>
+  kable_styling(bootstrap_options = 
+                  c("striped", "hover", "condensed"), 
+                full_width = F, 
+                position = "left") 
+```
+
+### Cenário Sobredeterminado
+
+```{r, echo = F}
+over_sim = get_all_estimates(n = 51, n_times = 100, num_covar = 50, betas =runif(50), lr = 0.2)
+
+ggplot(high_dim_sim, aes(x = method, y = estimate, fill = method)) +
+  geom_violin(trim = FALSE, alpha = 0.6, color = "black") +
+  geom_jitter(width = 0.1, alpha = 0.3, size = 1) +
+  geom_hline(aes(yintercept = true_value), linetype = "dashed", color = "red", linewidth = 1) +
+  facet_wrap(~param, scales = "free_y") +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "Distribuição das estimativas dos parâmetros por método",
+    x = "Método",
+    y = "Estimativa",
+    fill = "Método"
+  ) +
+  scale_fill_brewer(palette = "Set2")
+
+high_dim_sim_tbl = summarize_estimates(high_dim_sim)
+
+high_dim_sim_tbl |>
+  kable(caption = "Metricas", digits = 2) |>
+  kable_styling(bootstrap_options = 
+                  c("striped", "hover", "condensed"), 
+                full_width = F, 
+                position = "left") 
+```
+
+
+# Comparação mudando a variancia (variancia do erro)
+
+# Mudar distribuição das variaveis (dist normal)
+
+# Comparar predição (split treino e teste)
+
+Até aqui, avaliamos o desempenho dos métodos com foco na qualidade da estimação dos parâmetros, adotando uma perspectiva inferencial: **utilizar todo o conjunto de dados para treinar os modelos**. Essa é uma prática comum quando o principal interesse está na interpretação e recuperação dos verdadeiros valores dos parâmetros.
+
+Contudo, em contextos preditivos, onde queremos otimizar o desempenho do modelo em relação a predição de novos valores, essa estratégia pode levar ao fenômeno de superajuste (*overfiting*) — quando o modelo aprende padrões específicos dos dados de treinamento, mas apresenta baixo desempenho em novos dados. Para mitigar esse efeito, é fundamental separar os dados em conjuntos de treino e teste.
+
+A seguir, avaliamos os métodos de mínimos quadrados e gradiente descendente sob essa ótica preditiva, considerando a divisão dos dados e analisando sua capacidade de generalização para dados não vistos.
+
+Consideramos os seguintes cenários amostrais (Definir cenários)
+
+| Cenário   | Amostras para treino | Amostras para teste|p (parâmetros) | Repetições |
+|------------------------------|-------------|----------------|------------|
+| **Clássico** (bem especificado) | 100         | 3              | 200        |
+| **Pequeno** (alta variância)    | 30          | 3              | 200        |
+| **Alta dimensão** (n>>p)        | 100         | 10             | 200        |
+| **Quasi Sobredeterminado** (p > n)| 51          | 50             | 200        |
+
+
+
+
+```{r}
+evaluate_estim = function(X, estimed_betas){
+  ls_betas = estimed_betas$ls[,1] |> as.vector()
+  gd_betas = estimed_betas$gd[,1] |> as.vector()
+  ls_pred = (X[,-1] %*% ls_betas)
+  gd_pred = (X[,-1] %*% gd_betas)
+  
+  tbl_estimated_values = tibble::tibble(y = X[,1],
+                                        "ls_predicted" = ls_pred |> round(4),
+                                        "gd_predicted" = gd_pred |> round(4)) 
+  return(tbl_estimated_values)
+}
+
+predict_sim = function(n = 30, n_times = 100, num_covar = 1, betas = 1, lr = 0.01) {
+  replicate_results = lapply(1:n_times, function(x){
+    design_matrix = internal_sim_values(n_param = n, num_covar_param = num_covar, betas_param = betas)
+    split_value = floor((n * 0.75) + 1)
+    
+    training_data = design_matrix[1:split_value,]
+    testing_data = design_matrix[(split_value + 1):n,]
+    
+    estimed_betas = internal_run_method(training_data, lr_param = lr)
+    estimed_values = evaluate_estim(testing_data, estimed_betas) |>
+      dplyr::mutate(run = x)
+  }) |>
+    dplyr::bind_rows()
+  
+  
+  return(replicate_results)
+}
+
+
+```
+
+```{r}
+predict_sim(100,10,3, c(10,20,0.001)) |>
+  tidyr::pivot_longer(c(-y,-run)) |>
+  dplyr::group_by(name) |>
+  summarise(
+    RMSE = sqrt(mean((value - y)^2)),
+    MAE = mean(abs(value - y)),
+    SMAPE = mean(2 * abs(value - y) / (abs(y) + abs(value))) * 100
+  )
+
+```
+
+```{r}
+set.seed(4390)
+predict_sim(40,50,10, runif(10)) |>
+  tidyr::pivot_longer(c(-y,-run)) |>
+  dplyr::group_by(name) |>
+  summarise(
+    RMSE = sqrt(mean((value - y)^2)),
+    MAE = mean(abs(value - y)),
+    SMAPE = mean(2 * abs(value - y) / (abs(y) + abs(value))) * 100
+  ) |>
+  dplyr::rename(Metodo = name)
+
+```
+
+
+```{r}
+set.seed(4390)
+predict_sim(1000,10,50, runif(50)) |>
+  tidyr::pivot_longer(c(-y,-run)) |>
+  dplyr::group_by(name) |>
+  summarise(
+    RMSE = sqrt(mean((value - y)^2)),
+    MAE = mean(abs(value - y)),
+    SMAPE = mean(2 * abs(value - y) / (abs(y) + abs(value))) * 100
+  ) |>
+  dplyr::rename(Metodo = name)
+```
+
+

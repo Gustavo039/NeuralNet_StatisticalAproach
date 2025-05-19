@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -60,6 +123,9 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -111,7 +177,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./hyper.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hiperparâmetros e Otimização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -128,8 +199,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#regressão-linear" id="toc-regressão-linear" class="nav-link active" data-scroll-target="#regressão-linear"><span class="toc-section-number">2</span>  Regressão Linear</a></li>
-  <li><a href="#estimação-dos-parâmetros" id="toc-estimação-dos-parâmetros" class="nav-link" data-scroll-target="#estimação-dos-parâmetros"><span class="toc-section-number">3</span>  Estimação dos Parâmetros</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="toc-section-number">2</span>  Introdução</a></li>
+  <li><a href="#regressão-linear" id="toc-regressão-linear" class="nav-link" data-scroll-target="#regressão-linear"><span class="toc-section-number">3</span>  Regressão Linear</a>
+  <ul class="collapse">
+  <li><a href="#estimação-dos-parâmetros" id="toc-estimação-dos-parâmetros" class="nav-link" data-scroll-target="#estimação-dos-parâmetros"><span class="toc-section-number">3.1</span>  Estimação dos Parâmetros</a></li>
+  </ul></li>
   <li><a href="#gradiente-descendente" id="toc-gradiente-descendente" class="nav-link" data-scroll-target="#gradiente-descendente"><span class="toc-section-number">4</span>  Gradiente Descendente</a>
   <ul class="collapse">
   <li><a href="#o-gradiente-descendente-como-alternativa-à-ols" id="toc-o-gradiente-descendente-como-alternativa-à-ols" class="nav-link" data-scroll-target="#o-gradiente-descendente-como-alternativa-à-ols"><span class="toc-section-number">4.1</span>  O Gradiente Descendente como Alternativa à OLS</a></li>
@@ -143,6 +217,19 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#função-de-custo-exponencial" id="toc-função-de-custo-exponencial" class="nav-link" data-scroll-target="#função-de-custo-exponencial"><span class="toc-section-number">10.1</span>  Função de Custo Exponencial</a></li>
   </ul></li>
+  <li><a href="#simulação" id="toc-simulação" class="nav-link" data-scroll-target="#simulação"><span class="toc-section-number">11</span>  Simulação</a>
+  <ul class="collapse">
+  <li><a href="#qualidade-de-recuperação-dos-parâmetros-verdadeiros-vies-e-eqm" id="toc-qualidade-de-recuperação-dos-parâmetros-verdadeiros-vies-e-eqm" class="nav-link" data-scroll-target="#qualidade-de-recuperação-dos-parâmetros-verdadeiros-vies-e-eqm"><span class="toc-section-number">11.1</span>  Qualidade de recuperação dos parâmetros verdadeiros (Vies e EQM)</a>
+  <ul class="collapse">
+  <li><a href="#cenário-clássico" id="toc-cenário-clássico" class="nav-link" data-scroll-target="#cenário-clássico"><span class="toc-section-number">11.1.1</span>  Cenário Clássico</a></li>
+  <li><a href="#cenário-pequeno" id="toc-cenário-pequeno" class="nav-link" data-scroll-target="#cenário-pequeno"><span class="toc-section-number">11.1.2</span>  Cenário Pequeno</a></li>
+  <li><a href="#cenário-alta-dimensionalidade" id="toc-cenário-alta-dimensionalidade" class="nav-link" data-scroll-target="#cenário-alta-dimensionalidade"><span class="toc-section-number">11.1.3</span>  Cenário Alta Dimensionalidade</a></li>
+  <li><a href="#cenário-sobredeterminado" id="toc-cenário-sobredeterminado" class="nav-link" data-scroll-target="#cenário-sobredeterminado"><span class="toc-section-number">11.1.4</span>  Cenário Sobredeterminado</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#comparação-mudando-a-variancia-variancia-do-erro" id="toc-comparação-mudando-a-variancia-variancia-do-erro" class="nav-link" data-scroll-target="#comparação-mudando-a-variancia-variancia-do-erro"><span class="toc-section-number">12</span>  Comparação mudando a variancia (variancia do erro)</a></li>
+  <li><a href="#mudar-distribuição-das-variaveis-dist-normal" id="toc-mudar-distribuição-das-variaveis-dist-normal" class="nav-link" data-scroll-target="#mudar-distribuição-das-variaveis-dist-normal"><span class="toc-section-number">13</span>  Mudar distribuição das variaveis (dist normal)</a></li>
+  <li><a href="#comparar-predição-split-treino-e-teste" id="toc-comparar-predição-split-treino-e-teste" class="nav-link" data-scroll-target="#comparar-predição-split-treino-e-teste"><span class="toc-section-number">14</span>  Comparar predição (split treino e teste)</a></li>
   </ul>
 </nav>
     </div>
@@ -166,8 +253,17 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="regressão-linear" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Regressão Linear</h1>
+<section id="introdução" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Introdução</h1>
+<p>Uma das primeiras aplicações da análise de regressão foi proposta por Francis Galton (1889) no campo da antropometria, ao investigar a relação entre a altura dos pais e a altura dos filhos. Nesse contexto, a altura dos pais era considerada uma variável explicativa (ou covariável), enquanto a altura dos filhos era a variável de interesse (ou variável resposta).</p>
+<p>Para ilustrar esse conceito, imagine um cenário simples: dois pais com estaturas semelhantes e, ao lado deles, um filho cuja altura se aproxima da média entre os dois. Essa observação levou Galton a perceber uma tendência estatística — embora os filhos tendam a herdar características dos pais, há também uma regressão à média, ou seja, uma suavização em direção à média populacional.</p>
+<p>Apesar de sua origem na antropologia, os conceitos de regressão são amplamente aplicáveis em diferentes áreas. Por exemplo:</p>
+<p>Uma empresa pode usar a regressão para entender quais fatores influenciam suas vendas;</p>
+<p>Na área da saúde, é possível prever a mortalidade de um paciente com base em características como idade e presença de doenças pré-existentes.</p>
+<p>A análise de regressão é uma das ferramentas estatísticas mais importantes para investigar e modelar a relação entre variáveis. De fato, é considerada por muitos autores como uma das técnicas estatísticas mais utilizadas em diversas áreas do conhecimento (Montgomery, Peck &amp; Vining, 2021).</p>
+</section>
+<section id="regressão-linear" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Regressão Linear</h1>
 <p>A regressão linear simples é um método estatístico utilizado para modelar a relação entre duas variáveis: uma variável dependente (ou resposta), que desejamos prever, e uma variável independente (ou explicativa), que usamos para fazer essa previsão. O objetivo da regressão linear é encontrar uma função linear que melhor descreva essa relação.</p>
 <p>Por exemplo: podemos utilizar o número de banheiros e quartos de uma casa para predizer seu valor, o número de gols de um atacante utilizando seu histórico dos últimos anos e sua idade ou ainda em um cenário atual, muitas startups que desenvolvem tecnologias de inteligência artificial estão usando regressão linear para prever receitas futuras com base em métricas como usuários ativos, engajamento em plataformas digitais e número de clientes corporativos.</p>
 <p>Dentro de uma visão matemática e estatística, um modelo de regressão linear possui uma das estruturas mais simples, dado por:</p>
@@ -179,15 +275,22 @@ ul.task-list li input[type="checkbox"] {
 <li><p><span class="math inline">\(\beta_1\)</span> é o coeficiente que pondera a variável explicativa <span class="math inline">\(x_1\)</span></p></li>
 <li><p><span class="math inline">\(\epsilon\)</span> é o erro aleatório associado ao modelo. Veremos mais pra frente suas pressuposições e como ele se torna um dos elementos principais para a construção de um modelo lienar</p></li>
 </ul>
-<p>A essência da regressão linear simples está na tentativa de ajustar uma linha reta aos dados que minimiza a diferença entre os valores observados de <span class="math inline">\(Y\)</span> e os valores preditos pela linha, utilizando para isso as variáveis explicativas</p>
-<p>O que torno um modelo em um modelo estatístico são</p>
-<p>O cáculo desses coeficientes possui forma fechada, dada por: <span class="math display">\[(X^TX)^{-1}X^TY\]</span></p>
+<p>A essência da regressão linear simples está na tentativa de ajustar uma linha reta aos dados que minimiza a diferença entre os valores observados de <span class="math inline">\(Y\)</span> e os valores preditos pela linha, utilizando para isso a variável explicativa</p>
+<p>Como já descrito anteriormente, o modelo de regressão linear simples utiliza apenas uma variável explicativa, e por isso é chamado de <strong>simples</strong>. Para problemas que envolvem mais de uma variável explicativa, temos o chamado modelo de regressão linear múltiplo (por conta das multiplas variáveis regressoras)</p>
+<p>Sua forma é dada por: <span class="math display">\[Y = \beta_0 +\beta_1x_1 + \beta_2x_2+ ...+\beta_px_p+ \epsilon\]</span></p>
+<p>onde</p>
+<ul>
+<li><p><span class="math inline">\(\beta_i\)</span> é o coeficiente que pondera a variável explicativa <span class="math inline">\(x_i\)</span></p></li>
+<li><p>Nesse exemplo, definimos <span class="math inline">\(p\)</span> variáveis explicativas,e portanto devemos ter <span class="math inline">\(p+1\)</span> betas atreladas a elas (lembrando que <span class="math inline">\(\beta_0\)</span> é o intercepto do modelo)</p></li>
+</ul>
+<p>Ou de maneira matricial</p>
+<p><span class="math display">\[\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}\]</span></p>
+<p>O cálculo desses coeficientes possui forma fechada, dada por: <span class="math display">\[(X^TX)^{-1}X^TY\]</span></p>
 <p>Pela seguinte demonstração</p>
 <p>Seja <span class="math inline">\(X\)</span> a matriz de planejamento. Para um conjunto de dados com <span class="math inline">\(p\)</span> variáveis explicativas e <span class="math inline">\(n\)</span> observações, temos um matriz de planejamento de dimensão <span class="math inline">\(n \ \times \ p\)</span></p>
-</section>
-<section id="estimação-dos-parâmetros" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Estimação dos Parâmetros</h1>
-<p>Para se estimar os parametros de uma regressão linear o pensamento mais ismples é: <em>qual o valor dos paramaetros que me retorna o menor erro?</em></p>
+<section id="estimação-dos-parâmetros" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="estimação-dos-parâmetros"><span class="header-section-number">3.1</span> Estimação dos Parâmetros</h2>
+<p>Para se estimar os parametros de uma regressão linear o pensamento mais simples é: <em>qual o valor dos paramaetros que me retorna o menor erro?</em></p>
 <p>Ou seja, para quais valores dos coeficientes <span class="math inline">\(\beta_0,\beta_1, ..., \beta_p\)</span> temos o menor erro.</p>
 <p>O “menor erro” pode ser estruturada em forma matematica:</p>
 <p><span class="math display">\[Erro = E_i= Y_i-\hat Y_i\]</span> <span class="math display">\[Soma Erro Abs = \sum E_i^2\]</span></p>
@@ -211,6 +314,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Eficiência Computacional e Métodos Iterativos</strong></li>
 </ol>
 <p>Devido ao elevado custo de calcular diretamente a inversa dE <span class="math inline">\(X^TX\)</span> métodos iterativos, como os baseados em gradiente, são frequentemente preferidos em cenários com grandes conjuntos de dados ou alta dimensionalidade. Esses métodos não exigem a inversão direta da matriz e podem fornecer aproximações suficientemente boas para os coeficientes <span class="math inline">\(\beta\)</span> com um custo computacional muito menor.</p>
+</section>
 </section>
 <section id="gradiente-descendente" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Gradiente Descendente</h1>
@@ -304,9 +408,898 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="10.1" class="anchored" data-anchor-id="função-de-custo-exponencial"><span class="header-section-number">10.1</span> Função de Custo Exponencial</h2>
 <p>Utilizada para o algoritmo AdaBoost de classsificação, onde sua forma de convexidade e crescimento exponencial para valroes negativos a torna sensivel para valores outliers. Dada por</p>
 <p><span class="math display">\[f(x) = \frac{1}{2}log(\frac{p(1|x)}{1-p(1|x)})\]</span></p>
-
-
 </section>
+</section>
+<section id="simulação" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Simulação</h1>
+<p>Nesse topico, iremos estudar a qualidade de ambos os metodos via estudo de simulação Para isso, foi criada uma função geração de valores uma variavel aleatória, dada por:</p>
+<p><span class="math display">\[y = b_0 +b_1x_1 +b_2x_2 +... +b_nx_n + \epsilon \]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando libs</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'kableExtra'
+
+The following object is masked from 'package:dplyr':
+
+    group_rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Gradient Descent Function ---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gradient_descent_multi <span class="ot">=</span> <span class="cf">function</span>(X, y, <span class="at">lr =</span> <span class="fl">0.001</span>, <span class="at">tol =</span> <span class="fl">1e-6</span>, <span class="at">max_iter =</span> <span class="dv">10000</span>) {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">nrow</span>(X)  <span class="co"># Number of observations</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">ncol</span>(X)  <span class="co"># Number of parameters (intercept + slopes)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, p, <span class="dv">1</span>)  <span class="co"># Initialize beta (all zeros)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>max_iter) {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    y_pred <span class="ot">=</span> X <span class="sc">%*%</span> beta  <span class="co"># Predicted values</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    error <span class="ot">=</span> y <span class="sc">-</span> y_pred  <span class="co"># Residuals</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    gradient <span class="ot">=</span> <span class="sc">-</span><span class="fu">t</span>(X) <span class="sc">%*%</span> error <span class="sc">/</span> n  <span class="co"># Compute gradient</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    beta_new <span class="ot">=</span> beta <span class="sc">-</span> lr <span class="sc">*</span> gradient  <span class="co"># Update beta</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    cost <span class="ot">=</span> <span class="fu">sum</span>((y <span class="sc">-</span> y_pred)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> n</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if (i %% 100 == 0) {</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     cat("Iteration:", i, " Cost:", cost, "\n")</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   }</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convergence check (small change in beta)</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if (sum(abs(beta_new - beta)) &lt; tol) {</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   cat("Converged in", i, "iterations\n")</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   break</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># }</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    beta <span class="ot">=</span> beta_new</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(beta)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>internal_sim_values <span class="ot">=</span> <span class="cf">function</span>(n_param, num_covar_param, betas_param) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if the number of covariates matches the number of betas</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (num_covar_param <span class="sc">!=</span> <span class="fu">length</span>(betas_param)) {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"The number of covariates does not match the number of betas."</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generate covariate matrix with random values</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> n_param, <span class="at">ncol =</span> num_covar_param) <span class="co"># Predefine matrix for better performance</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_covar_param) {</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    X[, i] <span class="ot">=</span> <span class="fu">runif</span>(n_param, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generate random error term</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  error <span class="ot">=</span> <span class="fu">rnorm</span>(n_param, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="co"># Added standard deviation for flexibility</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate y values</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> (X <span class="sc">%*%</span> betas_param) <span class="sc">+</span> error</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine y and X into a design matrix</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  data_matrix <span class="ot">=</span> <span class="fu">cbind</span>(y, X)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return the result</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(data_matrix) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"y"</span>, <span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span>num_covar_param))</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data_matrix)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>internal_run_method <span class="ot">=</span> <span class="cf">function</span>(design_matrix, lr_param){</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">=</span> design_matrix[,<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(design_matrix)]</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> design_matrix[,<span class="dv">1</span>]</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Run least_squares method</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  least_squares <span class="ot">=</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> (<span class="fu">t</span>(X) <span class="sc">%*%</span> y)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Run least_squares method</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  gradient_descent <span class="ot">=</span> <span class="fu">gradient_descent_multi</span>(X, y, <span class="at">lr =</span> lr_param)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  ret_list <span class="ot">=</span> <span class="fu">list</span>(<span class="at">ls =</span> least_squares, <span class="at">gd =</span> gradient_descent)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ret_list)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>get_all_estimates <span class="ot">=</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">n_times =</span> <span class="dv">100</span>, <span class="at">num_covar =</span> <span class="dv">1</span>, <span class="at">betas =</span> <span class="dv">1</span>, <span class="at">lr =</span> <span class="fl">0.01</span>) {</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  replicate_results <span class="ot">=</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span>n_times, <span class="cf">function</span>(x){</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    design_matrix <span class="ot">=</span> <span class="fu">internal_sim_values</span>(<span class="at">n_param =</span> n, <span class="at">num_covar_param =</span> num_covar, <span class="at">betas_param =</span> betas)</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    estimates <span class="ot">=</span> <span class="fu">internal_run_method</span>(design_matrix, <span class="at">lr_param =</span> lr)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">rep =</span> x,</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">"LS"</span>,</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>      <span class="at">param =</span> <span class="fu">paste0</span>(<span class="st">"Beta"</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(betas)),</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>      <span class="at">estimate =</span> <span class="fu">as.numeric</span>(estimates<span class="sc">$</span>ls),</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>      <span class="at">true_value =</span> betas</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>      tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>        <span class="at">rep =</span> x,</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">"GD"</span>,</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>        <span class="at">param =</span> <span class="fu">paste0</span>(<span class="st">"Beta"</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(betas)),</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>        <span class="at">estimate =</span> <span class="fu">as.numeric</span>(estimates<span class="sc">$</span>gd),</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>        <span class="at">true_value =</span> betas</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">|&gt;</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">bind_rows</span>()</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(replicate_results)</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>summarize_estimates <span class="ot">=</span> <span class="cf">function</span>(estimates_tbl) {</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>  estimates_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(method, param) <span class="sc">%&gt;%</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>      <span class="at">true_value =</span> <span class="fu">first</span>(true_value),  <span class="co"># todos são iguais dentro do grupo</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>      <span class="at">avg_estimate =</span> <span class="fu">mean</span>(estimate),</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>      <span class="at">abs_bias =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(estimate <span class="sc">-</span> true_value)),</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>      <span class="at">mse =</span> <span class="fu">mean</span>((estimate <span class="sc">-</span> true_value)<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>sim_data <span class="ot">=</span> <span class="fu">get_all_estimates</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">n_times =</span> <span class="dv">2</span>, <span class="at">num_covar =</span> <span class="dv">2</span>, <span class="at">betas =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">lr =</span> <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<p>Para avaliar a qualidade, as seguintes combinação de numero de parametros, tamanho amostral e quantidade de iterações (número de simulações) foram utilizadas</p>
+<table class="table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 18%">
+<col style="width: 22%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cenário</th>
+<th>n (amostra)</th>
+<th>p (parâmetros)</th>
+<th>Repetições</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Clássico</strong> (bem especificado)</td>
+<td>100</td>
+<td>3</td>
+<td>200</td>
+</tr>
+<tr class="even">
+<td><strong>Pequeno</strong> (alta variância)</td>
+<td>30</td>
+<td>3</td>
+<td>200</td>
+</tr>
+<tr class="odd">
+<td><strong>Alta dimensão</strong> (n&gt;&gt;p)</td>
+<td>100</td>
+<td>10</td>
+<td>200</td>
+</tr>
+<tr class="even">
+<td><strong>Quasi Sobredeterminado</strong> (p &gt; n)</td>
+<td>51</td>
+<td>50</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p>Esses cenários foram escolhidos para refletir situações clássicas, desafiadoras e realistas do ponto de vista estatístico.</p>
+<ul>
+<li><strong>Clássico</strong>: Serve como benchmark. Mínimos quadrados funciona perfeitamente, GD também deve funcionar bem.</li>
+<li><strong>Pequeno</strong>: Ajuda a expor diferença em viés e variância.</li>
+<li><strong>Alta dimensão</strong>: Aumenta custo computacional e desafia GD (principalmente se mal escalado).</li>
+<li><strong>Quasi Sobredeterminado</strong> (p &gt; n): LS não funciona diretamente (matriz singular), mas GD pode rodar com regularização — ótimo para destacar versatilidade.</li>
+</ul>
+<p>As seguintes métricas foram comparadas para avaliar a qualidade de cada método</p>
+<ul>
+<li><p>Qualidade de recuperação dos parâmetros verdadeiros</p></li>
+<li><p>Viés e Erro Quadrático Médio (EQM)</p></li>
+<li><p>Comparação de tempo de execução:</p></li>
+</ul>
+<section id="qualidade-de-recuperação-dos-parâmetros-verdadeiros-vies-e-eqm" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="qualidade-de-recuperação-dos-parâmetros-verdadeiros-vies-e-eqm"><span class="header-section-number">11.1</span> Qualidade de recuperação dos parâmetros verdadeiros (Vies e EQM)</h2>
+<p>Nesta etapa, avaliamos como cada método estima os parâmetros do modelo em relação aos seus valores verdadeiros. Para isso, realizamos múltiplas simulações e analisamos a distribuição das estimativas obtidas por mínimos quadrados e gradiente descendente. O objetivo é identificar possíveis vieses e comparar a precisão dos dois métodos. As distribuições são apresentadas por meio de gráficos de violino, que destacam tanto a centralidade quanto a variabilidade das estimativas.</p>
+<section id="cenário-clássico" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="cenário-clássico"><span class="header-section-number">11.1.1</span> Cenário Clássico</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="GD_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="GD_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>classic_sim_tbl <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Metricas"</span>, <span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>), </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> F, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; ">
+<caption>Metricas</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> method </th>
+   <th style="text-align:left;"> param </th>
+   <th style="text-align:right;"> true_value </th>
+   <th style="text-align:right;"> avg_estimate </th>
+   <th style="text-align:right;"> abs_bias </th>
+   <th style="text-align:right;"> mse </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 9.99 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.09 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta2 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 20.00 </td>
+   <td style="text-align:right;"> 0.22 </td>
+   <td style="text-align:right;"> 0.08 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta3 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 30.01 </td>
+   <td style="text-align:right;"> 0.24 </td>
+   <td style="text-align:right;"> 0.09 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 9.99 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.09 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta2 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 20.00 </td>
+   <td style="text-align:right;"> 0.22 </td>
+   <td style="text-align:right;"> 0.08 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta3 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 30.01 </td>
+   <td style="text-align:right;"> 0.24 </td>
+   <td style="text-align:right;"> 0.09 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="cenário-pequeno" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="cenário-pequeno"><span class="header-section-number">11.1.2</span> Cenário Pequeno</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="GD_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; ">
+<caption>Metricas</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> method </th>
+   <th style="text-align:left;"> param </th>
+   <th style="text-align:right;"> true_value </th>
+   <th style="text-align:right;"> avg_estimate </th>
+   <th style="text-align:right;"> abs_bias </th>
+   <th style="text-align:right;"> mse </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 10.00 </td>
+   <td style="text-align:right;"> 0.43 </td>
+   <td style="text-align:right;"> 0.31 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta2 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 19.96 </td>
+   <td style="text-align:right;"> 0.43 </td>
+   <td style="text-align:right;"> 0.31 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta3 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 30.01 </td>
+   <td style="text-align:right;"> 0.49 </td>
+   <td style="text-align:right;"> 0.37 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 10.00 </td>
+   <td style="text-align:right;"> 0.43 </td>
+   <td style="text-align:right;"> 0.31 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta2 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 19.96 </td>
+   <td style="text-align:right;"> 0.43 </td>
+   <td style="text-align:right;"> 0.31 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta3 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 30.01 </td>
+   <td style="text-align:right;"> 0.49 </td>
+   <td style="text-align:right;"> 0.37 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="cenário-alta-dimensionalidade" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="cenário-alta-dimensionalidade"><span class="header-section-number">11.1.3</span> Cenário Alta Dimensionalidade</h3>
+<div class="cell" data-hide="true">
+<div class="cell-output-display">
+<p><img src="GD_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; ">
+<caption>Metricas</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> method </th>
+   <th style="text-align:left;"> param </th>
+   <th style="text-align:right;"> true_value </th>
+   <th style="text-align:right;"> avg_estimate </th>
+   <th style="text-align:right;"> abs_bias </th>
+   <th style="text-align:right;"> mse </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta1 </td>
+   <td style="text-align:right;"> 0.94 </td>
+   <td style="text-align:right;"> 0.93 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta10 </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:right;"> 1.03 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.09 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta2 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta3 </td>
+   <td style="text-align:right;"> 0.36 </td>
+   <td style="text-align:right;"> 0.33 </td>
+   <td style="text-align:right;"> 0.28 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta4 </td>
+   <td style="text-align:right;"> 0.26 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta5 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta6 </td>
+   <td style="text-align:right;"> 0.63 </td>
+   <td style="text-align:right;"> 0.62 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta7 </td>
+   <td style="text-align:right;"> 0.82 </td>
+   <td style="text-align:right;"> 0.84 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta8 </td>
+   <td style="text-align:right;"> 0.70 </td>
+   <td style="text-align:right;"> 0.68 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta9 </td>
+   <td style="text-align:right;"> 0.47 </td>
+   <td style="text-align:right;"> 0.51 </td>
+   <td style="text-align:right;"> 0.30 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta1 </td>
+   <td style="text-align:right;"> 0.94 </td>
+   <td style="text-align:right;"> 0.93 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta10 </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:right;"> 1.03 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.09 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta2 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta3 </td>
+   <td style="text-align:right;"> 0.36 </td>
+   <td style="text-align:right;"> 0.33 </td>
+   <td style="text-align:right;"> 0.28 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta4 </td>
+   <td style="text-align:right;"> 0.26 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta5 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta6 </td>
+   <td style="text-align:right;"> 0.63 </td>
+   <td style="text-align:right;"> 0.62 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta7 </td>
+   <td style="text-align:right;"> 0.82 </td>
+   <td style="text-align:right;"> 0.84 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta8 </td>
+   <td style="text-align:right;"> 0.70 </td>
+   <td style="text-align:right;"> 0.68 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta9 </td>
+   <td style="text-align:right;"> 0.47 </td>
+   <td style="text-align:right;"> 0.51 </td>
+   <td style="text-align:right;"> 0.30 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="cenário-sobredeterminado" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="cenário-sobredeterminado"><span class="header-section-number">11.1.4</span> Cenário Sobredeterminado</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="GD_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; ">
+<caption>Metricas</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> method </th>
+   <th style="text-align:left;"> param </th>
+   <th style="text-align:right;"> true_value </th>
+   <th style="text-align:right;"> avg_estimate </th>
+   <th style="text-align:right;"> abs_bias </th>
+   <th style="text-align:right;"> mse </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta1 </td>
+   <td style="text-align:right;"> 0.94 </td>
+   <td style="text-align:right;"> 0.93 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta10 </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:right;"> 1.03 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.09 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta2 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta3 </td>
+   <td style="text-align:right;"> 0.36 </td>
+   <td style="text-align:right;"> 0.33 </td>
+   <td style="text-align:right;"> 0.28 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta4 </td>
+   <td style="text-align:right;"> 0.26 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta5 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta6 </td>
+   <td style="text-align:right;"> 0.63 </td>
+   <td style="text-align:right;"> 0.62 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta7 </td>
+   <td style="text-align:right;"> 0.82 </td>
+   <td style="text-align:right;"> 0.84 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta8 </td>
+   <td style="text-align:right;"> 0.70 </td>
+   <td style="text-align:right;"> 0.68 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GD </td>
+   <td style="text-align:left;"> Beta9 </td>
+   <td style="text-align:right;"> 0.47 </td>
+   <td style="text-align:right;"> 0.51 </td>
+   <td style="text-align:right;"> 0.30 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta1 </td>
+   <td style="text-align:right;"> 0.94 </td>
+   <td style="text-align:right;"> 0.93 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta10 </td>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:right;"> 1.03 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.09 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta2 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta3 </td>
+   <td style="text-align:right;"> 0.36 </td>
+   <td style="text-align:right;"> 0.33 </td>
+   <td style="text-align:right;"> 0.28 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta4 </td>
+   <td style="text-align:right;"> 0.26 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta5 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta6 </td>
+   <td style="text-align:right;"> 0.63 </td>
+   <td style="text-align:right;"> 0.62 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta7 </td>
+   <td style="text-align:right;"> 0.82 </td>
+   <td style="text-align:right;"> 0.84 </td>
+   <td style="text-align:right;"> 0.31 </td>
+   <td style="text-align:right;"> 0.16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta8 </td>
+   <td style="text-align:right;"> 0.70 </td>
+   <td style="text-align:right;"> 0.68 </td>
+   <td style="text-align:right;"> 0.27 </td>
+   <td style="text-align:right;"> 0.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LS </td>
+   <td style="text-align:left;"> Beta9 </td>
+   <td style="text-align:right;"> 0.47 </td>
+   <td style="text-align:right;"> 0.51 </td>
+   <td style="text-align:right;"> 0.30 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="comparação-mudando-a-variancia-variancia-do-erro" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Comparação mudando a variancia (variancia do erro)</h1>
+</section>
+<section id="mudar-distribuição-das-variaveis-dist-normal" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Mudar distribuição das variaveis (dist normal)</h1>
+</section>
+<section id="comparar-predição-split-treino-e-teste" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Comparar predição (split treino e teste)</h1>
+<p>Até aqui, avaliamos o desempenho dos métodos com foco na qualidade da estimação dos parâmetros, adotando uma perspectiva inferencial: <strong>utilizar todo o conjunto de dados para treinar os modelos</strong>. Essa é uma prática comum quando o principal interesse está na interpretação e recuperação dos verdadeiros valores dos parâmetros.</p>
+<p>Contudo, em contextos preditivos, onde queremos otimizar o desempenho do modelo em relação a predição de novos valores, essa estratégia pode levar ao fenômeno de superajuste (<em>overfiting</em>) — quando o modelo aprende padrões específicos dos dados de treinamento, mas apresenta baixo desempenho em novos dados. Para mitigar esse efeito, é fundamental separar os dados em conjuntos de treino e teste.</p>
+<p>A seguir, avaliamos os métodos de mínimos quadrados e gradiente descendente sob essa ótica preditiva, considerando a divisão dos dados e analisando sua capacidade de generalização para dados não vistos.</p>
+<p>Consideramos os seguintes cenários amostrais (Definir cenários)</p>
+<table class="table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 18%">
+<col style="width: 22%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cenário</th>
+<th>Amostras para treino</th>
+<th>Amostras para teste</th>
+<th>p (parâmetros)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Clássico</strong> (bem especificado)</td>
+<td>100</td>
+<td>3</td>
+<td>200</td>
+</tr>
+<tr class="even">
+<td><strong>Pequeno</strong> (alta variância)</td>
+<td>30</td>
+<td>3</td>
+<td>200</td>
+</tr>
+<tr class="odd">
+<td><strong>Alta dimensão</strong> (n&gt;&gt;p)</td>
+<td>100</td>
+<td>10</td>
+<td>200</td>
+</tr>
+<tr class="even">
+<td><strong>Quasi Sobredeterminado</strong> (p &gt; n)</td>
+<td>51</td>
+<td>50</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>evaluate_estim <span class="ot">=</span> <span class="cf">function</span>(X, estimed_betas){</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  ls_betas <span class="ot">=</span> estimed_betas<span class="sc">$</span>ls[,<span class="dv">1</span>] <span class="sc">|&gt;</span> <span class="fu">as.vector</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  gd_betas <span class="ot">=</span> estimed_betas<span class="sc">$</span>gd[,<span class="dv">1</span>] <span class="sc">|&gt;</span> <span class="fu">as.vector</span>()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  ls_pred <span class="ot">=</span> (X[,<span class="sc">-</span><span class="dv">1</span>] <span class="sc">%*%</span> ls_betas)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  gd_pred <span class="ot">=</span> (X[,<span class="sc">-</span><span class="dv">1</span>] <span class="sc">%*%</span> gd_betas)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  tbl_estimated_values <span class="ot">=</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">y =</span> X[,<span class="dv">1</span>],</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"ls_predicted"</span> <span class="ot">=</span> ls_pred <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">4</span>),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"gd_predicted"</span> <span class="ot">=</span> gd_pred <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">4</span>)) </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(tbl_estimated_values)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>predict_sim <span class="ot">=</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">n_times =</span> <span class="dv">100</span>, <span class="at">num_covar =</span> <span class="dv">1</span>, <span class="at">betas =</span> <span class="dv">1</span>, <span class="at">lr =</span> <span class="fl">0.01</span>) {</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  replicate_results <span class="ot">=</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span>n_times, <span class="cf">function</span>(x){</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    design_matrix <span class="ot">=</span> <span class="fu">internal_sim_values</span>(<span class="at">n_param =</span> n, <span class="at">num_covar_param =</span> num_covar, <span class="at">betas_param =</span> betas)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    split_value <span class="ot">=</span> <span class="fu">floor</span>((n <span class="sc">*</span> <span class="fl">0.75</span>) <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    training_data <span class="ot">=</span> design_matrix[<span class="dv">1</span><span class="sc">:</span>split_value,]</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    testing_data <span class="ot">=</span> design_matrix[(split_value <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>n,]</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    estimed_betas <span class="ot">=</span> <span class="fu">internal_run_method</span>(training_data, <span class="at">lr_param =</span> lr)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    estimed_values <span class="ot">=</span> <span class="fu">evaluate_estim</span>(testing_data, estimed_betas) <span class="sc">|&gt;</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">run =</span> x)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">|&gt;</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">bind_rows</span>()</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(replicate_results)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict_sim</span>(<span class="dv">100</span>,<span class="dv">10</span>,<span class="dv">3</span>, <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="fl">0.001</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="sc">-</span>y,<span class="sc">-</span>run)) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((value <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span>)),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(value <span class="sc">-</span> y)),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">SMAPE =</span> <span class="fu">mean</span>(<span class="dv">2</span> <span class="sc">*</span> <span class="fu">abs</span>(value <span class="sc">-</span> y) <span class="sc">/</span> (<span class="fu">abs</span>(y) <span class="sc">+</span> <span class="fu">abs</span>(value))) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  name          RMSE   MAE SMAPE
+  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 gd_predicted  1.09 0.883  9.51
+2 ls_predicted  1.09 0.883  9.51</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4390</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict_sim</span>(<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">10</span>, <span class="fu">runif</span>(<span class="dv">10</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="sc">-</span>y,<span class="sc">-</span>run)) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((value <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span>)),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(value <span class="sc">-</span> y)),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">SMAPE =</span> <span class="fu">mean</span>(<span class="dv">2</span> <span class="sc">*</span> <span class="fu">abs</span>(value <span class="sc">-</span> y) <span class="sc">/</span> (<span class="fu">abs</span>(y) <span class="sc">+</span> <span class="fu">abs</span>(value))) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">Metodo =</span> name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  Metodo        RMSE   MAE SMAPE
+  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 gd_predicted  1.18 0.933  47.0
+2 ls_predicted  1.20 0.946  47.8</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4390</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict_sim</span>(<span class="dv">1000</span>,<span class="dv">10</span>,<span class="dv">50</span>, <span class="fu">runif</span>(<span class="dv">50</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="sc">-</span>y,<span class="sc">-</span>run)) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((value <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span>)),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(value <span class="sc">-</span> y)),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">SMAPE =</span> <span class="fu">mean</span>(<span class="dv">2</span> <span class="sc">*</span> <span class="fu">abs</span>(value <span class="sc">-</span> y) <span class="sc">/</span> (<span class="fu">abs</span>(y) <span class="sc">+</span> <span class="fu">abs</span>(value))) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">Metodo =</span> name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  Metodo        RMSE   MAE SMAPE
+  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 gd_predicted  1.03 0.822  6.89
+2 ls_predicted  1.03 0.822  6.90</code></pre>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
