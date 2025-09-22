@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -30,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./hyper.html" rel="next">
 <link href="./GD.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -111,7 +174,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./hyper.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hiperparâmetros e Otimização</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -151,6 +219,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#calculando-o-erro-total" id="toc-calculando-o-erro-total" class="nav-link" data-scroll-target="#calculando-o-erro-total"><span class="toc-section-number">7.4</span>  Calculando o Erro Total</a></li>
   <li><a href="#the-backwards-pass" id="toc-the-backwards-pass" class="nav-link" data-scroll-target="#the-backwards-pass"><span class="toc-section-number">7.5</span>  The Backwards Pass</a></li>
   </ul></li>
+  <li><a href="#simulação-de-redes-neurais" id="toc-simulação-de-redes-neurais" class="nav-link" data-scroll-target="#simulação-de-redes-neurais"><span class="toc-section-number">8</span>  Simulação de Redes Neurais</a>
+  <ul class="collapse">
+  <li><a href="#dados-simulados" id="toc-dados-simulados" class="nav-link" data-scroll-target="#dados-simulados"><span class="toc-section-number">8.1</span>  Dados Simulados</a></li>
+  <li><a href="#simulação-rede-slp" id="toc-simulação-rede-slp" class="nav-link" data-scroll-target="#simulação-rede-slp"><span class="toc-section-number">8.2</span>  Simulação Rede SLP</a></li>
+  <li><a href="#simulação-rede-com-múltiplas-camadas-ocultas" id="toc-simulação-rede-com-múltiplas-camadas-ocultas" class="nav-link" data-scroll-target="#simulação-rede-com-múltiplas-camadas-ocultas"><span class="toc-section-number">8.3</span>  Simulação Rede com múltiplas camadas ocultas</a></li>
+  </ul></li>
+  <li><a href="#dados-brasileirão" id="toc-dados-brasileirão" class="nav-link" data-scroll-target="#dados-brasileirão"><span class="toc-section-number">9</span>  Dados Brasileirão</a></li>
   </ul>
 </nav>
     </div>
@@ -484,9 +559,535 @@ Dica
 <p>Com o valor calculado, podemos finalmente atualizar o valor de <span class="math inline">\(w_{112}\)</span>. A atualização é dada por</p>
 <p><span class="math display">\[w_{112}^+ = w_{112} - \frac{\partial E_{total}}{\partial w_{112}} = 0.4 - 214.4 = -214\]</span></p>
 <p>Veremos mais pra frente o conceito de tunagem de hiperparametros, onde um deles é a taxa de aprendizado (<em>learning rate</em>), esse parametro é utilizado para ajustar a magnitude do valor atualizado por iteração. Utilizando ele, a atualização é dada por <span class="math display">\[w_{112}^+ = w_{112} - \alpha \frac{\partial E_{total}}{\partial w_{112}}\]</span> onde <span class="math inline">\(\alpha\)</span> é um valor que deve ser tunado (processo semelhante a otimização)</p>
-
-
 </section>
+</section>
+<section id="simulação-de-redes-neurais" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Simulação de Redes Neurais</h1>
+<p>Agora que já entendemos o funcionamento matemático de uma rede neural feedforward, vamos colocar a teoria em prática com simulações em R. O objetivo é:</p>
+<ol type="1">
+<li><p>Criar uma rede simples, com apenas uma camada oculta (SLP — Single Layer Perceptron).</p></li>
+<li><p>Compará-la com modelos de regressão linear.</p></li>
+<li><p>Generalizar o código para redes com múltiplas camadas ocultas e compará-las novamente.</p></li>
+</ol>
+<hr>
+<section id="dados-simulados" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="dados-simulados"><span class="header-section-number">8.1</span> Dados Simulados</h2>
+<p>1.1 Preparanda a simulação</p>
+<p>Começaremos gerando um conjunto de dados sintético, onde a variável resposta <span class="math inline">\(y\)</span> é uma combinação linear de três variáveis <span class="math inline">\(x_1,x_2,x_3\)</span> mais um erro aleatório (que segue uma distribuição Normal(0,1))</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>beta_0 <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>beta_1 <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>beta_2 <span class="ot">=</span> <span class="fl">0.02</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>beta_3 <span class="ot">=</span> <span class="dv">55</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data_nnet <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_1 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">3</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_2 =</span> <span class="fu">rexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> <span class="dv">5</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_3 =</span> <span class="fu">rgamma</span>(<span class="dv">100</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">rate =</span> <span class="fl">0.4</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> beta_0 <span class="sc">+</span> (beta_1<span class="sc">*</span>x_1) <span class="sc">+</span> (beta_2<span class="sc">*</span>x_2) <span class="sc">+</span> (beta_3<span class="sc">*</span>x_3) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="simulação-rede-slp" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="simulação-rede-slp"><span class="header-section-number">8.2</span> Simulação Rede SLP</h2>
+<p>Para a primeira rodada de simulação, utilizamos uma rede simples, com apenas uma camada oculta (uma single layer perceptron), com as seguintes definições</p>
+<ul>
+<li><p>1 camada oculta</p></li>
+<li><p>2 neurônios</p></li>
+<li><p>Função de ativação: ReLU</p></li>
+<li><p>Função de custo: Erro Quadrático Médio (EQM)</p></li>
+</ul>
+<p>Para a construção e treinamento da rede, as seguintes funções foram construídas. É importante perceber que tais funções servem apenas para a construção de redes com 1 camada oculta. Mais adinate veremos o cófigo utilizado para redes com mais 1 camada oculta</p>
+<p><strong>Funções básicas</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função de ativação ReLU</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>relu <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">pmax</span>(<span class="dv">0</span>, x)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>relu_deriv <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Função de custo EQM</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>eqm <span class="ot">=</span> <span class="cf">function</span>(y, y_hat) (y<span class="sc">-</span>y_hat)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>eqm_deriv <span class="ot">=</span> <span class="cf">function</span>(y, y_hat) <span class="sc">-</span>(y<span class="sc">-</span>y_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Inicialização da rede</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>init_network <span class="ot">=</span> <span class="cf">function</span>(input_size, hidden_size, output_size) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">W1 =</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(input_size <span class="sc">*</span> hidden_size, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="at">nrow =</span> hidden_size),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">b1 =</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> hidden_size, <span class="at">ncol =</span> <span class="dv">1</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">W2 =</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(hidden_size <span class="sc">*</span> output_size, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="at">nrow =</span> output_size),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">b2 =</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> output_size, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Passo forward e backward</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forward e backward</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>forward_backward <span class="ot">=</span> <span class="cf">function</span>(network, x, y) {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Forward</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  z1 <span class="ot">=</span> network<span class="sc">$</span>W1 <span class="sc">%*%</span> x <span class="sc">+</span> network<span class="sc">$</span>b1</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  a1 <span class="ot">=</span> <span class="fu">relu</span>(z1)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  z2 <span class="ot">=</span> network<span class="sc">$</span>W2 <span class="sc">%*%</span> a1 <span class="sc">+</span> network<span class="sc">$</span>b2</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">=</span> z2</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Erro e perda</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  loss <span class="ot">=</span> <span class="fu">mean</span>((y_pred <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Backward (gradientes)</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  dL_dz2 <span class="ot">=</span> <span class="dv">2</span> <span class="sc">*</span> (y_pred <span class="sc">-</span> y)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  dL_dW2 <span class="ot">=</span> dL_dz2 <span class="sc">%*%</span> <span class="fu">t</span>(a1)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  dL_db2 <span class="ot">=</span> dL_dz2</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  dL_da1 <span class="ot">=</span> <span class="fu">t</span>(network<span class="sc">$</span>W2) <span class="sc">%*%</span> dL_dz2</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  dL_dz1 <span class="ot">=</span> dL_da1 <span class="sc">*</span> <span class="fu">relu_deriv</span>(z1)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  dL_dW1 <span class="ot">=</span> dL_dz1 <span class="sc">%*%</span> <span class="fu">t</span>(x)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  dL_db1 <span class="ot">=</span> dL_dz1</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss =</span> loss,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradients =</span> <span class="fu">list</span>(<span class="at">W1 =</span> dL_dW1, <span class="at">b1 =</span> dL_db1, <span class="at">W2 =</span> dL_dW2, <span class="at">b2 =</span> dL_db2)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Treinamento</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Treinamento</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>train_nn <span class="ot">=</span> <span class="cf">function</span>(X, Y, <span class="at">hidden_size =</span> <span class="dv">5</span>, <span class="at">epochs =</span> <span class="dv">1000</span>, <span class="at">lr =</span> <span class="fl">0.01</span>) {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">=</span> <span class="fu">t</span>(X)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  Y <span class="ot">=</span> <span class="fu">t</span>(Y)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  input_size <span class="ot">=</span> <span class="fu">nrow</span>(X)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  output_size <span class="ot">=</span> <span class="fu">nrow</span>(Y)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  network <span class="ot">=</span> <span class="fu">init_network</span>(input_size, hidden_size, output_size)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (epoch <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>epochs) {</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    total_loss <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(X)) {</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      x_i <span class="ot">=</span> X[, i, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      y_i <span class="ot">=</span> Y[, i, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      fb <span class="ot">=</span> <span class="fu">forward_backward</span>(network, x_i, y_i)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      total_loss <span class="ot">=</span> total_loss <span class="sc">+</span> fb<span class="sc">$</span>loss</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Atualização dos pesos</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      network<span class="sc">$</span>W1 <span class="ot">=</span> network<span class="sc">$</span>W1 <span class="sc">-</span> lr <span class="sc">*</span> fb<span class="sc">$</span>gradients<span class="sc">$</span>W1</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>      network<span class="sc">$</span>b1 <span class="ot">=</span> network<span class="sc">$</span>b1 <span class="sc">-</span> lr <span class="sc">*</span> fb<span class="sc">$</span>gradients<span class="sc">$</span>b1</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>      network<span class="sc">$</span>W2 <span class="ot">=</span> network<span class="sc">$</span>W2 <span class="sc">-</span> lr <span class="sc">*</span> fb<span class="sc">$</span>gradients<span class="sc">$</span>W2</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>      network<span class="sc">$</span>b2 <span class="ot">=</span> network<span class="sc">$</span>b2 <span class="sc">-</span> lr <span class="sc">*</span> fb<span class="sc">$</span>gradients<span class="sc">$</span>b2</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (epoch <span class="sc">%%</span> <span class="dv">100</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Epoch %d, Loss: %.4f</span><span class="sc">\n</span><span class="st">"</span>, epoch, total_loss <span class="sc">/</span> <span class="fu">ncol</span>(X)))</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(network)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Predição</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fazer predição</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>predict_nn <span class="ot">=</span> <span class="cf">function</span>(network, x) {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">t</span>(x)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(x)) {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>     z1 <span class="ot">=</span> network<span class="sc">$</span>W1 <span class="sc">%*%</span> x[,i] <span class="sc">+</span> network<span class="sc">$</span>b1</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>     a1 <span class="ot">=</span> <span class="fu">relu</span>(z1)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>     z2 <span class="ot">=</span> network<span class="sc">$</span>W2 <span class="sc">%*%</span> a1 <span class="sc">+</span> network<span class="sc">$</span>b2</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    y_pred[i] <span class="ot">=</span> z2</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y_pred)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nesta etapa, realizamos a separação dos dados em amostras de treino e teste por meio da função <strong>initial_split()</strong> do pacote rsample. A base de treino será utilizada para estimar os parâmetros da rede neural, enquanto a base de teste servirá para avaliar sua capacidade preditiva fora da amostra. A proporção de divisão foi de 75% para treinamento e 25% para teste</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sample_desing <span class="ot">=</span> rsample<span class="sc">::</span><span class="fu">initial_split</span>(data_nnet)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data_nnet_training <span class="ot">=</span> rsample<span class="sc">::</span><span class="fu">training</span>(sample_desing)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data_nnet_testing <span class="ot">=</span> rsample<span class="sc">::</span><span class="fu">testing</span>(sample_desing)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>trained_net <span class="ot">=</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">train_nn</span>(<span class="at">X =</span> data_nnet_training[,<span class="sc">-</span><span class="dv">4</span>], </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">Y =</span> data_nnet_training[,<span class="dv">4</span>], </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">hidden_size =</span> <span class="dv">2</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">lr =</span> <span class="fl">0.00001</span>, </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">epochs =</span> <span class="dv">2000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 100, Loss: 49046.1666
+Epoch 200, Loss: 40008.9979
+Epoch 300, Loss: 33314.0831
+Epoch 400, Loss: 28354.3525
+Epoch 500, Loss: 24680.0784
+Epoch 600, Loss: 21958.0946
+Epoch 700, Loss: 19941.5860
+Epoch 800, Loss: 18447.7073
+Epoch 900, Loss: 17341.0035
+Epoch 1000, Loss: 16521.1273
+Epoch 1100, Loss: 15913.7391
+Epoch 1200, Loss: 15463.7669
+Epoch 1300, Loss: 15130.4125
+Epoch 1400, Loss: 14883.4513
+Epoch 1500, Loss: 14700.4926
+Epoch 1600, Loss: 14564.9488
+Epoch 1700, Loss: 14464.5315
+Epoch 1800, Loss: 14390.1369
+Epoch 1900, Loss: 14335.0210
+Epoch 2000, Loss: 14294.1875</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>predict_nnet_values <span class="ot">=</span> <span class="fu">predict_nn</span>(trained_net, data_nnet_testing[,<span class="sc">-</span><span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aqui ajustamos dois modelos de regressão linear múltipla sobre a base de treino, com o objetivo de comparar seu desempenho preditivo com a rede neural treinada anteriormente.</p>
+<p>O primeiro modelo (lm_model_inter) foi estimado sem intercepto (-1 na fórmula). Já o segundo modelo (lm_model_com_inter) inclui o intercepto. Vale relembrar que os dados simulados possuem intercepto, e portanto esperamos ver um mlehor desempenho para o modelo que possui intercepto</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lm_model_inter <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> x_1 <span class="sc">+</span> x_2 <span class="sc">+</span> x_3, <span class="at">data =</span> data_nnet_training)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>lm_model_com_inter <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">+</span> x_2 <span class="sc">+</span> x_3, <span class="at">data =</span> data_nnet_training)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Após o ajuste, utilizamos a função predict() para gerar as predições de ambos os modelos sobre a base de teste, obtendo assim as estimativas lineares correspondentes para comparação direta com as previsões da rede neural.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>predict_lm_values_int <span class="ot">=</span> <span class="fu">predict</span>(lm_model_inter, <span class="at">newdata  =</span> data_nnet_testing[,<span class="sc">-</span><span class="dv">4</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>predict_lm_values_com_int <span class="ot">=</span> <span class="fu">predict</span>(lm_model_com_inter, <span class="at">newdata  =</span> data_nnet_testing[,<span class="sc">-</span><span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>predict_values <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">nnet =</span> predict_nnet_values,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">lm_sem_int =</span> predict_lm_values_int,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">lm_com_int =</span> predict_lm_values_com_int,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">real =</span> data_nnet_testing<span class="sc">$</span>y)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>predict_values <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="sc">-</span>real) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">eqm =</span> <span class="fu">mean</span>((real <span class="sc">-</span> value)<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  name            eqm
+  &lt;chr&gt;         &lt;dbl&gt;
+1 lm_com_int     1.27
+2 lm_sem_int     1.46
+3 nnet       22520.  </code></pre>
+</div>
+</div>
+<p>Os erros quadráticos médios (EQM) apresentados para os três modelos são muito próximos, todos na faixa de aproximadamente 1.28 a 1.39, indicando que todos têm desempenho bastante similar na predição dos dados avaliados.</p>
+<p>O modelo de regressão linear com intercepto (lm_com_int) apresenta o menor EQM (≈ 1.29), sugerindo que é o que melhor captura a relação entre as variáveis explicativas e a resposta, o que ja era esperado devido aos dados gerados, que possuem intercepto (<span class="math inline">\(\beta_0 = 1\)</span>)</p>
+<p>O modelo linear sem intercepto (lm_sem_int) tem EQM ligeiramente maior (≈ 1.39), indicando uma leve perda de ajuste ao forçar o modelo a passar pela origem, o que pode não ser adequado para os dados simulados.</p>
+<p>A rede neural simples (nnet) apresenta desempenho intermediário (EQM ≈ 1.34), próximo dos modelos lineares, o que indica que, para esse conjunto de dados gerados por uma relação linear, a rede neural consegue capturar a estrutura subjacente com boa eficiência, embora não necessariamente supere o modelo linear com intercepto.</p>
+<p>Neste cenário, em que os dados são simulados a partir de uma função linear com intercepto e ruído normal, o modelo linear clássico com intercepto se mostra mais adequado e eficiente para predição, enquanto a rede neural e o modelo linear sem intercepto apresentam desempenho comparável, porém ligeiramente inferior.</p>
+</section>
+<section id="simulação-rede-com-múltiplas-camadas-ocultas" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="simulação-rede-com-múltiplas-camadas-ocultas"><span class="header-section-number">8.3</span> Simulação Rede com múltiplas camadas ocultas</h2>
+<p>Com base no codigo escrito, podemos aprimora-lo e construir uma rede generalizada</p>
+<p><strong>Inicialização de múltiplas camadas</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicialização da rede com múltiplas camadas ocultas</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>generalized_init_network <span class="ot">=</span> <span class="cf">function</span>(layer_sizes) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  L <span class="ot">=</span> <span class="fu">length</span>(layer_sizes) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  weights <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (l <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>L) {</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    weights[[<span class="fu">paste0</span>(<span class="st">"W"</span>, l)]] <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(layer_sizes[l<span class="sc">+</span><span class="dv">1</span>] <span class="sc">*</span> layer_sizes[l], <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>), </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">nrow =</span> layer_sizes[l<span class="sc">+</span><span class="dv">1</span>])</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    weights[[<span class="fu">paste0</span>(<span class="st">"b"</span>, l)]] <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> layer_sizes[l<span class="sc">+</span><span class="dv">1</span>], <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(weights)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Passo forward e backward generalizado</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forward e backward para múltiplas camadas</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>generalized_forward_backward <span class="ot">=</span> <span class="cf">function</span>(network, x, y) {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  L <span class="ot">=</span> <span class="fu">length</span>(network) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  activations <span class="ot">=</span> <span class="fu">list</span>(x)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  pre_activations <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Forward</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (l <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>L) {</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">=</span> network[[<span class="fu">paste0</span>(<span class="st">"W"</span>, l)]] <span class="sc">%*%</span> activations[[l]] <span class="sc">+</span> network[[<span class="fu">paste0</span>(<span class="st">"b"</span>, l)]]</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    pre_activations[[l]] <span class="ot">=</span> z</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">=</span> <span class="cf">if</span> (l <span class="sc">==</span> L) z <span class="cf">else</span> <span class="fu">relu</span>(z)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    activations[[l <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">=</span> a</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">=</span> activations[[L <span class="sc">+</span> <span class="dv">1</span>]]</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  loss <span class="ot">=</span> <span class="fu">mean</span>((y_pred <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Backward</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  gradients <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  delta <span class="ot">=</span> <span class="dv">2</span> <span class="sc">*</span> (y_pred <span class="sc">-</span> y)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (l <span class="cf">in</span> L<span class="sc">:</span><span class="dv">1</span>) {</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    a_prev <span class="ot">=</span> activations[[l]]</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    gradients[[<span class="fu">paste0</span>(<span class="st">"W"</span>, l)]] <span class="ot">=</span> delta <span class="sc">%*%</span> <span class="fu">t</span>(a_prev)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    gradients[[<span class="fu">paste0</span>(<span class="st">"b"</span>, l)]] <span class="ot">=</span> delta</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (l <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>      delta <span class="ot">=</span> <span class="fu">t</span>(network[[<span class="fu">paste0</span>(<span class="st">"W"</span>, l)]]) <span class="sc">%*%</span> delta</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>      delta <span class="ot">=</span> delta <span class="sc">*</span> <span class="fu">relu_deriv</span>(pre_activations[[l <span class="sc">-</span> <span class="dv">1</span>]])</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">loss =</span> loss, <span class="at">gradients =</span> gradients, <span class="at">activations =</span> activations))</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Treinamento generalizado</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Treinamento da rede</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>generalized_train_nn <span class="ot">=</span> <span class="cf">function</span>(X, Y, <span class="at">hidden_layers =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>), <span class="at">epochs =</span> <span class="dv">1000</span>, <span class="at">lr =</span> <span class="fl">0.01</span>) {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">=</span> <span class="fu">t</span>(X)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  Y <span class="ot">=</span> <span class="fu">t</span>(Y)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  input_size <span class="ot">=</span> <span class="fu">nrow</span>(X)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  output_size <span class="ot">=</span> <span class="fu">nrow</span>(Y)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  layer_sizes <span class="ot">=</span> <span class="fu">c</span>(input_size, hidden_layers, output_size)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  network <span class="ot">=</span> <span class="fu">generalized_init_network</span>(layer_sizes)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (epoch <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>epochs) {</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    total_loss <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(X)) {</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>      x_i <span class="ot">=</span> X[, i, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>      y_i <span class="ot">=</span> Y[, i, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>      fb <span class="ot">=</span> <span class="fu">generalized_forward_backward</span>(network, x_i, y_i)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>      total_loss <span class="ot">=</span> total_loss <span class="sc">+</span> fb<span class="sc">$</span>loss</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Atualiza pesos</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (name <span class="cf">in</span> <span class="fu">names</span>(fb<span class="sc">$</span>gradients)) {</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        network[[name]] <span class="ot">=</span> network[[name]] <span class="sc">-</span> lr <span class="sc">*</span> fb<span class="sc">$</span>gradients[[name]]</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (epoch <span class="sc">%%</span> <span class="dv">100</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Epoch %d, Loss: %.4f</span><span class="sc">\n</span><span class="st">"</span>, epoch, total_loss <span class="sc">/</span> <span class="fu">ncol</span>(X)))</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(network)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Predição com múltiplas camadas</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predição com múltiplas camadas</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>generalized_predict_nn <span class="ot">=</span> <span class="cf">function</span>(network, X) {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">=</span> <span class="fu">t</span>(X)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  L <span class="ot">=</span> <span class="fu">length</span>(network) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  Y_pred <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="fu">nrow</span>(network[[<span class="fu">paste0</span>(<span class="st">"W"</span>, L)]]), <span class="at">ncol =</span> <span class="fu">ncol</span>(X))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(X)) {</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">=</span> X[, i, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (l <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>L) {</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">=</span> network[[<span class="fu">paste0</span>(<span class="st">"W"</span>, l)]] <span class="sc">%*%</span> a <span class="sc">+</span> network[[<span class="fu">paste0</span>(<span class="st">"b"</span>, l)]]</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>      a <span class="ot">=</span> <span class="cf">if</span> (l <span class="sc">==</span> L) z <span class="cf">else</span> <span class="fu">relu</span>(z)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    Y_pred[, i] <span class="ot">=</span> a</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">t</span>(Y_pred))</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>trained_net <span class="ot">=</span> <span class="fu">generalized_train_nn</span>(<span class="at">X =</span> data_nnet_training[,<span class="sc">-</span><span class="dv">4</span>] <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>(), </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Y =</span> data_nnet_training[,<span class="dv">4</span>] <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>(),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">hidden_layers =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">lr =</span> <span class="fl">0.000001</span>, </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">epochs =</span> <span class="dv">1100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 100, Loss: 3.5709
+Epoch 200, Loss: 2.4875
+Epoch 300, Loss: 1.8989
+Epoch 400, Loss: 1.5692
+Epoch 500, Loss: 1.3782
+Epoch 600, Loss: 1.2632
+Epoch 700, Loss: 1.1914
+Epoch 800, Loss: 1.1449
+Epoch 900, Loss: 1.1138
+Epoch 1000, Loss: 1.0926
+Epoch 1100, Loss: 1.0777</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>predict_generalized_nnet_values <span class="ot">=</span> <span class="fu">generalized_predict_nn</span>(trained_net, data_nnet_testing[,<span class="sc">-</span><span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>predict_values <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">nnet =</span> predict_nnet_values,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">generalized_nnet =</span> predict_generalized_nnet_values,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">lm_sem_int =</span> predict_lm_values_int,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">lm_com_int =</span> predict_lm_values_com_int,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">real =</span> data_nnet_testing<span class="sc">$</span>y)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>predict_values <span class="sc">|&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="sc">-</span>real) <span class="sc">|&gt;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">eqm =</span> <span class="fu">mean</span>((real <span class="sc">-</span> value)<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  name                  eqm
+  &lt;chr&gt;               &lt;dbl&gt;
+1 generalized_nnet     1.29
+2 lm_com_int           1.27
+3 lm_sem_int           1.46
+4 nnet             22520.  </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="dados-brasileirão" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Dados Brasileirão</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_brasileirao <span class="ot">=</span> readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(<span class="st">"datasets/2024_Brasileirao.xlsx"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Aplicar one-hot encoding em todas as variáveis categóricas</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>df_numeric <span class="ot">=</span> df_brasileirao <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">across</span>(</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(Sc, Libwin, Stadium, Holds),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span>dplyr<span class="sc">::</span><span class="fu">case_when</span>(. <span class="sc">==</span> <span class="st">"Yes"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>                        . <span class="sc">==</span> <span class="st">"No"</span> <span class="sc">~</span> <span class="dv">0</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Season, <span class="sc">-</span>Club, <span class="sc">-</span>Hometown, <span class="sc">-</span>Label) <span class="sc">|&gt;</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  fastDummies<span class="sc">::</span><span class="fu">dummy_cols</span>(<span class="at">remove_first_dummy =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>                          <span class="at">remove_selected_columns =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Garantir que tudo seja numérico</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>df_numeric <span class="ot">=</span> df_numeric <span class="sc">|&gt;</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric)) <span class="sc">|&gt;</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">relocate</span>(Ratio, <span class="at">.before =</span> <span class="st">"Sc"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Fifawc_No, <span class="sc">-</span><span class="st">"Homestate_Minas Gerais"</span>, <span class="sc">-</span><span class="st">"Homestate_Rio de Janeiro"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>rede_neural_brasileirao_1 <span class="ot">=</span> <span class="fu">generalized_train_nn</span>(<span class="at">X =</span> df_numeric[,<span class="sc">-</span><span class="dv">1</span>] <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>(), </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Y =</span> df_numeric[,<span class="dv">1</span>] <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>(),</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">hidden_layers =</span> <span class="fu">c</span>(<span class="dv">2</span>),</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">lr =</span> <span class="fl">0.0003</span>, </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">epochs =</span> <span class="dv">2000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 100, Loss: 0.0350
+Epoch 200, Loss: 0.0045
+Epoch 300, Loss: 0.0024
+Epoch 400, Loss: 0.0022
+Epoch 500, Loss: 0.0022
+Epoch 600, Loss: 0.0022
+Epoch 700, Loss: 0.0022
+Epoch 800, Loss: 0.0022
+Epoch 900, Loss: 0.0022
+Epoch 1000, Loss: 0.0022
+Epoch 1100, Loss: 0.0022
+Epoch 1200, Loss: 0.0022
+Epoch 1300, Loss: 0.0022
+Epoch 1400, Loss: 0.0022
+Epoch 1500, Loss: 0.0022
+Epoch 1600, Loss: 0.0022
+Epoch 1700, Loss: 0.0022
+Epoch 1800, Loss: 0.0022
+Epoch 1900, Loss: 0.0022
+Epoch 2000, Loss: 0.0022</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rede_neural_brasileirao_2 <span class="ot">=</span> <span class="fu">generalized_train_nn</span>(<span class="at">X =</span> df_numeric <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                                                   dplyr<span class="sc">::</span><span class="fu">select</span>(Gd, <span class="st">"Homestate_São Paulo"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                                                   <span class="fu">as.matrix</span>(), </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Y =</span> df_numeric[,<span class="dv">1</span>] <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>(),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">hidden_layers =</span> <span class="fu">c</span>(<span class="dv">2</span>),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">lr =</span> <span class="fl">0.0003</span>, </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">epochs =</span> <span class="dv">3000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 100, Loss: 0.0234
+Epoch 200, Loss: 0.0190
+Epoch 300, Loss: 0.0156
+Epoch 400, Loss: 0.0129
+Epoch 500, Loss: 0.0108
+Epoch 600, Loss: 0.0091
+Epoch 700, Loss: 0.0077
+Epoch 800, Loss: 0.0066
+Epoch 900, Loss: 0.0058
+Epoch 1000, Loss: 0.0051
+Epoch 1100, Loss: 0.0045
+Epoch 1200, Loss: 0.0041
+Epoch 1300, Loss: 0.0037
+Epoch 1400, Loss: 0.0034
+Epoch 1500, Loss: 0.0031
+Epoch 1600, Loss: 0.0029
+Epoch 1700, Loss: 0.0027
+Epoch 1800, Loss: 0.0025
+Epoch 1900, Loss: 0.0024
+Epoch 2000, Loss: 0.0023
+Epoch 2100, Loss: 0.0022
+Epoch 2200, Loss: 0.0021
+Epoch 2300, Loss: 0.0020
+Epoch 2400, Loss: 0.0020
+Epoch 2500, Loss: 0.0019
+Epoch 2600, Loss: 0.0018
+Epoch 2700, Loss: 0.0018
+Epoch 2800, Loss: 0.0017
+Epoch 2900, Loss: 0.0017
+Epoch 3000, Loss: 0.0017</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rede_neural_brasileirao_3 <span class="ot">=</span> <span class="fu">generalized_train_nn</span>(<span class="at">X =</span> df_numeric <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                                                   dplyr<span class="sc">::</span><span class="fu">select</span>(Gd) <span class="sc">|&gt;</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                                                   <span class="fu">as.matrix</span>(), </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Y =</span> df_numeric[,<span class="dv">1</span>] <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>(),</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">hidden_layers =</span> <span class="fu">c</span>(<span class="dv">2</span>),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">lr =</span> <span class="fl">0.0003</span>, </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">epochs =</span> <span class="dv">3000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 100, Loss: 0.0350
+Epoch 200, Loss: 0.0045
+Epoch 300, Loss: 0.0024
+Epoch 400, Loss: 0.0022
+Epoch 500, Loss: 0.0022
+Epoch 600, Loss: 0.0022
+Epoch 700, Loss: 0.0022
+Epoch 800, Loss: 0.0022
+Epoch 900, Loss: 0.0022
+Epoch 1000, Loss: 0.0022
+Epoch 1100, Loss: 0.0022
+Epoch 1200, Loss: 0.0022
+Epoch 1300, Loss: 0.0022
+Epoch 1400, Loss: 0.0022
+Epoch 1500, Loss: 0.0022
+Epoch 1600, Loss: 0.0022
+Epoch 1700, Loss: 0.0022
+Epoch 1800, Loss: 0.0022
+Epoch 1900, Loss: 0.0022
+Epoch 2000, Loss: 0.0022
+Epoch 2100, Loss: 0.0022
+Epoch 2200, Loss: 0.0022
+Epoch 2300, Loss: 0.0022
+Epoch 2400, Loss: 0.0022
+Epoch 2500, Loss: 0.0022
+Epoch 2600, Loss: 0.0022
+Epoch 2700, Loss: 0.0022
+Epoch 2800, Loss: 0.0022
+Epoch 2900, Loss: 0.0022
+Epoch 3000, Loss: 0.0022</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>predicao_rede_neural_brasileirao_1 <span class="ot">=</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generalized_predict_nn</span>(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    rede_neural_brasileirao_1, </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    df_numeric[,<span class="sc">-</span><span class="dv">1</span>] <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>()</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>predicao_rede_neural_brasileirao_2 <span class="ot">=</span> </span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generalized_predict_nn</span>(</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    rede_neural_brasileirao_2, </span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    df_numeric <span class="sc">|&gt;</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">select</span>(Gd, <span class="st">"Homestate_São Paulo"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.matrix</span>()</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>predicao_rede_neural_brasileirao_3 <span class="ot">=</span> </span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generalized_predict_nn</span>(</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    rede_neural_brasileirao_3, </span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    df_numeric <span class="sc">|&gt;</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">select</span>(Gd) <span class="sc">|&gt;</span> </span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.matrix</span>()</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -630,8 +1231,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./hyper.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hiperparâmetros e Otimização</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

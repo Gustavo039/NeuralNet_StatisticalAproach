@@ -379,3 +379,472 @@ $$w_{112}^+ = w_{112} - \frac{\partial E_{total}}{\partial w_{112}} = 0.4 - 214.
 Veremos mais pra frente o conceito de tunagem de hiperparametros, onde um deles é a taxa de aprendizado (*learning rate*), esse parametro é utilizado para ajustar a magnitude do valor atualizado por iteração. Utilizando ele, a atualização é dada por 
 $$w_{112}^+ = w_{112} - \alpha \frac{\partial E_{total}}{\partial w_{112}}$$
 onde $\alpha$ é um valor que deve ser tunado (processo semelhante a otimização)
+
+
+# Simulação de Redes Neurais 
+
+Agora que já entendemos o funcionamento matemático de uma rede neural feedforward, vamos colocar a teoria em prática com simulações em R.
+O objetivo é:
+
+1. Criar uma rede simples, com apenas uma camada oculta (SLP — Single Layer Perceptron).
+
+2. Compará-la com modelos de regressão linear.
+
+3. Generalizar o código para redes com múltiplas camadas ocultas e compará-las novamente.
+
+
+--------------------------------------
+
+## Dados Simulados
+
+1.1 Preparanda a simulação
+
+Começaremos gerando um conjunto de dados sintético, onde a variável resposta $y$ é uma combinação linear de três variáveis $x_1,x_2,x_3$ mais um erro aleatório (que segue uma distribuição Normal(0,1))
+
+
+```{r}
+beta_0 = 1
+beta_1 = 10
+beta_2 = 0.02 
+beta_3 = 55
+  
+  
+data_nnet = data.frame(
+  x_1 = rnorm(100, mean = 10, sd = 3),
+  x_2 = rexp(100, rate = 5),
+  x_3 = rgamma(100, shape = 1, rate = 0.4)
+) |>
+  dplyr::mutate(
+    y = beta_0 + (beta_1*x_1) + (beta_2*x_2) + (beta_3*x_3) +
+      rnorm(100, mean = 0, sd = 1)
+  )
+
+```
+
+
+## Simulação Rede SLP
+
+Para a primeira rodada de simulação, utilizamos uma rede simples, com apenas uma camada oculta (uma single layer perceptron), com as seguintes definições
+
+* 1 camada oculta
+
+* 2 neurônios
+
+* Função de ativação: ReLU
+
+* Função de custo: Erro Quadrático Médio (EQM)
+
+Para a construção e treinamento da rede, as seguintes funções foram construídas. É importante perceber que tais funções servem apenas para a construção de redes com 1 camada oculta. Mais adinate veremos o cófigo utilizado para redes com mais 1 camada oculta 
+
+**Funções básicas**
+
+```{r}
+# Função de ativação ReLU
+relu = function(x) pmax(0, x)
+relu_deriv = function(x) ifelse(x > 0, 1, 0)
+
+# Função de custo EQM
+eqm = function(y, y_hat) (y-y_hat)^2/2
+eqm_deriv = function(y, y_hat) -(y-y_hat)
+```
+
+**Inicialização da rede**
+
+```{r}
+init_network = function(input_size, hidden_size, output_size) {
+  list(
+    W1 = matrix(runif(input_size * hidden_size, -0.5, 0.5), nrow = hidden_size),
+    b1 = matrix(0, nrow = hidden_size, ncol = 1),
+    W2 = matrix(runif(hidden_size * output_size, -0.5, 0.5), nrow = output_size),
+    b2 = matrix(0, nrow = output_size, ncol = 1)
+  )
+}
+
+```
+
+
+**Passo forward e backward**
+
+```{r}
+# Forward e backward
+forward_backward = function(network, x, y) {
+  # Forward
+  z1 = network$W1 %*% x + network$b1
+  a1 = relu(z1)
+  z2 = network$W2 %*% a1 + network$b2
+  y_pred = z2
+  
+  # Erro e perda
+  loss = mean((y_pred - y)^2)
+  
+  # Backward (gradientes)
+  dL_dz2 = 2 * (y_pred - y)
+  dL_dW2 = dL_dz2 %*% t(a1)
+  dL_db2 = dL_dz2
+  
+  dL_da1 = t(network$W2) %*% dL_dz2
+  dL_dz1 = dL_da1 * relu_deriv(z1)
+  dL_dW1 = dL_dz1 %*% t(x)
+  dL_db1 = dL_dz1
+  
+  list(
+    loss = loss,
+    gradients = list(W1 = dL_dW1, b1 = dL_db1, W2 = dL_dW2, b2 = dL_db2)
+  )
+}
+```
+
+**Treinamento**
+
+```{r}
+# Treinamento
+train_nn = function(X, Y, hidden_size = 5, epochs = 1000, lr = 0.01) {
+  X = t(X)
+  Y = t(Y)
+  input_size = nrow(X)
+  output_size = nrow(Y)
+  network = init_network(input_size, hidden_size, output_size)
+  
+  
+  for (epoch in 1:epochs) {
+    total_loss = 0
+    
+    for (i in 1:ncol(X)) {
+      x_i = X[, i, drop = FALSE]
+      y_i = Y[, i, drop = FALSE]
+      
+      fb = forward_backward(network, x_i, y_i)
+      total_loss = total_loss + fb$loss
+      
+      # Atualização dos pesos
+      network$W1 = network$W1 - lr * fb$gradients$W1
+      network$b1 = network$b1 - lr * fb$gradients$b1
+      network$W2 = network$W2 - lr * fb$gradients$W2
+      network$b2 = network$b2 - lr * fb$gradients$b2
+    }
+    
+    if (epoch %% 100 == 0) {
+      cat(sprintf("Epoch %d, Loss: %.4f\n", epoch, total_loss / ncol(X)))
+    }
+  }
+  
+  return(network)
+}
+
+```
+
+**Predição**
+
+
+```{r}
+# Fazer predição
+predict_nn = function(network, x) {
+  x = t(x)
+  y_pred = 0
+  for(i in 1:ncol(x)) {
+     z1 = network$W1 %*% x[,i] + network$b1
+     a1 = relu(z1)
+     z2 = network$W2 %*% a1 + network$b2
+    y_pred[i] = z2
+  }
+  return(y_pred)
+}
+
+
+
+
+```
+
+
+Nesta etapa, realizamos a separação dos dados em amostras de treino e teste por meio da função **initial_split()** do pacote rsample. 
+A base de treino será utilizada para estimar os parâmetros da rede neural, enquanto a base de teste servirá para avaliar sua capacidade preditiva fora da amostra. A proporção de divisão foi de 75% para treinamento e 25% para teste
+
+```{r}
+sample_desing = rsample::initial_split(data_nnet)
+data_nnet_training = rsample::training(sample_desing)
+data_nnet_testing = rsample::testing(sample_desing)
+
+
+trained_net = 
+  train_nn(X = data_nnet_training[,-4], 
+           Y = data_nnet_training[,4], 
+           hidden_size = 2,
+           lr = 0.00001, 
+           epochs = 2000)
+
+predict_nnet_values = predict_nn(trained_net, data_nnet_testing[,-4])
+```
+
+
+Aqui ajustamos dois modelos de regressão linear múltipla sobre a base de treino, com o objetivo de comparar seu desempenho preditivo com a rede neural treinada anteriormente.
+
+O primeiro modelo (lm_model_inter) foi estimado sem intercepto (-1 na fórmula). Já o segundo modelo (lm_model_com_inter) inclui o intercepto. Vale relembrar que os dados simulados possuem intercepto, e portanto esperamos ver um mlehor desempenho para o modelo que possui intercepto
+
+
+
+```{r}
+lm_model_inter = lm(y ~ -1 + x_1 + x_2 + x_3, data = data_nnet_training)
+lm_model_com_inter = lm(y ~ x_1 + x_2 + x_3, data = data_nnet_training)
+```
+
+
+Após o ajuste, utilizamos a função predict() para gerar as predições de ambos os modelos sobre a base de teste, obtendo assim as estimativas lineares correspondentes para comparação direta com as previsões da rede neural.
+
+```{r}
+predict_lm_values_int = predict(lm_model_inter, newdata  = data_nnet_testing[,-4])
+predict_lm_values_com_int = predict(lm_model_com_inter, newdata  = data_nnet_testing[,-4])
+```
+
+
+```{r}
+predict_values = data.frame(nnet = predict_nnet_values,
+                               lm_sem_int = predict_lm_values_int,
+                               lm_com_int = predict_lm_values_com_int,
+                               real = data_nnet_testing$y)
+
+
+predict_values |>
+  tidyr::pivot_longer(-real) |>
+  dplyr::group_by(name) |>
+  dplyr::summarise(eqm = mean((real - value)^2))
+```
+
+Os erros quadráticos médios (EQM) apresentados para os três modelos são muito próximos, todos na faixa de aproximadamente 1.28 a 1.39, indicando que todos têm desempenho bastante similar na predição dos dados avaliados.
+
+O modelo de regressão linear com intercepto (lm_com_int) apresenta o menor EQM (≈ 1.29), sugerindo que é o que melhor captura a relação entre as variáveis explicativas e a resposta, o que ja era esperado devido aos dados gerados, que possuem intercepto ($\beta_0 = 1$)
+
+O modelo linear sem intercepto (lm_sem_int) tem EQM ligeiramente maior (≈ 1.39), indicando uma leve perda de ajuste ao forçar o modelo a passar pela origem, o que pode não ser adequado para os dados simulados.
+
+A rede neural simples (nnet) apresenta desempenho intermediário (EQM ≈ 1.34), próximo dos modelos lineares, o que indica que, para esse conjunto de dados gerados por uma relação linear, a rede neural consegue capturar a estrutura subjacente com boa eficiência, embora não necessariamente supere o modelo linear com intercepto.
+
+
+Neste cenário, em que os dados são simulados a partir de uma função linear com intercepto e ruído normal, o modelo linear clássico com intercepto se mostra mais adequado e eficiente para predição, enquanto a rede neural e o modelo linear sem intercepto apresentam desempenho comparável, porém ligeiramente inferior.
+
+## Simulação Rede com múltiplas camadas ocultas
+
+Com base no codigo escrito, podemos aprimora-lo e construir uma rede generalizada
+
+**Inicialização de múltiplas camadas**
+
+```{r}
+# Inicialização da rede com múltiplas camadas ocultas
+generalized_init_network = function(layer_sizes) {
+  L = length(layer_sizes) - 1
+  weights = list()
+  
+  for (l in 1:L) {
+    weights[[paste0("W", l)]] = matrix(runif(layer_sizes[l+1] * layer_sizes[l], -0.5, 0.5), 
+                                       nrow = layer_sizes[l+1])
+    weights[[paste0("b", l)]] = matrix(0, nrow = layer_sizes[l+1], ncol = 1)
+  }
+  
+  return(weights)
+}
+```
+
+**Passo forward e backward generalizado**
+
+```{r}
+# Forward e backward para múltiplas camadas
+generalized_forward_backward = function(network, x, y) {
+  L = length(network) / 2
+  activations = list(x)
+  pre_activations = list()
+  
+  # Forward
+  for (l in 1:L) {
+    z = network[[paste0("W", l)]] %*% activations[[l]] + network[[paste0("b", l)]]
+    pre_activations[[l]] = z
+    a = if (l == L) z else relu(z)
+    activations[[l + 1]] = a
+  }
+  
+  y_pred = activations[[L + 1]]
+  loss = mean((y_pred - y)^2)
+  
+  # Backward
+  gradients = list()
+  delta = 2 * (y_pred - y)
+  
+  for (l in L:1) {
+    a_prev = activations[[l]]
+    gradients[[paste0("W", l)]] = delta %*% t(a_prev)
+    gradients[[paste0("b", l)]] = delta
+    
+    if (l > 1) {
+      delta = t(network[[paste0("W", l)]]) %*% delta
+      delta = delta * relu_deriv(pre_activations[[l - 1]])
+    }
+  }
+  
+  return(list(loss = loss, gradients = gradients, activations = activations))
+}
+```
+
+
+**Treinamento generalizado**
+
+```{r}
+# Treinamento da rede
+generalized_train_nn = function(X, Y, hidden_layers = c(5, 5), epochs = 1000, lr = 0.01) {
+  X = t(X)
+  Y = t(Y)
+  input_size = nrow(X)
+  output_size = nrow(Y)
+  
+  layer_sizes = c(input_size, hidden_layers, output_size)
+  network = generalized_init_network(layer_sizes)
+  
+  for (epoch in 1:epochs) {
+    total_loss = 0
+    
+    for (i in 1:ncol(X)) {
+      x_i = X[, i, drop = FALSE]
+      y_i = Y[, i, drop = FALSE]
+      
+      fb = generalized_forward_backward(network, x_i, y_i)
+      total_loss = total_loss + fb$loss
+      
+      # Atualiza pesos
+      for (name in names(fb$gradients)) {
+        network[[name]] = network[[name]] - lr * fb$gradients[[name]]
+      }
+    }
+    
+    if (epoch %% 100 == 0) {
+      cat(sprintf("Epoch %d, Loss: %.4f\n", epoch, total_loss / ncol(X)))
+    }
+  }
+  
+  return(network)
+}
+```
+
+**Predição com múltiplas camadas**
+
+```{r}
+# Predição com múltiplas camadas
+generalized_predict_nn = function(network, X) {
+  X = t(X)
+  L = length(network) / 2
+  Y_pred = matrix(0, nrow = nrow(network[[paste0("W", L)]]), ncol = ncol(X))
+  
+  for (i in 1:ncol(X)) {
+    a = X[, i, drop = FALSE]
+    for (l in 1:L) {
+      z = network[[paste0("W", l)]] %*% a + network[[paste0("b", l)]]
+      a = if (l == L) z else relu(z)
+    }
+    Y_pred[, i] = a
+  }
+  
+  return(t(Y_pred))
+}
+```
+
+
+```{r}
+trained_net = generalized_train_nn(X = data_nnet_training[,-4] |> as.matrix(), 
+                       Y = data_nnet_training[,4] |> as.matrix(),
+                       hidden_layers = c(2,2),
+                       lr = 0.000001, 
+                       epochs = 1100)
+
+
+predict_generalized_nnet_values = generalized_predict_nn(trained_net, data_nnet_testing[,-4])
+```
+
+
+```{r}
+
+
+
+predict_values = data.frame(nnet = predict_nnet_values,
+                            generalized_nnet = predict_generalized_nnet_values,
+                               lm_sem_int = predict_lm_values_int,
+                               lm_com_int = predict_lm_values_com_int,
+                               real = data_nnet_testing$y)
+
+
+predict_values |>
+  tidyr::pivot_longer(-real) |>
+  dplyr::group_by(name) |>
+  dplyr::summarise(eqm = mean((real - value)^2))
+```
+
+# Dados Brasileirão
+
+```{r}
+df_brasileirao = readxl::read_xlsx("datasets/2024_Brasileirao.xlsx")
+
+# 2. Aplicar one-hot encoding em todas as variáveis categóricas
+df_numeric = df_brasileirao |>
+  dplyr::mutate(
+    dplyr::across(
+      c(Sc, Libwin, Stadium, Holds),
+      ~dplyr::case_when(. == "Yes" ~ 1,
+                        . == "No" ~ 0)
+    )
+  ) |>
+  dplyr::select(-Season, -Club, -Hometown, -Label) |>
+  fastDummies::dummy_cols(remove_first_dummy = FALSE, 
+                          remove_selected_columns = TRUE)
+
+# 3. Garantir que tudo seja numérico
+df_numeric = df_numeric |>
+  dplyr::mutate(across(everything(), as.numeric)) |>
+  dplyr::relocate(Ratio, .before = "Sc") |>
+  dplyr::select(-Fifawc_No, -"Homestate_Minas Gerais", -"Homestate_Rio de Janeiro") 
+  
+```
+
+
+```{r}
+rede_neural_brasileirao_1 = generalized_train_nn(X = df_numeric[,-1] |> as.matrix(), 
+                       Y = df_numeric[,1] |> as.matrix(),
+                       hidden_layers = c(2),
+                       lr = 0.0003, 
+                       epochs = 2000)
+
+
+rede_neural_brasileirao_2 = generalized_train_nn(X = df_numeric |>
+                                                   dplyr::select(Gd, "Homestate_São Paulo") |> 
+                                                   as.matrix(), 
+                       Y = df_numeric[,1] |> as.matrix(),
+                       hidden_layers = c(2),
+                       lr = 0.0003, 
+                       epochs = 3000)
+
+rede_neural_brasileirao_3 = generalized_train_nn(X = df_numeric |>
+                                                   dplyr::select(Gd) |> 
+                                                   as.matrix(), 
+                       Y = df_numeric[,1] |> as.matrix(),
+                       hidden_layers = c(2),
+                       lr = 0.0003, 
+                       epochs = 3000)
+
+
+
+predicao_rede_neural_brasileirao_1 = 
+  generalized_predict_nn(
+    rede_neural_brasileirao_1, 
+    df_numeric[,-1] |> as.matrix()
+    )
+
+predicao_rede_neural_brasileirao_2 = 
+  generalized_predict_nn(
+    rede_neural_brasileirao_2, 
+    df_numeric |>
+      dplyr::select(Gd, "Homestate_São Paulo") |> 
+      as.matrix()
+    )
+
+predicao_rede_neural_brasileirao_3 = 
+  generalized_predict_nn(
+    rede_neural_brasileirao_3, 
+    df_numeric |>
+      dplyr::select(Gd) |> 
+      as.matrix()
+    )
+```
+         

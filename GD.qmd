@@ -55,54 +55,40 @@ onde
 Ou de maneira matricial
 
 $$\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}$$
+onde
 
-O cálculo desses coeficientes possui forma fechada, dada por: $$(X^TX)^{-1}X^TY$$
+* $\mathbf{Y}$ é um vetor $n \times 1$ contendo os valores da variável resposta
 
-Pela seguinte demonstração 
+* $\mathbf{X}$ é um matriz $n \times p$ contendo os valores das variáveis explicativas (com $n$ observações e $p$ variáveis)
 
-Seja $X$ a matriz de planejamento. Para um conjunto de dados com $p$ variáveis explicativas e $n$ observações, temos um matriz de planejamento de dimensão $n \ \times \ p$
+* $\beta$ é um vetor $p \times 1$ de coeficientes
 
-## Estimação dos Parâmetros
+* $\boldsymbol{\epsilon}$ é um vetor $n \times 1$ de efeitos aleatórios
 
-Para se estimar os parametros de uma regressão linear o pensamento mais simples é: *qual o valor dos paramaetros que me retorna o menor erro?*
+Como descrito anteriormente, visualmente, a regressão linear busca traçar uma reta entre os dados de treinamento e para isso o método utilizado para encontrar essa é o chamado: **Método dos Mínimos Quadrados**
 
-Ou seja, para quais valores dos coeficientes $\beta_0,\beta_1, ..., \beta_p$ temos o menor erro. 
+Esse método tem como objetivo minimizar a soma quadrado dos resíduos, dado por:
 
-O "menor erro" pode ser estruturada em forma matematica:
+$$min \ \ || \mathbf{Y} -  \hat{\mathbf{Y}}||^2$$
 
-$$Erro = E_i= Y_i-\hat Y_i$$
-$$Soma Erro Abs = \sum E_i^2$$
+onde $\hat{\mathbf{Y}} =  \mathbf{X} \hat{\boldsymbol{\beta}}$
 
-Por sua vez, essa função pode ser chamada de função de custo. Dentro no universo de estatística, aprednizado de máquina e redes neurais diversas função de custos são definidas e utilizadas, satisfzanedo um nicho e onjetivo especifio
+A solução desse problema possui forma fechada, dada por: 
 
-A soma quadratica dos erros é uma das funções mais simples e mais utilizada no contexto de regressão linear
+$$\hat{\boldsymbol{\beta}} = (X^TX)^{-1}X^TY$$
 
-Para sua minização, temos a seguinte estrutura
+Para que o método funcionar, algumas condições em relação a matrix $\mathbf{X}$ devem ser respeitadas
 
-A resposta principal está na formulação em forma fechada da solução, dada por:
+* Linearmente Independentes
+  - Suas colunas devem ser linarmente independentes. Isso é, as variávies utilizadas no modelo devem ser linearmente independentes. Por exemplo, um modelo que utiliza a idade de um individuo e sua data de nascimento, que são variáveis linearmente dependentes possui altas chances de não convergir 
 
-$$\beta = (X^TX)^{-1}X^TY$$
-
-onde 
-
-* $X$ é a matriz de planejamento, contendo os valores das variáveis explicativas (ou preditoras);
-
-
-* $Y$ é o vetor coluna que representa os valores da variável resposta (ou dependente).
+* Posto Completo (n > p)
+  - Os números de linhas da matriz deve ser maior que o número de colunas. Isso é, o número de observações de treinamento do modelo deve ser maior que o número de variáveis. Se p > n, a matrix $(X^TX)$ se torna não invertivel, tornando os calculos de $\beta$ impossíveis
+  
+  
+  
 
 
-1. **Inversão de Matriz**
-
-A primeira parte da fórmula envolve a inversão da matriz $(X^TX)$. Embora a inversão de uma matriz seja possível em teoria, em termos computacionais ela pode ser extremamente custosa. O processo de inversão tem um custo computacional que aumenta exponencialmente com o tamanho da matriz, especialmente à medida que o número de variáveis explicativas (ou colunas de X) aumenta.
-
-O custo de inverter uma matriz $n \times n$ é aproximadamente $O(N^3)$ o que significa que, para dados com muitas variáveis, o tempo de execução cresce de maneira cúbica.
-
-Além disso, se a matriz $X^TX$ for mal-condicionada (ou seja, quando algumas variáveis são altamente correlacionadas entre si), o processo de inversão pode se tornar instável, resultando em erros numéricos.
-
-
-2.  **Eficiência Computacional e Métodos Iterativos**
-
-Devido ao elevado custo de calcular diretamente a inversa dE $X^TX$ métodos iterativos, como os baseados em gradiente, são frequentemente preferidos em cenários com grandes conjuntos de dados ou alta dimensionalidade. Esses métodos não exigem a inversão direta da matriz e podem fornecer aproximações suficientemente boas para os coeficientes $\beta$ com um custo computacional muito menor.
 
 # Gradiente Descendente
 
@@ -605,7 +591,7 @@ high_dim_sim_tbl |>
 ### Cenário Sobredeterminado
 
 ```{r, echo = F}
-over_sim = get_all_estimates(n = 51, n_times = 100, num_covar = 50, betas =runif(50), lr = 0.2)
+over_sim = get_all_estimates(n = 51, n_times = 100, num_covar = 50, betas = runif(50), lr = 0.2)
 
 ggplot(high_dim_sim, aes(x = method, y = estimate, fill = method)) +
   geom_violin(trim = FALSE, alpha = 0.6, color = "black") +
